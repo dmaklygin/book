@@ -37,7 +37,17 @@ window.App = {
     }
     // Append pages to slider
     section.pages.forEach(function(page) {
-      var newSlide = _this.slider.createSlide(_this.Templates.get(page.template));
+      var content = '';
+      switch (page.type) {
+        case 'video':
+          var videoPath = 'video/sections/' + sectionId + '/' + page.video;
+          content = '<video><source src="' + videoPath + '" type="video/mp4;"></source></video>';
+          break;
+        default:
+          content = _this.Templates.get(page.template);
+      }
+
+      var newSlide = _this.slider.createSlide(content);
       newSlide.append();
     });
   }
