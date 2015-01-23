@@ -15,7 +15,7 @@ body {
 
 body {
   position: relative;
-  font-family: 'Conv_Pancetta_Pro_Regular',Sans-Serif;
+  font-family: 'Conv_Pancetta_Pro_Regular', Sans-Serif;
   background-color: #fff;
   box-sizing: border-box;
   min-height: 100%;
@@ -60,6 +60,7 @@ main {
 }
 
 @import "blocks/page";
+@import 'blocks/idangerous.swiper.css';
 
 .clear {
   &::before,
@@ -74,12 +75,12 @@ main {
 
 @font-face {
   font-family: 'Conv_Pancetta_Pro_Regular';
-  src: url('/fonts/Pancetta_Pro_Regular.eot');
-  src: local('☺'), url('/fonts/Pancetta_Pro_Regular.woff') format('woff'), url('/fonts/Pancetta_Pro_Regular.ttf') format('truetype'), url('../fonts/Pancetta_Pro_Regular.svg') format('svg');
+  src: url(/fonts/Pancetta_Pro_Regular.eot);
+  src: local('☺'), url(/fonts/Pancetta_Pro_Regular.woff) format('woff'), url(/fonts/Pancetta_Pro_Regular.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-@import "blocks/idangerous.swiper.css";
+
 
 

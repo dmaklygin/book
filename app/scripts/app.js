@@ -15,16 +15,21 @@ window.App = {
 
     this.section = 0;
 
+    this.slide = null;
+
     this.slider = $('.swiper-container').swiper({
       //Your options here:
       mode:'horizontal',
-      loop: false
+      loop: false,
+      DOMAnimation: false,
+      onSlideChangeStart: this.process.bind(this)
     });
 
-    this.addSection(++this.section);
+    this.process(this.slider);
   },
 
-  addSection: function(sectionId) {
+  addSection: function(slider, sectionId) {
+
     var _this = this,
         section = this.sections.filter(function(section) { return section.id == sectionId }).shift();
 
@@ -41,15 +46,67 @@ window.App = {
       switch (page.type) {
         case 'video':
           var videoPath = 'video/sections/' + sectionId + '/' + page.video;
-          content = '<video><source src="' + videoPath + '" type="video/mp4;"></source></video>';
+          content = '<video controls><source src="' + videoPath + '" type="video/mp4;"></source></video>';
           break;
         default:
           content = _this.Templates.get(page.template);
       }
 
-      var newSlide = _this.slider.createSlide(content);
+      var newSlide = slider.createSlide(content);
+      newSlide.setData('page', page);
       newSlide.append();
     });
+  },
+
+  process: function(slider) {
+    // time to add next sector
+    if (slider.activeIndex >= slider.slides.length - 2) {
+      if (this.section < this.sections.length) {
+        this.addSection(slider, ++this.section);
+      }
+    }
+
+    this.processPage(slider);
+  },
+
+  processPage: function(slider) {
+    this.removeBindings();
+
+    this.slide = slider.getSlide(slider.activeIndex);
+
+    this.addBindings();
+  },
+
+  addBindings: function() {
+    if (!this.slide) return;
+
+    var page = this.slide.getData('page');
+
+    switch(page.type) {
+      case 'video':
+        this.videoStart(this.slide.querySelector('video'));
+        break;
+    }
+  },
+
+  removeBindings: function() {
+    if (!this.slide) return;
+
+    var page = this.slide.getData('page');
+
+    switch(page.type) {
+      case 'video':
+        this.videoStop(this.slide.querySelector('video'));
+        break;
+    }
+  },
+
+  videoStart: function(video) {
+    $(video).trigger('play');
+  },
+
+  videoStop: function(video) {
+    $(video).trigger('pause');
   }
 };
 
