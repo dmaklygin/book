@@ -26,6 +26,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
+var htmltojson = require('gulp-html-to-json');
 var reload = browserSync.reload;
 
 var AUTOPREFIXER_BROWSERS = [
@@ -61,6 +62,30 @@ gulp.task('images', function () {
     })))
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}));
+});
+//
+//gulp.task('markdown', function() {
+//  return gulp.src('app/templates/*.html')
+//    .pipe(htmltojson({
+//      filename: 'templates',
+//      useAsVariable: true,
+//      isAngularTemplate: false,
+//      prefix: 'bk'
+//    }))
+//    .pipe(gulp.dest('dist/scripts'))
+//    .pipe($.size({title: 'templates'}));
+//});
+
+var templateCache = require('gulp-angular-templatecache');
+
+gulp.task('markdown', function () {
+  gulp.src('app/templates/*.html')
+    .pipe(templateCache({
+      templateHeader: '(function($templateCache) {',
+      templateFooter: '})(App.Templates);'
+    }))
+    .pipe(gulp.dest('app/scripts'))
+    .pipe($.size({title: 'templates'}));
 });
 
 // Copy All Files At The Root Level (app)
@@ -157,6 +182,7 @@ gulp.task('serve', ['styles'], function () {
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], reload);
+  gulp.watch(['app/templates/*.html'], ['markdown'], reload);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -175,7 +201,7 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   //'jshint',
-  runSequence('styles', ['html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['markdown', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights

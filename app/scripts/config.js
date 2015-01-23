@@ -15,19 +15,19 @@ window.App.sections = [
       },
       {
         type: 'page',
-        template: 'page3'
+        template: 'page3.html'
       },
       {
         type: 'page',
-        template: 'page4'
+        template: 'page4.html'
       },
       {
         type: 'page',
-        template: 'page5'
+        template: 'page5.html'
       },
       {
         type: 'page',
-        template: 'page6'
+        template: 'page6.html'
       },
       {
         type: 'rubric',
@@ -50,7 +50,7 @@ window.App.sections = [
       },
       {
         type: 'page',
-        template: 'page8'
+        template: 'page8.html'
       }
     ]
   }
