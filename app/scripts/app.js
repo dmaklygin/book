@@ -64,7 +64,7 @@ window.App = {
         default:
           // handle slider
           if (page.slides) {
-            var internalSlider = newSlide.querySelector('.page-slider');
+            var internalSlider = newSlide.querySelector('.page-slider__container');
             internalSlider && page.slides.forEach(function(info) {
               var item = $('<div/>').addClass('page-slider__item');
               item.append('<img src="' + _this.getImagePath(sectionId, page.id) + '/' + info.image + '" />');
@@ -105,6 +105,17 @@ window.App = {
       case 'video':
         this.videoStart(this.slide.querySelector('video'));
         break;
+      case 'page':
+        if (page.slides) {
+          page.slider = $(this.slide).find('.page-slider').swiper({
+            mode:'horizontal',
+            loop: false,
+            DOMAnimation: false,
+            wrapperClass: 'page-slider__container',
+            slideClass: 'page-slider__item'
+          });
+        }
+        break;
     }
   },
 
@@ -116,6 +127,11 @@ window.App = {
     switch(page.type) {
       case 'video':
         this.videoStop(this.slide.querySelector('video'));
+        break;
+      case 'page':
+        if (page.slider) {
+          page.slider.destroy(true);
+        }
         break;
     }
   },
