@@ -12,15 +12,17 @@
     background: black;
   }
 
+  .page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: url(/images/backgrounds/back.jpg) repeat-x;
+
+  }
 }
 
 .swiper-slide .page {
-
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: url(/images/backgrounds/back.jpg) repeat-x;
 
   .text1col {
     float: left;
@@ -29,6 +31,33 @@
     position: relative;
     line-height: 30px;
     text-align: justify;
+  }
+
+  #content {
+    float: right;
+    width: 473px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 9998;
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -webkit-transition: -webkit-transform 1s linear;
+
+    #imgs {
+      width: 100%;
+      height: 100%;
+      float: left;
+      display: inline;
+      transition-property: transform;
+      transition-duration: 0.5s;
+      transition-timing-function: ease-out;
+
+      .img {
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   .text2col {

@@ -18,7 +18,6 @@ window.App = {
     this.slide = null;
 
     this.slider = $('.swiper-container').swiper({
-      //Your options here:
       mode:'horizontal',
       loop: false,
       DOMAnimation: false,
@@ -28,6 +27,9 @@ window.App = {
     this.process(this.slider);
   },
 
+  /**
+   * Adding new Section to Slider
+   */
   addSection: function(slider, sectionId) {
 
     var _this = this,
@@ -55,6 +57,23 @@ window.App = {
       var newSlide = slider.createSlide(content);
       newSlide.setData('page', page);
       newSlide.append();
+
+      // post handling
+      switch (page.type) {
+        case 'video': break;
+        default:
+          // handle slider
+          if (page.slides) {
+            var internalSlider = newSlide.querySelector('.page-slider');
+            internalSlider && page.slides.forEach(function(info) {
+              var item = $('<div/>').addClass('page-slider__item');
+              item.append('<img src="' + _this.getImagePath(sectionId, page.id) + '/' + info.image + '" />');
+              info.map && item.append($('<div/>').addClass('page-slider__globe'));
+              // appending to slider node
+              item.appendTo(internalSlider);
+            });
+          }
+      }
     });
   },
 
@@ -107,6 +126,10 @@ window.App = {
 
   videoStop: function(video) {
     $(video).trigger('pause');
+  },
+
+  getImagePath: function(sectionId, pageId) {
+    return ['images', 'sections', sectionId, 'pages', pageId].join('/');
   }
 };
 
