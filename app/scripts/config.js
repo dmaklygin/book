@@ -4,7 +4,7 @@ window.App || (window.App = {});
 /**
  * Config for pages
  */
-App.sections = [
+window.App.sections = [
   {
     id: 1,
     name: 'First Section',
@@ -41,10 +41,16 @@ App.sections = [
     ]
   },
   {
+    id: 2,
     name: 'Second Section',
     pages: [
       {
-        template: 'page7'
+        type: 'video',
+        video: 'vstup.mp4'
+      },
+      {
+        type: 'page',
+        template: 'page8'
       }
     ]
   }

@@ -1,7 +1,20 @@
-(function () {
+// New file for book
+window.App = {
+
+  init: function() {
+
+    this.slider = $('.swiper-container').swiper({
+      //Your options here:
+      mode:'horizontal',
+      loop: true
+    });
+
+  }
+
+};
+
+
+$(function () {
   'use strict';
-
-  // New file for book
-  window.App || (window.App = {});
-
-})();
+  window.App.init();
+});
