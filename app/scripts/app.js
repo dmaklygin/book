@@ -17,12 +17,17 @@ window.App = {
 
     this.slide = null;
 
-    this.slider = $('.swiper-container').swiper({
+    this.$el = $('.swiper-container')
+
+    this.slider = this.$el.swiper({
       mode:'horizontal',
       loop: false,
       DOMAnimation: false,
       onSlideChangeStart: this.process.bind(this)
     });
+
+    // event for click on internal slider
+    this.$el.on('click', '.page-slider', this.toggleInternalSlider);
 
     this.process(this.slider);
   },
@@ -146,7 +151,38 @@ window.App = {
 
   getImagePath: function(sectionId, pageId) {
     return ['images', 'sections', sectionId, 'pages', pageId].join('/');
+  },
+
+  toggleInternalSlider: function($e) {
+    var slider = $($e.currentTarget),
+      pageColumn = slider.parents('.page__column'),
+      fullsize = pageColumn.hasClass('page__column_type_fullsized') && pageColumn.hasClass('page__column_align_fullscreen');
+
+    pageColumn.off("webkitTransitionEnd");
+
+    if (fullsize) {
+      pageColumn.removeClass('page__column_align_fullscreen');
+      pageColumn.on("webkitTransitionEnd", function() {
+        if (slider) {
+          var swiper = slider.data('swiper');
+          if (swiper) {
+            swiper.reInit(true);
+            pageColumn.removeClass('page__column_type_fullsized');
+            pageColumn.off("webkitTransitionEnd");
+          }
+        }
+        return false;
+      });
+    } else {
+      var swiper = slider.data('swiper');
+      if (slider && swiper) {
+        pageColumn.addClass('page__column_type_fullsized');
+        swiper.reInit(true);
+        pageColumn.addClass('page__column_align_fullscreen');
+      }
+    }
   }
+
 };
 
 

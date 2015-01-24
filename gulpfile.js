@@ -55,7 +55,10 @@ gulp.task('jshint', function () {
 
 // Optimize Images
 gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
+  return gulp.src([
+    'app/images/**/*',
+    '!app/images/animation/*'
+  ])
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -100,6 +103,16 @@ gulp.task('copy', function () {
     .pipe($.size({title: 'copy'}));
 });
 
+
+gulp.task('video', function () {
+  return gulp.src([
+    'app/video/**'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/video'))
+    .pipe($.size({title: 'video'}));
+});
+
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
   return gulp.src(['app/fonts/**'])
@@ -142,8 +155,7 @@ gulp.task('html', function () {
     // the next line to only include styles your project uses.
     .pipe($.if('*.css', $.uncss({
       html: [
-        'app/index.html',
-        'app/styleguide.html'
+        'app/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -201,7 +213,7 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   //'jshint',
-  runSequence('styles', ['markdown', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['markdown', 'html', 'images', 'fonts', 'copy', 'video'], cb);
 });
 
 // Run PageSpeed Insights

@@ -19,7 +19,7 @@ body {
   background-color: #fff;
   box-sizing: border-box;
   min-height: 100%;
-  min-weight: 1024px;
+  width: 1024px;
 }
 
 body.open {
@@ -59,9 +59,9 @@ main {
   }
 }
 
-@import "blocks/page";
-@import "blocks/page-slider";
-@import 'blocks/idangerous.swiper.css';
+@import "page";
+@import "page-slider";
+@import 'idangerous.swiper';
 
 .clear {
   &::before,
@@ -76,8 +76,8 @@ main {
 
 @font-face {
   font-family: 'Conv_Pancetta_Pro_Regular';
-  src: url(/fonts/Pancetta_Pro_Regular.eot);
-  src: local('☺'), url(/fonts/Pancetta_Pro_Regular.woff) format('woff'), url(/fonts/Pancetta_Pro_Regular.ttf) format('truetype');
+  src: url(../fonts/Pancetta_Pro_Regular.eot);
+  src: local('☺'), url(../fonts/Pancetta_Pro_Regular.woff) format('woff'), url(../fonts/Pancetta_Pro_Regular.ttf) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
