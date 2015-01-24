@@ -113,6 +113,16 @@ gulp.task('video', function () {
     .pipe($.size({title: 'video'}));
 });
 
+
+gulp.task('audio', function () {
+  return gulp.src([
+    'app/audio/**'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/audio'))
+    .pipe($.size({title: 'audio'}));
+});
+
 // Copy Web Fonts To Dist
 gulp.task('fonts', function () {
   return gulp.src(['app/fonts/**'])
@@ -213,7 +223,7 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   //'jshint',
-  runSequence('styles', ['markdown', 'html', 'images', 'fonts', 'copy', 'video'], cb);
+  runSequence('styles', ['markdown', 'html', 'images', 'fonts', 'copy', 'video', 'audio'], cb);
 });
 
 // Run PageSpeed Insights

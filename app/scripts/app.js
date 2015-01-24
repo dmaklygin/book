@@ -1,4 +1,8 @@
 // New file for book
+window.Modernizr = {
+  csstransforms: true
+};
+
 window.App = {
 
   Templates: {
@@ -11,23 +15,37 @@ window.App = {
     }
   },
 
+  options: {
+    circlePlayer: {
+      cssSelector: '.audio-player_circle_true'
+    }
+  },
+
   init: function() {
 
     this.section = 0;
 
     this.slide = null;
 
-    this.$el = $('.swiper-container')
+    this.player = null;
+
+    this.circlePlayer = new CirclePlayer('.audio-player', {
+      }, {
+        cssSelectorAncestor: this.options.circlePlayer.cssSelector,
+        swfPath: 'scripts/',
+        supplied: 'mp3',
+        wmode: 'window',
+        keyEnabled: true
+    });
+
+    this.$el = $('.swiper-container');
 
     this.slider = this.$el.swiper({
       mode:'horizontal',
       loop: false,
       DOMAnimation: false,
-      onSlideChangeStart: this.process.bind(this)
+      onSlideChangeEnd: this.process.bind(this)
     });
-
-    // event for click on internal slider
-    this.$el.on('click', '.page-slider', this.toggleInternalSlider);
 
     this.process(this.slider);
   },
@@ -112,16 +130,24 @@ window.App = {
         break;
       case 'page':
         if (page.slides) {
-          page.slider = $(this.slide).find('.page-slider').swiper({
-            mode:'horizontal',
-            loop: false,
-            DOMAnimation: false,
-            wrapperClass: 'page-slider__container',
-            slideClass: 'page-slider__item'
-          });
+          page.slider = App.PageSlider.init($(this.slide).find('.page-slider'), $.extend({
+            onEnded: this.goToNextPage.bind(this)
+          }, page));
+          //page.slider = $(this.slide).find('.page-slider').swiper({
+          //  mode:'horizontal',
+          //  loop: false,
+          //  DOMAnimation: false,
+          //  wrapperClass: 'page-slider__container',
+          //  slideClass: 'page-slider__item',
+          //  onSlideChangeStart: function() {}
+          //});
         }
         break;
     }
+  },
+
+  goToNextPage: function() {
+    this.slider.swipeNext(true);
   },
 
   removeBindings: function() {
@@ -134,11 +160,11 @@ window.App = {
         this.videoStop(this.slide.querySelector('video'));
         break;
       case 'page':
-        if (page.slider) {
-          page.slider.destroy(true);
-        }
+        page.slider && page.slider.destroy(true);
         break;
     }
+
+    this.hideAndStopAudio();
   },
 
   videoStart: function(video) {
@@ -153,36 +179,27 @@ window.App = {
     return ['images', 'sections', sectionId, 'pages', pageId].join('/');
   },
 
-  toggleInternalSlider: function($e) {
-    var slider = $($e.currentTarget),
-      pageColumn = slider.parents('.page__column'),
-      fullsize = pageColumn.hasClass('page__column_type_fullsized') && pageColumn.hasClass('page__column_align_fullscreen');
+  getAudioPath: function(pageId, audio) {
+    return ['audio', 'pages', pageId, audio].join('/');
+  },
 
-    pageColumn.off("webkitTransitionEnd");
+  showAndPlayAudio: function(audio) {
 
-    if (fullsize) {
-      pageColumn.removeClass('page__column_align_fullscreen');
-      pageColumn.on("webkitTransitionEnd", function() {
-        if (slider) {
-          var swiper = slider.data('swiper');
-          if (swiper) {
-            swiper.reInit(true);
-            pageColumn.removeClass('page__column_type_fullsized');
-            pageColumn.off("webkitTransitionEnd");
-          }
-        }
-        return false;
-      });
-    } else {
-      var swiper = slider.data('swiper');
-      if (slider && swiper) {
-        pageColumn.addClass('page__column_type_fullsized');
-        swiper.reInit(true);
-        pageColumn.addClass('page__column_align_fullscreen');
-      }
-    }
+    this.player = $('.audio-player').jPlayer('setMedia', {
+      mp3: audio
+    });
+
+    this.player
+      .jPlayer('playHead', 0)
+      .jPlayer('play');
+    $(this.options.circlePlayer.cssSelector).show();
+  },
+
+  hideAndStopAudio: function() {
+    if (!this.player) return;
+    this.player.jPlayer('stop').hide();
+    $(this.options.circlePlayer.cssSelector).hide();
   }
-
 };
 
 

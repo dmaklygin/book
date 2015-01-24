@@ -1,0 +1,16 @@
+.audio-player {
+  display: none;
+}
+
+.audio-player_circle_true {
+  display:none;
+
+  position:absolute;
+  left:0;
+  bottom:0;
+  z-index: 18;
+}
+
+.audio-player_show_yes {
+  display: block;
+}

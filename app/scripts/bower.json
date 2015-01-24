@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "jquery": "~2.1.3",
-    "swiper": "~2.7.5"
+    "swiper": "~2.7.5",
+    "jplayer": "~2.9.2"
   }
 }
