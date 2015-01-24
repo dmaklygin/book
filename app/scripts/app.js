@@ -144,6 +144,10 @@ window.App = {
         }
         break;
     }
+
+    // Maps click Listener
+    $(this.slide).find('.page-slider__globe').on('click', this.showMap.bind(this));
+
   },
 
   goToNextPage: function() {
@@ -163,6 +167,9 @@ window.App = {
         page.slider && page.slider.destroy(true);
         break;
     }
+
+    // Maps click Listener
+    $(this.slide).find('.page-slider__globe').off('click');
 
     this.hideAndStopAudio();
   },
@@ -199,6 +206,19 @@ window.App = {
     if (!this.player) return;
     this.player.jPlayer('stop').hide();
     $(this.options.circlePlayer.cssSelector).hide();
+  },
+
+  showMap: function(event) {
+    event.preventDefault();
+    if (!this.slide) return;
+    $(this.slide).find('.page__map').show();
+    return false;
+  },
+
+  hideMap: function() {
+    if (!this.slide) return;
+    $(this.slide).find('.page__map').hide();
+    return false;
   }
 };
 
