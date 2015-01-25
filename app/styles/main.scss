@@ -79,6 +79,21 @@ main {
   }
 }
 
+.article {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 21;
+
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+
+  font-size: 18px;
+  max-width: 300px;
+}
+
 @font-face {
   font-family: 'Conv_Pancetta_Pro_Regular';
   src: url(../fonts/Pancetta_Pro_Regular.eot);

@@ -40,6 +40,11 @@ window.App = {
 
     this.$el = $('.swiper-container');
 
+    this.$article = $('.article');
+
+    // Hide articles
+    $(document.body).on('click', this.hideArticle.bind(this));
+
     this.slider = this.$el.swiper({
       mode:'horizontal',
       loop: false,
@@ -152,6 +157,8 @@ window.App = {
             App.showAndPlayAudio(App.getAudioPath(page.id, page.sound));
           },0);
         }
+        // Add Handler to Article Link
+        $(this.slide).on('click', '.article-link', this.showArticle.bind(this));
         break;
       case 'rubric':
         page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
@@ -162,7 +169,6 @@ window.App = {
 
     // Maps click Listener
     $(this.slide).find('.page-slider__globe').on('click', this.showMap.bind(this));
-
   },
 
   goToNextPage: function() {
@@ -181,6 +187,8 @@ window.App = {
       case 'page':
         page.slider && setTimeout(function() { page.slider.destroy(true); }, 0);
         page.sound && App.hideAndStopAudio();
+        // Add Handler to Article Link
+        $(this.slide).off('click');
         break;
       case 'rubric':
         page.rubric && setTimeout(function() {
@@ -191,6 +199,8 @@ window.App = {
 
     // Maps click Listener
     $(this.slide).find('.page-slider__globe').off('click');
+
+    this.hideArticle();
 
     this.hideAndStopAudio();
   },
@@ -233,10 +243,6 @@ window.App = {
     this.isPlaying = false;
   },
 
-  isAudioPlaying: function() {
-    return this.isPlaying;
-  },
-
   showMap: function(event) {
     if (!this.slide) return;
     event.preventDefault();
@@ -248,6 +254,23 @@ window.App = {
     if (!this.slide) return;
     $(this.slide).find('.page__map').hide();
     return false;
+  },
+
+  showArticle: function(el) {
+    var $el = $(el.currentTarget),
+        article = $el.data('text'),
+        position = $el.position();
+
+    position.top+= 20;
+    this.$article
+      .css(position)
+      .html(article)
+      .show();
+    return false;
+  },
+
+  hideArticle: function() {
+    this.$article.hide();
   }
 };
 
