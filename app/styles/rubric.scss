@@ -1,0 +1,123 @@
+.rubric {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  background: url(../images/backgrounds/back.jpg) repeat-x;
+}
+
+.rubric__container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.rubric__slide {
+  position: relative;
+  float: left;
+}
+
+.rubric__final {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  .rubric__final-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 22;
+
+    width: 512px;
+    height: 100%;
+
+    background: url(../images/backgrounds/left-screen.jpg) 0 0 no-repeat;
+
+    transition: -webkit-transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+    transform: translate3d(-512px,0,0);
+    -webkit-transform: translate3d(-512px,0,0);
+  }
+
+  .rubric__final-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    z-index: 22;
+
+    width: 512px;
+    height: 100%;
+
+    background: url(../images/backgrounds/right-screen.jpg) 0 0 no-repeat;
+
+    transition: -webkit-transform 0.5s ease-in-out;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+    transform: translate3d(512px,0,0);
+    -webkit-transform: translate3d(512px,0,0);
+  }
+
+  .rubric__final-message {
+    position: absolute;
+    top: 256px;
+    left: 250px;
+    z-index: 23;
+
+    width: 523px;
+    height: 256px;
+
+    background: url(../images/backgrounds/message.png) 0 0 no-repeat;
+
+    opacity: 0;
+
+    transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
+  }
+
+}
+
+.rubric.rubric_state_initialized {
+  .rubric__slide {
+    position: absolute;
+    z-index: 20;
+    left: 100%;
+
+    transition: -webkit-transform 0.5s ease-out;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+  }
+
+  .rubric__slide.rubric__slide_animation_yes {
+    transform: translate3d(-1025px, 0, 0);
+    -webkit-transform: translate3d(-1025px, 0, 0);
+  }
+}
+
+.rubric__final.rubric__final_state_closed {
+  .rubric__final-left {
+    transform: translate3d(1px, 0, 0);
+    -webkit-transform: translate3d(1px, 0, 0);
+  }
+  .rubric__final-right {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  .rubric__final-message {
+    opacity: 1;
+  }
+}
+
+
+

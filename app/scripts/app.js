@@ -84,6 +84,18 @@ window.App = {
       // post handling
       switch (page.type) {
         case 'video': break;
+        case 'rubric':
+          var rubricEl = $('<div/>').addClass('rubric').addClass('rubric_state_initialized'),
+              rubricContainerEl = $('<div/>').addClass('rubric__container');
+          rubricEl.append(rubricContainerEl);
+          page.images && page.images.forEach(function(image) {
+            var imagePath = ['images', 'sections', sectionId, 'rubrics', image].join('/'),
+                slideEl = $('<div/>').addClass('rubric__slide');
+            slideEl.append('<img src="' + imagePath + '" />');
+            slideEl.appendTo(rubricContainerEl);
+          });
+          rubricEl.appendTo(newSlide);
+          break;
         default:
           // handle slider
           if (page.slides) {
@@ -133,15 +145,12 @@ window.App = {
           page.slider = App.PageSlider.init($(this.slide).find('.page-slider'), $.extend({
             onEnded: this.goToNextPage.bind(this)
           }, page));
-          //page.slider = $(this.slide).find('.page-slider').swiper({
-          //  mode:'horizontal',
-          //  loop: false,
-          //  DOMAnimation: false,
-          //  wrapperClass: 'page-slider__container',
-          //  slideClass: 'page-slider__item',
-          //  onSlideChangeStart: function() {}
-          //});
         }
+        break;
+      case 'rubric':
+        page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
+          onEnded: this.goToNextPage.bind(this)
+        }, page));
         break;
     }
 
@@ -165,6 +174,9 @@ window.App = {
         break;
       case 'page':
         page.slider && page.slider.destroy(true);
+        break;
+      case 'rubric':
+        page.rubric && page.rubric.destroy();
         break;
     }
 
@@ -209,8 +221,8 @@ window.App = {
   },
 
   showMap: function(event) {
-    event.preventDefault();
     if (!this.slide) return;
+    event.preventDefault();
     $(this.slide).find('.page__map').show();
     return false;
   },

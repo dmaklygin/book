@@ -14,6 +14,8 @@ App.PageSlider = {
     // wrapper of slider
     this.wrapper = this.$el.parents('.page__column');
 
+    var isConstant = this.$el.hasClass('page-slider_type_constant');
+
     this.swiper = this.$el.swiper({
       mode: 'horizontal',
       loop: false,
@@ -21,7 +23,7 @@ App.PageSlider = {
       wrapperClass: 'page-slider__container',
       slideClass: 'page-slider__item',
       onSlideChangeStart: this.process.bind(this),
-      onSlideClick: this.toggleSlider.bind(this),
+      onSlideClick: isConstant ? function(){} : this.toggleSlider.bind(this),
       onTouchEnd: function() {
         var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
         if (_this.swiper.positions.current < -lastSlideX) {
