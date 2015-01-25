@@ -39,6 +39,7 @@ window.App.sections = [
       {
         id: 4,
         type: 'page',
+        sound: '1.mp3',
         template: 'page4.html'
       },
       {

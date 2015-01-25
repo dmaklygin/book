@@ -147,6 +147,11 @@ window.App = {
             onEnded: this.goToNextPage.bind(this)
           }, page));
         }
+        if (page.sound) {
+          setTimeout(function() {
+            App.showAndPlayAudio(App.getAudioPath(page.id, page.sound));
+          },0);
+        }
         break;
       case 'rubric':
         page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
@@ -174,7 +179,8 @@ window.App = {
         this.videoStop(this.slide.querySelector('video'));
         break;
       case 'page':
-        page.slider && setTimeout(function() {page.slider.destroy(true); }, 0);
+        page.slider && setTimeout(function() { page.slider.destroy(true); }, 0);
+        page.sound && App.hideAndStopAudio();
         break;
       case 'rubric':
         page.rubric && setTimeout(function() {
@@ -214,13 +220,21 @@ window.App = {
     this.player
       .jPlayer('playHead', 0)
       .jPlayer('play');
+
     $(this.options.circlePlayer.cssSelector).show();
+
+    this.isPlaying = true;
   },
 
   hideAndStopAudio: function() {
-    if (!this.player) return;
+    if (!this.player || !this.isPlaying) return;
     this.player.jPlayer('stop').hide();
     $(this.options.circlePlayer.cssSelector).hide();
+    this.isPlaying = false;
+  },
+
+  isAudioPlaying: function() {
+    return this.isPlaying;
   },
 
   showMap: function(event) {
