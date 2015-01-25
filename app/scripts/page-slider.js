@@ -22,6 +22,7 @@ App.PageSlider = {
       DOMAnimation: false,
       wrapperClass: 'page-slider__container',
       slideClass: 'page-slider__item',
+      pagination: '.page-slider__pagination',
       onSlideChangeStart: this.process.bind(this),
       onSlideClick: isConstant ? function(){} : this.toggleSlider.bind(this),
       onTouchEnd: function() {

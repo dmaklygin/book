@@ -74,6 +74,7 @@ App.Rubric = {
             count++;
             // call next slide
             setTimeout(function() {
+              if (!_this.$slides) return _this.reset();
               var $slide = _this.$slides[count];
               slideIn($slide, callback);
             }, 200);
