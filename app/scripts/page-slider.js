@@ -27,8 +27,10 @@ App.PageSlider = {
       onSlideClick: isConstant ? function(){} : this.toggleSlider.bind(this),
       onTouchEnd: function() {
         var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
-        if (_this.swiper.positions.current < -lastSlideX) {
-          _this.options.onEnded && _this.options.onEnded.call(_this);
+        if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.isMoved) {
+          _this.options.onNext && _this.options.onNext.call(_this);
+        } else if (_this.swiper.positions.current > 0 && _this.fullsize) {
+          _this.options.onPrev && _this.options.onPrev.call(_this);
         }
       }
     });

@@ -149,7 +149,8 @@ window.App = {
       case 'page':
         if (page.slides) {
           page.slider = App.PageSlider.init($(this.slide).find('.page-slider'), $.extend({
-            onEnded: this.goToNextPage.bind(this)
+            onNext: this.goToNextPage.bind(this),
+            onPrev: this.goToPrevPage.bind(this)
           }, page));
         }
         if (page.sound) {
@@ -162,13 +163,18 @@ window.App = {
         break;
       case 'rubric':
         page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
-          onEnded: this.goToNextPage.bind(this)
+          onNext: this.goToNextPage.bind(this),
+          onPrev: this.goToPrevPage.bind(this)
         }, page));
         break;
     }
 
     // Maps click Listener
     $(this.slide).find('.page-slider__globe').on('click', this.showMap.bind(this));
+  },
+
+  goToPrevPage: function() {
+    this.slider.swipePrev(true);
   },
 
   goToNextPage: function() {
