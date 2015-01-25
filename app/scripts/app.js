@@ -44,7 +44,7 @@ window.App = {
       mode:'horizontal',
       loop: false,
       DOMAnimation: false,
-      onSlideChangeEnd: this.process.bind(this)
+      onSlideChangeStart: this.process.bind(this)
     });
 
     this.process(this.slider);
@@ -103,6 +103,7 @@ window.App = {
             internalSlider && page.slides.forEach(function(info) {
               var item = $('<div/>').addClass('page-slider__item');
               item.append('<img src="' + _this.getImagePath(sectionId, page.id) + '/' + info.image + '" />');
+              info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
               info.map && item.append($('<div/>').addClass('page-slider__globe'));
               // appending to slider node
               item.appendTo(internalSlider);
@@ -173,10 +174,12 @@ window.App = {
         this.videoStop(this.slide.querySelector('video'));
         break;
       case 'page':
-        page.slider && page.slider.destroy(true);
+        page.slider && setTimeout(function() {page.slider.destroy(true); }, 0);
         break;
       case 'rubric':
-        page.rubric && page.rubric.destroy();
+        page.rubric && setTimeout(function() {
+          page.rubric.destroy();
+        }, 0);
         break;
     }
 
