@@ -82,16 +82,21 @@ App.Rubric = {
       //// Slide First element
       slideIn(this.$slides[count], function() {
         _this.$final.addClass('rubric__final_state_closed');
-
-        _this.state = 'inited';
-
+        _this.$final.on('webkitTransitionEnd', function() {
+          if (!_this.$final) return;
+          _this.$final.off('webkitTransitionEnd');
+          _this.state = 'inited';
+          // init slider
+          _this.initSlider();
+        });
       });
     } else {
       _this.$final.addClass('rubric__final_state_closed');
     }
   },
 
-  showSlider: function() {
+  initSlider: function() {
+
     var _this = this;
 
     if (this.swiper || this.state != 'inited') return;
@@ -105,14 +110,30 @@ App.Rubric = {
       wrapperClass: 'rubric__container',
       slideClass: 'rubric__slide',
       //onSlideChangeStart: this.process.bind(this),
-      //onSlideClick: isConstant ? function(){} : this.toggleSlider.bind(this),
+      onSlideClick: this.closeSlider.bind(this),
       onTouchEnd: function() {
         var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
-        if (_this.swiper.positions.current <= -lastSlideX) {
+        if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.isMoved) {
           _this.options.onEnded && _this.options.onEnded.call(_this);
         }
       }
     });
+  },
+
+  closeSlider: function() {
+    var _this = this;
+    if (!this.swiper || this.state != 'opened') return;
+
+    this.$final.show();
+    setTimeout(function() {
+      _this.$final.addClass('rubric__final_state_closed');
+    }, 100);
+
+    this.state = 'inited';
+  },
+
+  showSlider: function() {
+    if (!this.swiper || this.state != 'inited') return;
 
     this.$final.removeClass('rubric__final_state_closed');
 
