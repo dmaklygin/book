@@ -76,6 +76,19 @@ window.App.sections = [
         id: 8,
         type: 'page',
         template: 'page8.html'
+      },
+      {
+        id: 9,
+        type: 'page',
+        template: 'page9.html',
+        slides: [
+          {
+            image: 'map1.png'
+          },
+          {
+            image: 'map2.png'
+          }
+        ]
       }
     ]
   }

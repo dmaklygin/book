@@ -49,6 +49,7 @@ window.App = {
       mode:'horizontal',
       loop: false,
       DOMAnimation: false,
+      speed: 500,
       onSlideChangeStart: this.process.bind(this)
     });
 
@@ -76,7 +77,7 @@ window.App = {
       switch (page.type) {
         case 'video':
           var videoPath = 'video/sections/' + sectionId + '/' + page.video;
-          content = '<video controls><source src="' + videoPath + '" type="video/mp4;"></source></video>';
+          content = '<video><source src="' + videoPath + '" type="video/mp4;"></source></video>';
           break;
         default:
           content = _this.Templates.get(page.template);
@@ -130,7 +131,9 @@ window.App = {
   },
 
   processPage: function(slider) {
-    this.removeBindings();
+    var slide = this.slide;
+
+    this.removeBindings(slide);
 
     this.slide = slider.getSlide(slider.activeIndex);
 
@@ -174,44 +177,55 @@ window.App = {
   },
 
   goToPrevPage: function() {
-    this.slider.swipePrev(true);
+    if (this.slider.activeIndex > 0) {
+      this.slider.swipePrev(true);
+    }
   },
 
   goToNextPage: function() {
-    this.slider.swipeNext(true);
+    if (this.slider.activeIndex < this.slider.slides.length - 1) {
+      this.slider.swipeNext(true);
+    }
   },
 
-  removeBindings: function() {
-    if (!this.slide) return;
+  removeBindings: function(slide) {
+    if (!slide) return;
 
-    var page = this.slide.getData('page');
-
-    switch(page.type) {
-      case 'video':
-        this.videoStop(this.slide.querySelector('video'));
-        break;
-      case 'page':
-        page.slider && setTimeout(function() { page.slider.destroy(true); }, 0);
-        page.sound && App.hideAndStopAudio();
-        // Add Handler to Article Link
-        $(this.slide).off('click');
-        break;
-      case 'rubric':
-        page.rubric && setTimeout(function() {
-          page.rubric.destroy();
-        }, 0);
-        break;
-    }
-
-    // Maps click Listener
-    $(this.slide).find('.page-slider__globe').off('click');
+    var _this = this,
+        page = slide.getData('page');
 
     this.hideArticle();
 
     this.hideAndStopAudio();
+
+    // Maps click Listener
+    $(slide).find('.page-slider__globe').off('click');
+
+    // fix for speed in IOS
+    setTimeout(function() {
+
+      switch(page.type) {
+        case 'video':
+          _this.videoStop(slide.querySelector('video'));
+          break;
+        case 'page':
+          page.slider && page.slider.destroy(true);
+          page.sound && App.hideAndStopAudio();
+          // Add Handler to Article Link
+          $(slide).off('click');
+          break;
+        case 'rubric':
+          page.rubric && page.rubric.destroy();
+          break;
+      }
+
+    }, 500);
+
+
   },
 
   videoStart: function(video) {
+    video.currentTime = 0;
     $(video).trigger('play');
   },
 
@@ -279,7 +293,6 @@ window.App = {
     this.$article.hide();
   }
 };
-
 
 $(function () {
   'use strict';

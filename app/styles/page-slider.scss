@@ -31,6 +31,7 @@
 }
 
 .page-slider__globe {
+  display: none;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -39,6 +40,10 @@
   height: 40px;
   background: url("../images/animation/globe.gif") 0 0 no-repeat;
   background-size: 40px;
+}
+
+.page-slider__globe_animation_yes {
+  display: block;
 }
 
 .page-slider__pagination {
