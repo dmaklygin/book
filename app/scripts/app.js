@@ -31,8 +31,7 @@ window.App = {
 
     this.player = null;
 
-    this.circlePlayer = new CirclePlayer('.audio-player', {
-    }, {
+    this.circlePlayer = new CirclePlayer('.audio-player', {}, {
       cssSelectorAncestor: this.options.circlePlayer.cssSelector,
       swfPath: 'scripts/',
       supplied: 'mp3',
@@ -125,10 +124,13 @@ window.App = {
   },
 
   process: function (slider) {
+    var _this = this;
     // time to add next sector
     if (slider.activeIndex >= slider.slides.length - 2) {
       if (this.section < this.sections.length) {
-        this.addSection(slider, ++this.section);
+        setTimeout(function() {
+          _this.addSection(slider, ++_this.section);
+        }, 300);
       }
     }
 
