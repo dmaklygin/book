@@ -7,10 +7,10 @@ window.App = {
 
   Templates: {
     items: {},
-    put: function(key, template) {
+    put: function (key, template) {
       this.items[key] = template;
     },
-    'get': function(key) {
+    'get': function (key) {
       return this.items[key] || null;
     }
   },
@@ -21,7 +21,9 @@ window.App = {
     }
   },
 
-  init: function() {
+  tasks: [],
+
+  init: function () {
 
     this.section = 0;
 
@@ -30,12 +32,12 @@ window.App = {
     this.player = null;
 
     this.circlePlayer = new CirclePlayer('.audio-player', {
-      }, {
-        cssSelectorAncestor: this.options.circlePlayer.cssSelector,
-        swfPath: 'scripts/',
-        supplied: 'mp3',
-        wmode: 'window',
-        keyEnabled: true
+    }, {
+      cssSelectorAncestor: this.options.circlePlayer.cssSelector,
+      swfPath: 'scripts/',
+      supplied: 'mp3',
+      wmode: 'window',
+      keyEnabled: true
     });
 
     this.$el = $('.swiper-container');
@@ -46,7 +48,7 @@ window.App = {
     $(document.body).on('click', this.hideArticle.bind(this));
 
     this.slider = this.$el.swiper({
-      mode:'horizontal',
+      mode: 'horizontal',
       loop: false,
       DOMAnimation: false,
       speed: 500,
@@ -59,10 +61,12 @@ window.App = {
   /**
    * Adding new Section to Slider
    */
-  addSection: function(slider, sectionId) {
+  addSection: function (slider, sectionId) {
 
     var _this = this,
-        section = this.sections.filter(function(section) { return section.id == sectionId }).shift();
+      section = this.sections.filter(function (section) {
+        return section.id == sectionId
+      }).shift();
 
     if (!section) {
       throw new Error('section not found');
@@ -72,7 +76,7 @@ window.App = {
       return false;
     }
     // Append pages to slider
-    section.pages.forEach(function(page) {
+    section.pages.forEach(function (page) {
       var content = '';
       switch (page.type) {
         case 'video':
@@ -89,14 +93,15 @@ window.App = {
 
       // post handling
       switch (page.type) {
-        case 'video': break;
+        case 'video':
+          break;
         case 'rubric':
           var rubricEl = $('<div/>').addClass('rubric').addClass('rubric_state_initialized'),
-              rubricContainerEl = $('<div/>').addClass('rubric__container');
+            rubricContainerEl = $('<div/>').addClass('rubric__container');
           rubricEl.append(rubricContainerEl);
-          page.images && page.images.forEach(function(image) {
+          page.images && page.images.forEach(function (image) {
             var imagePath = ['images', 'sections', sectionId, 'rubrics', image].join('/'),
-                slideEl = $('<div/>').addClass('rubric__slide');
+              slideEl = $('<div/>').addClass('rubric__slide');
             slideEl.append('<img src="' + imagePath + '" />');
             slideEl.appendTo(rubricContainerEl);
           });
@@ -106,7 +111,7 @@ window.App = {
           // handle slider
           if (page.slides) {
             var internalSlider = newSlide.querySelector('.page-slider__container');
-            internalSlider && page.slides.forEach(function(info) {
+            internalSlider && page.slides.forEach(function (info) {
               var item = $('<div/>').addClass('page-slider__item');
               item.append('<img src="' + _this.getImagePath(sectionId, page.id) + '/' + info.image + '" />');
               info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
@@ -119,7 +124,7 @@ window.App = {
     });
   },
 
-  process: function(slider) {
+  process: function (slider) {
     // time to add next sector
     if (slider.activeIndex >= slider.slides.length - 2) {
       if (this.section < this.sections.length) {
@@ -130,7 +135,7 @@ window.App = {
     this.processPage(slider);
   },
 
-  processPage: function(slider) {
+  processPage: function (slider) {
     var slide = this.slide;
 
     this.removeBindings(slide);
@@ -140,12 +145,12 @@ window.App = {
     this.addBindings();
   },
 
-  addBindings: function() {
+  addBindings: function () {
     if (!this.slide) return;
 
     var page = this.slide.getData('page');
 
-    switch(page.type) {
+    switch (page.type) {
       case 'video':
         this.videoStart(this.slide.querySelector('video'));
         break;
@@ -157,9 +162,9 @@ window.App = {
           }, page));
         }
         if (page.sound) {
-          setTimeout(function() {
+          setTimeout(function () {
             App.showAndPlayAudio(App.getAudioPath(page.id, page.sound));
-          },0);
+          }, 0);
         }
         // Add Handler to Article Link
         $(this.slide).on('click', '.article-link', this.showArticle.bind(this));
@@ -173,75 +178,97 @@ window.App = {
     }
 
     // Maps click Listener
-    $(this.slide).find('.page-slider__globe').on('click', this.showMap.bind(this));
+    this.addGlobeHandler(this.slide);
   },
 
-  goToPrevPage: function() {
+  goToPrevPage: function () {
     if (this.slider.activeIndex > 0) {
       this.slider.swipePrev(true);
     }
   },
 
-  goToNextPage: function() {
+  goToNextPage: function () {
     if (this.slider.activeIndex < this.slider.slides.length - 1) {
       this.slider.swipeNext(true);
     }
   },
 
-  removeBindings: function(slide) {
+  removeBindings: function (slide) {
     if (!slide) return;
-
-    var _this = this,
-        page = slide.getData('page');
 
     this.hideArticle();
 
     this.hideAndStopAudio();
 
-    // Maps click Listener
-    $(slide).find('.page-slider__globe').off('click');
+    this.removeGlobeHandler();
 
-    // fix for speed in IOS
-    setTimeout(function() {
+    // Push with task to pull
+    this.tasks.push({ slide: slide, page: slide.getData('page') });
 
-      switch(page.type) {
-        case 'video':
-          _this.videoStop(slide.querySelector('video'));
-          break;
-        case 'page':
-          page.slider && page.slider.destroy(true);
-          page.sound && App.hideAndStopAudio();
-          // Add Handler to Article Link
-          $(slide).off('click');
-          break;
-        case 'rubric':
-          page.rubric && page.rubric.destroy();
-          break;
-      }
-
-    }, 500);
-
-
+    this.clearPool();
   },
 
-  videoStart: function(video) {
+  clearPool: function () {
+
+    var
+      _this = this,
+      clear = function () {
+        while (this.tasks.length) {
+          var
+            task = this.tasks.pop(),
+            page = task.page,
+            slide = task.slide;
+
+          switch (page.type) {
+            case 'video':
+              _this.videoStop(slide.querySelector('video'));
+              break;
+            case 'page':
+              page.slider && page.slider.destroy(true);
+              page.sound && App.hideAndStopAudio();
+              // Add Handler to Article Link
+              $(slide).off('click');
+              break;
+            case 'rubric':
+              page.rubric && page.rubric.destroy();
+              break;
+          }
+        }
+      };
+
+    // force clear
+    if (this.pollInterval) {
+      clear.call(this);
+      clearInterval(this.pollInterval);
+      this.pollInterval = null;
+      return;
+    }
+
+    this.pollInterval = setTimeout(function () {
+      clear.call(_this);
+      clearInterval(_this.pollInterval);
+      _this.pollInterval = null;
+    }, 500);
+  },
+
+  videoStart: function (video) {
     video.currentTime = 0;
     $(video).trigger('play');
   },
 
-  videoStop: function(video) {
+  videoStop: function (video) {
     $(video).trigger('pause');
   },
 
-  getImagePath: function(sectionId, pageId) {
+  getImagePath: function (sectionId, pageId) {
     return ['images', 'sections', sectionId, 'pages', pageId].join('/');
   },
 
-  getAudioPath: function(pageId, audio) {
+  getAudioPath: function (pageId, audio) {
     return ['audio', 'pages', pageId, audio].join('/');
   },
 
-  showAndPlayAudio: function(audio) {
+  showAndPlayAudio: function (audio) {
 
     this.player = $('.audio-player').jPlayer('setMedia', {
       mp3: audio
@@ -256,32 +283,44 @@ window.App = {
     this.isPlaying = true;
   },
 
-  hideAndStopAudio: function() {
+  hideAndStopAudio: function () {
     if (!this.player || !this.isPlaying) return;
     this.player.jPlayer('stop').hide();
     $(this.options.circlePlayer.cssSelector).hide();
     this.isPlaying = false;
   },
 
-  showMap: function(event) {
+  addGlobeHandler: function(slide) {
+    $(this.slide).find('.page-slider__globe').on('click', this.showMap.bind(this));
+  },
+
+  /**
+   * Remove maps click Listener
+   * @param slide
+   */
+  removeGlobeHandler: function(slide) {
+    $(slide).find('.page-slider__globe').off('click');
+  },
+
+  showMap: function (event) {
     if (!this.slide) return;
     event.preventDefault();
     $(this.slide).find('.page__map').show();
     return false;
   },
 
-  hideMap: function() {
+  hideMap: function () {
     if (!this.slide) return;
     $(this.slide).find('.page__map').hide();
     return false;
   },
 
-  showArticle: function(el) {
+  showArticle: function (el) {
     var $el = $(el.currentTarget),
-        article = $el.data('text'),
-        position = $el.position();
+      article = $el.data('text'),
+      position = $el.position();
 
-    position.top+= 20;
+    position.top += 20;
     this.$article
       .css(position)
       .html(article)
@@ -289,7 +328,7 @@ window.App = {
     return false;
   },
 
-  hideArticle: function() {
+  hideArticle: function () {
     this.$article.hide();
   }
 };

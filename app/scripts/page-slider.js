@@ -101,7 +101,7 @@ App.PageSlider = {
   toggleGlobe: function(show) {
     var _this = this;
     this.options.slides.forEach(function(sliderInfo, index) {
-      if (sliderInfo.map) {
+      if (_this.swiper && sliderInfo.map) {
         var globe = _this.swiper.getSlide(index).querySelector('.page-slider__globe');
         $(globe)[show ? 'show' : 'hide']();
       }
