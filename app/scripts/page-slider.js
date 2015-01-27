@@ -22,7 +22,7 @@ App.PageSlider = {
       mode: 'horizontal',
       loop: false,
       DOMAnimation: false,
-      resistanceFirst: !this.fullsize ? true : false,
+      resistance: '100%',
       wrapperClass: 'page-slider__container',
       slideClass: 'page-slider__item',
       pagination: '.page-slider__pagination',
@@ -30,9 +30,9 @@ App.PageSlider = {
       onSlideClick: this.constant ? function(){} : this.toggleSlider.bind(this),
       onTouchEnd: function() {
         var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
-        if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.isMoved) {
+        if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.touches.diff) {
           _this.options.onNext && _this.options.onNext.call(_this);
-        } else if (_this.swiper.positions.current >= 0 && _this.swiper.isMoved && _this.fullsize) {
+        } else if (_this.swiper.positions.current >= 0 && _this.swiper.touches.diff && _this.fullsize) {
           _this.options.onPrev && _this.options.onPrev.call(_this);
         }
       }
@@ -59,7 +59,7 @@ App.PageSlider = {
   increase: function() {
     if (this.swiper) {
 
-      this.swiper.params.resistanceFirst = false;
+//      this.swiper.params.resistance = false;
 
       this.wrapper.addClass('page__column_type_fullsized');
       this.swiper.resizeFix(true);
@@ -83,7 +83,7 @@ App.PageSlider = {
     this.wrapper.removeClass('page__column_align_fullscreen');
     this.wrapper.on('webkitTransitionEnd', function() {
       if (_this.swiper) {
-        _this.swiper.params.resistanceFirst = true;
+//        _this.swiper.params.resistance = true;
         _this.wrapper.removeClass('page__column_type_fullsized');
         _this.swiper.resizeFix(true);
         _this.wrapper.off('webkitTransitionEnd');
@@ -138,7 +138,7 @@ App.PageSlider = {
     this.toggleGlobe(true);
 
     if (this.swiper) {
-      this.swiper.params.resistanceFirst = !this.fullsize ? true : false;
+//      this.swiper.params.resistance = !this.fullsize ? '100%' : false;
     }
   },
 
