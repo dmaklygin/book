@@ -225,7 +225,6 @@ window.App = {
               break;
             case 'page':
               page.slider && page.slider.destroy(true);
-              page.sound && App.hideAndStopAudio();
               // Add Handler to Article Link
               $(slide).off('click');
               break;
@@ -285,7 +284,7 @@ window.App = {
 
   hideAndStopAudio: function () {
     if (!this.player || !this.isPlaying) return;
-    this.player.jPlayer('stop').hide();
+    this.player.jPlayer('pause').hide();
     $(this.options.circlePlayer.cssSelector).hide();
     this.isPlaying = false;
   },

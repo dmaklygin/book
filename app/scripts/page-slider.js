@@ -11,10 +11,10 @@ App.PageSlider = {
     this.options = options;
 
     // wrapper of slider
-    this.wrapper = this.$el.parents('.page__column');
+    this.$wrapper = this.$el.parents('.page__column');
 
     // is Fullsized screen
-    this.fullsize = this.wrapper.hasClass('page__column_type_fullsized');
+    this.fullsize = this.$wrapper.hasClass('page__column_type_fullsized');
 
     this.constant = this.$el.hasClass('page-slider_type_constant');
 
@@ -40,14 +40,14 @@ App.PageSlider = {
 
     // Fix GIF's animation for iOS
     setTimeout(function() {
-      _this.$el.find('.page-slider__globe').addClass('page-slider__globe_animation_yes');
+      _this.toggleGlobe(true);
     }, 1000);
 
     return this;
   },
 
   toggleSlider: function() {
-    this.wrapper.off("webkitTransitionEnd");
+    this.$wrapper.off("webkitTransitionEnd");
 
     if (this.fullsize) {
       this.decrease();
@@ -61,9 +61,9 @@ App.PageSlider = {
 
 //      this.swiper.params.resistance = false;
 
-      this.wrapper.addClass('page__column_type_fullsized');
+      this.$wrapper.addClass('page__column_type_fullsized');
       this.swiper.resizeFix(true);
-      this.wrapper.addClass('page__column_align_fullscreen');
+      this.$wrapper.addClass('page__column_align_fullscreen');
       var sliderInfo = this.options.slides[this.swiper.activeIndex];
       // Show Audio Player
       if (sliderInfo.sound) {
@@ -80,13 +80,13 @@ App.PageSlider = {
 
     var _this = this;
 
-    this.wrapper.removeClass('page__column_align_fullscreen');
-    this.wrapper.on('webkitTransitionEnd', function() {
+    this.$wrapper.removeClass('page__column_align_fullscreen');
+    this.$wrapper.on('webkitTransitionEnd', function() {
       if (_this.swiper) {
 //        _this.swiper.params.resistance = true;
-        _this.wrapper.removeClass('page__column_type_fullsized');
+        _this.$wrapper.removeClass('page__column_type_fullsized');
         _this.swiper.resizeFix(true);
-        _this.wrapper.off('webkitTransitionEnd');
+        _this.$wrapper.off('webkitTransitionEnd');
         // set fullsize to false
         _this.fullsize = false;
         // Show Globe
@@ -128,14 +128,14 @@ App.PageSlider = {
       return;
     }
 
-    this.wrapper.removeClass('page__column_align_fullscreen');
-    this.wrapper.removeClass('page__column_type_fullsized');
-    this.wrapper.off('webkitTransitionEnd');
+    this.$wrapper.removeClass('page__column_align_fullscreen');
+    this.$wrapper.removeClass('page__column_type_fullsized');
+    this.$wrapper.off('webkitTransitionEnd');
 
     // set fullsize to false
     this.fullsize = false;
     // Show Globe
-    this.toggleGlobe(true);
+    this.toggleGlobe(false);
 
     if (this.swiper) {
 //      this.swiper.params.resistance = !this.fullsize ? '100%' : false;
