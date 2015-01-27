@@ -58,9 +58,6 @@ App.PageSlider = {
 
   increase: function() {
     if (this.swiper) {
-
-//      this.swiper.params.resistance = false;
-
       this.$wrapper.addClass('page__column_type_fullsized');
       this.swiper.resizeFix(true);
       this.$wrapper.addClass('page__column_align_fullscreen');
@@ -83,7 +80,6 @@ App.PageSlider = {
     this.$wrapper.removeClass('page__column_align_fullscreen');
     this.$wrapper.on('webkitTransitionEnd', function() {
       if (_this.swiper) {
-//        _this.swiper.params.resistance = true;
         _this.$wrapper.removeClass('page__column_type_fullsized');
         _this.swiper.resizeFix(true);
         _this.$wrapper.off('webkitTransitionEnd');
@@ -136,10 +132,6 @@ App.PageSlider = {
     this.fullsize = false;
     // Show Globe
     this.toggleGlobe(false);
-
-    if (this.swiper) {
-//      this.swiper.params.resistance = !this.fullsize ? '100%' : false;
-    }
   },
 
   destroy: function() {

@@ -2,7 +2,7 @@ window.App || (window.App = {});
 
 App.Rubric = {
 
-  init: function(el, options) {
+  init: function (el, options) {
 
     var _this = this;
 
@@ -27,7 +27,7 @@ App.Rubric = {
     return this;
   },
 
-  createFinalScreen: function() {
+  createFinalScreen: function () {
 
     var _this = this;
 
@@ -40,7 +40,7 @@ App.Rubric = {
     var rightScreen = $('<div/>').addClass('rubric__final-right');
     var messageScreen = $('<div/>').addClass('rubric__final-message');
 
-    messageScreen.on('webkitTransitionEnd', function() {
+    messageScreen.on('webkitTransitionEnd', function () {
       if (_this.state == 'opened') {
         _this.$final.hide();
       }
@@ -53,37 +53,37 @@ App.Rubric = {
       .appendTo(this.$el);
   },
 
-  showAnimationScreen: function() {
+  showAnimationScreen: function () {
     var _this = this;
 
     if (this.$slides.length) {
       var count = 0,
-          slideIn = function(el, callback) {
-            var $el = $(el);
-            $el.addClass('rubric__slide_animation_yes');
-            if (count > 2) {
-              $el.on('webkitTransitionEnd', function() {
-                $el.off('webkitTransitionEnd');
-                if (!_this.$slides && !_this.swiper && !_this.$el) {
-                  return _this.reset();
-                }
-                return callback();
-              });
-              return;
-            }
-            count++;
-            // call next slide
-            setTimeout(function() {
-              if (!_this.$slides) return _this.reset();
-              var $slide = _this.$slides[count];
-              slideIn($slide, callback);
-            }, 200);
+        slideIn = function (el, callback) {
+          var $el = $(el);
+          $el.addClass('rubric__slide_animation_yes');
+          if (count > 2) {
+            $el.on('webkitTransitionEnd', function () {
+              $el.off('webkitTransitionEnd');
+              if (!_this.$slides && !_this.swiper && !_this.$el) {
+                return _this.reset();
+              }
+              return callback();
+            });
+            return;
+          }
+          count++;
+          // call next slide
+          setTimeout(function () {
+            if (!_this.$slides) return _this.reset();
+            var $slide = _this.$slides[count];
+            slideIn($slide, callback);
+          }, 200);
 
-          };
+        };
       //// Slide First element
-      slideIn(this.$slides[count], function() {
+      slideIn(this.$slides[count], function () {
         _this.$final.addClass('rubric__final_state_closed');
-        _this.$final.on('webkitTransitionEnd', function() {
+        _this.$final.on('webkitTransitionEnd', function () {
           if (!_this.$final) return;
           _this.$final.off('webkitTransitionEnd');
           _this.state = 'inited';
@@ -96,7 +96,7 @@ App.Rubric = {
     }
   },
 
-  initSlider: function() {
+  initSlider: function () {
 
     var _this = this;
 
@@ -112,7 +112,7 @@ App.Rubric = {
       slideClass: 'rubric__slide',
       //onSlideChangeStart: this.process.bind(this),
       onSlideClick: this.closeSlider.bind(this),
-      onTouchEnd: function() {
+      onTouchEnd: function () {
         var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
         if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.isMoved) {
           _this.options.onNext && _this.options.onNext.call(_this);
@@ -123,19 +123,19 @@ App.Rubric = {
     });
   },
 
-  closeSlider: function() {
+  closeSlider: function () {
     var _this = this;
     if (!this.swiper || this.state != 'opened') return;
 
     this.$final.show();
-    setTimeout(function() {
+    setTimeout(function () {
       _this.$final.addClass('rubric__final_state_closed');
     }, 100);
 
     this.state = 'inited';
   },
 
-  showSlider: function() {
+  showSlider: function () {
     if (!this.swiper || this.state != 'inited') return;
 
     this.$final.removeClass('rubric__final_state_closed');
@@ -143,7 +143,7 @@ App.Rubric = {
     this.state = 'opened';
   },
 
-  reset: function() {
+  reset: function () {
 
     if (this.$el) {
       this.$el.addClass('rubric_state_initialized');
@@ -166,7 +166,7 @@ App.Rubric = {
     this.state = 'reset';
   },
 
-  destroy: function() {
+  destroy: function () {
 
     if (this.swiper) {
       this.swiper.destroy(true);
