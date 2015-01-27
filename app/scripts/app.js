@@ -51,7 +51,7 @@ window.App = {
       mode: 'horizontal',
       loop: false,
       DOMAnimation: false,
-      speed: 500,
+      speed: 300,
       onSlideChangeStart: this.process.bind(this)
     });
 
