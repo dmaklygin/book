@@ -95,7 +95,9 @@ window.App = {
         case 'video':
           break;
         case 'rubric':
-          var rubricEl = $('<div/>').addClass('rubric').addClass('rubric_state_initialized'),
+          var rubricEl = $('<div/>').addClass('rubric')
+              .addClass('rubric_state_initialized')
+              .addClass('rubric_num_' + page.id),
             rubricContainerEl = $('<div/>').addClass('rubric__container');
           rubricEl.append(rubricContainerEl);
           page.images && page.images.forEach(function (image) {
@@ -157,8 +159,8 @@ window.App = {
         this.videoStart(this.slide.querySelector('video'));
         break;
       case 'page':
-        if (page.slides) {
-          page.slider = App.PageSlider.init($(this.slide).find('.page-slider'), $.extend({
+        if (page.slides && !page.slider) {
+          page.slider = new App.PageSlider($(this.slide).find('.page-slider'), $.extend({
             onNext: this.goToNextPage.bind(this),
             onPrev: this.goToPrevPage.bind(this)
           }, page));
@@ -226,7 +228,7 @@ window.App = {
               _this.videoStop(slide.querySelector('video'));
               break;
             case 'page':
-              page.slider && page.slider.destroy(true);
+              page.slider && page.slider.reset(true);
               // Add Handler to Article Link
               $(slide).off('click');
               break;

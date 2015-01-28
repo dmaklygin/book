@@ -27,49 +27,38 @@
 
 .swiper-slide .page {
 
-  .text1col {
-    float: left;
-    width: 527px;
-    font-size: 22px;
+  font-size: 0;
+
+  .page__column {
+    width: 508px;
+    height: 100%;
+
+    overflow: hidden;
     position: relative;
-    line-height: 30px;
-    text-align: justify;
+    display: inline-block;
+    vertical-align: top;
+
+    font-size: 14px;
   }
 
   .page__separator {
-    position:absolute;
-    left: 547px;
-    z-index: 14;
+    display: inline-block;
+    vertical-align: top;
+
     width: 1px;
     height: 100%;
+    margin: 0 3px 0 0;
     background:url('../images/sections/1/pages/3/line.png') no-repeat;
   }
 
-  .page__column_side_right {
-    position: absolute;
-    top: 0;
-    left: 551px;
-    z-index: 15;
+  .page__column_type_content {
+    position: relative;
+    line-height: 30px;
 
-    width: 473px;
-    height: 100%;
-    overflow: hidden;
-
-    transition: -webkit-transform 1s ease-in-out;
-    -webkit-transition: -webkit-transform 1s ease-in-out;
-
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
+    font-size: 22px;
+    text-align: justify;
   }
 
-  .page__column_type_fullsized {
-    width: 100%;
-  }
-
-  .page__column_align_fullscreen {
-    transform: translate3d(-551px,0,0);
-    -webkit-transform: translate3d(-551px,0,0);
-  }
 
   .page__map {
     display: none;
@@ -129,5 +118,61 @@
   }
   .text2col_2 {
     padding-left: 17px;
+  }
+}
+
+
+.page.page_with_slider {
+
+  .page__column_type_slider {
+    position: absolute;
+    top: 0;
+    z-index: 18;
+
+    transition: -webkit-transform 1s ease-in-out;
+    -webkit-transition: -webkit-transform 1s ease-in-out;
+
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+  }
+
+  .page__column_type_fullsized {
+    width: 100%;
+  }
+
+  .page__column_align_fullscreen {
+    transform: translate3d(-516px,0,0);
+    -webkit-transform: translate3d(-516px,0,0);
+  }
+}
+
+.page.page_with_slider.page_slider_left {
+
+  .page__column_type_slider {
+    left: 0;
+
+    transition: width 1s ease-in-out;
+    -webkit-transition: width 1s ease-in-out;
+  }
+
+  .page__separator {
+    margin: 0 0 0 512px;
+  }
+
+  .page__column_type_fullsized {
+    width: 508px;
+  }
+
+  .page__column_align_fullscreen {
+    width: 100%;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+  }
+}
+
+.page.page_with_slider.page_slider_right {
+
+  .page__column_type_slider {
+    left: 516px;
   }
 }
