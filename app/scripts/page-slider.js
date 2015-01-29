@@ -219,25 +219,10 @@ PageSlider.prototype = {
       };
 
     if (this.swiper) {
-      if (this.direction == 'left') {
-        this.$wrapper.addClass('page__column_type_fullsized');
-        this.$wrapper.addClass('page__column_align_fullscreen');
-        var slide = this.swiper.getSlide(this.swiper.activeIndex);
-        // hardly set width
-        $(slide).width('100%');
-        this.$wrapper.on('webkitTransitionEnd', function() {
-          _this.$wrapper.off('webkitTransitionEnd');
-          if (_this.swiper) {
-            _this.swiper.resizeFix(true);
-            fix();
-          }
-        });
-      } else if (this.direction == 'right') {
         this.$wrapper.addClass('page__column_type_fullsized');
         this.swiper.resizeFix(true);
         this.$wrapper.addClass('page__column_align_fullscreen');
         fix();
-      }
     }
   },
 

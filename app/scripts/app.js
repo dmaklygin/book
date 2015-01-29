@@ -114,7 +114,8 @@ window.App = {
             var internalSlider = newSlide.querySelector('.page-slider__container');
             internalSlider && page.slides.forEach(function (info) {
               var item = $('<div/>').addClass('page-slider__item');
-              item.append('<img src="' + _this.getImagePath(sectionId, page.id) + '/' + info.image + '" />');
+              var image = $('<div style="background-image:url(' + _this.getImagePath(sectionId, page.id) + '/' + info.image + ')" />').addClass('page-slider__image');
+              item.append(image);
               info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
               info.map && item.append($('<div/>').addClass('page-slider__globe'));
               // appending to slider node

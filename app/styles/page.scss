@@ -150,9 +150,6 @@
 
   .page__column_type_slider {
     left: 0;
-
-    transition: width 1s ease-in-out;
-    -webkit-transition: width 1s ease-in-out;
   }
 
   .page__separator {
@@ -160,13 +157,13 @@
   }
 
   .page__column_type_fullsized {
-    width: 508px;
+    width: 100%;
+    left: -516px;
   }
 
   .page__column_align_fullscreen {
-    width: 100%;
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(516px,0,0);
+    -webkit-transform: translate3d(516px,0,0);
   }
 }
 
