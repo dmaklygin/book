@@ -166,6 +166,9 @@ window.App = {
             onPrev: this.goToPrevPage.bind(this)
           }, page));
         }
+        // first initialization
+        page.slider && page.slider.init();
+
         if (page.sound) {
           setTimeout(function () {
             App.showAndPlayAudio(App.getAudioPath(page.id, page.sound));
