@@ -69,6 +69,10 @@ PageSlider.prototype = {
   },
 
   increase: function () {
+  
+    this.$el[0].webkitRequestFullscreen();
+    return;
+
     var
       _this = this,
       fix = function () {
@@ -92,6 +96,10 @@ PageSlider.prototype = {
   },
 
   decrease: function () {
+
+    this.$el[0].webkitExitFullscreen();
+    return;
+
     var
       _this = this,
       fix = function () {

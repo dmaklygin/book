@@ -66,18 +66,6 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}));
 });
-//
-//gulp.task('markdown', function() {
-//  return gulp.src('app/templates/*.html')
-//    .pipe(htmltojson({
-//      filename: 'templates',
-//      useAsVariable: true,
-//      isAngularTemplate: false,
-//      prefix: 'bk'
-//    }))
-//    .pipe(gulp.dest('dist/scripts'))
-//    .pipe($.size({title: 'templates'}));
-//});
 
 var templateCache = require('gulp-angular-templatecache');
 
