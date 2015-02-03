@@ -2,3 +2,7 @@ node_modules
 .sass-cache
 dist
 .tmp
+
+.idea
+app/scripts/bower_components
+app/scripts/templates.js
