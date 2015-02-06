@@ -9,6 +9,9 @@ var PageSlider = function (el, options) {
 
   this.options = options;
 
+  // background node for animation
+  this.$background = $('.page-slider-background');
+
   // wrapper of slider
   this.$wrapper = this.$el.parents('.page__column');
 
@@ -69,8 +72,15 @@ PageSlider.prototype = {
   },
 
   increase: function () {
-  
-    this.$el[0].webkitRequestFullscreen();
+
+    var sliderInfo = this.options.slides[this.swiper.activeIndex];
+    var slide = this.swiper.getSlide(this.swiper.activeIndex);
+
+    console.log(slide);
+
+    //this.$background
+    //page-slider-wrapper
+
     return;
 
     var
@@ -97,7 +107,7 @@ PageSlider.prototype = {
 
   decrease: function () {
 
-    this.$el[0].webkitExitFullscreen();
+
     return;
 
     var

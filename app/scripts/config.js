@@ -112,6 +112,25 @@ window.App.sections = [
             description: 'Подпись к изображению 3'
           }
         ]
+      },
+      {
+        id: 11,
+        type: 'page',
+        template: 'page11.html',
+        slides: [
+          {
+            image: '18_1.jpg',
+            description: 'Подпись к изображению 1'
+          },
+          {
+            image: '18_2.jpg',
+            description: 'Подпись к изображению 2'
+          },
+          {
+            image: '19_1.jpg',
+            description: 'Подпись к изображению 3'
+          }
+        ]
       }
     ]
   }
