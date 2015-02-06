@@ -73,64 +73,156 @@ PageSlider.prototype = {
 
   increase: function () {
 
-    var sliderInfo = this.options.slides[this.swiper.activeIndex];
-    var slide = this.swiper.getSlide(this.swiper.activeIndex);
-
-    console.log(slide);
-
-    //this.$background
-    //page-slider-wrapper
-
-    return;
+    if (this.fullsize) {
+      return;
+    }
 
     var
       _this = this,
-      fix = function () {
+      slide = this.swiper.getSlide(this.swiper.activeIndex),
+      $slide = $(slide),
+      $image = $slide.find('.page-slider__image'),
+      imagePath = $image.data('image');
+
+    // First, we need to turn off Globe animation !!!
+    _this.toggleGlobe(false);
+
+    var top = this.$el.css('top');
+    var left = this.$el.css('left');
+
+    this.$background.css({
+      display: 'block',
+      top: top,
+      left: left,
+      width: this.$el.css('width'),
+      height: this.$el.css('height'),
+      'background-image': 'url(' + imagePath + ')',
+      'background-position': $image.css('background-position')
+    });
+
+    setTimeout(function () {
+      _this.$background.off('webkitTransitionEnd');
+      // Listener to AnimationEnd Event
+      _this.$background.on('webkitTransitionEnd', function () {
         var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
+        // Remove event listener
+        _this.$background.off('webkitTransitionEnd');
+        _this.fullsize = true;
+        // Set Page_slider to FullScreen mode
+        _this.$wrapper.addClass('page__column_type_fullsized');
+        // Recalculate swiper dimensions
+        _this.swiper.resizeFix(true);
+        // Hide Background Node
+        _this.$background.hide();
         // Show Audio Player
         if (sliderInfo.sound) {
           App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
         }
-        // Show Globe
-        _this.toggleGlobe(false);
+      });
 
-        _this.fullsize = true;
-      };
+      _this.$background
+        .addClass('animated')
+        .css({
+          transform: 'translate3d(-' + (left) + ', -' + (top) + ',0)',
+          width: '100%',
+          height: '100%'
+        });
 
-    if (this.swiper) {
-      this.$wrapper.addClass('page__column_type_fullsized');
-      this.swiper.resizeFix(true);
-      this.$wrapper.addClass('page__column_align_fullscreen');
-      fix();
-    }
+    }, 0);
+
+    return;
+
+    //var
+    //  _this = this,
+    //  fix = function () {
+    //    var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
+    //    // Show Audio Player
+    //    if (sliderInfo.sound) {
+    //      App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
+    //    }
+    //    // Show Globe
+    //    _this.toggleGlobe(false);
+    //
+    //    _this.fullsize = true;
+    //  };
+    //
+    //if (this.swiper) {
+    //  this.$wrapper.addClass('page__column_type_fullsized');
+    //  this.swiper.resizeFix(true);
+    //  this.$wrapper.addClass('page__column_align_fullscreen');
+    //  fix();
+    //}
   },
 
   decrease: function () {
 
-
-    return;
+    if (!this.fullsize) {
+      return;
+    }
 
     var
       _this = this,
-      fix = function () {
-        if (_this.swiper) {
-          _this.$wrapper.removeClass('page__column_type_fullsized');
-          _this.swiper.resizeFix(true);
-          // set fullsize to false
-          _this.fullsize = false;
-          // Show Globe
-          _this.toggleGlobe(true);
-        }
-      };
+      slide = this.swiper.getSlide(this.swiper.activeIndex),
+      $slide = $(slide);
 
-    this.$wrapper.removeClass('page__column_align_fullscreen');
-    this.$wrapper.on('webkitTransitionEnd', function () {
-      _this.$wrapper.off('webkitTransitionEnd');
-      fix();
-      return false;
+    // We have to stop Audio at first
+    App.hideAndStopAudio();
+    // Show Background Node
+    this.$background.show();
+    // Set Page_slider to FullScreen mode
+    this.$wrapper
+      .css('overflow', 'hidden')
+      .removeClass('page__column_type_fullsized');
+    // Recalculate swiper dimensions
+    this.swiper.resizeFix(true);
+
+    this.$background.off('webkitTransitionEnd');
+    // Listener to AnimationEnd Event
+    this.$background.on('webkitTransitionEnd', function () {
+      _this.fullsize = false;
+      // Show Swiper
+      _this.$wrapper.css('overflow', 'visible');
+      // Hide Background
+      _this.$background
+        .off('webkitTransitionEnd')
+        .removeClass('animated')
+        .hide();
+      // Can Show the Globe
+      _this.toggleGlobe(true);
     });
 
-    App.hideAndStopAudio();
+    // start animation
+    this.$background
+      .addClass('animated')
+      .css({
+        transform: 'translate3d(0, 0, 0)',
+        width: this.$el.css('width'),
+        height: this.$el.css('height')
+      });
+
+    return;
+    //
+    //var
+    //  _this = this,
+    //  fix = function () {
+    //    if (_this.swiper) {
+    //      _this.$wrapper.removeClass('page__column_type_fullsized');
+    //      _this.swiper.resizeFix(true);
+    //      // set fullsize to false
+    //      _this.fullsize = false;
+    //      // Show Globe
+    //      _this.toggleGlobe(true);
+    //    }
+    //  };
+    //
+    //this.$wrapper.removeClass('page__column_align_fullscreen');
+    //this.$wrapper.on('webkitTransitionEnd', function () {
+    //  _this.$wrapper.off('webkitTransitionEnd');
+    //  fix();
+    //  return false;
+    //});
+    //
+    //App.hideAndStopAudio();
   },
 
   toggleGlobe: function (show) {

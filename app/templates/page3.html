@@ -1,4 +1,4 @@
-<div class="page page_with_slider page_slider_right" id="page3">
+<div class="page page_with_slider" id="page3">
   <div class="page__column page__column_type_content">
     <div
       style="position:absolute;top:82px;left:73px;width:137px;height:59px;background:url('images/sections/1/pages/3/pred.png') no-repeat; background-size:contain;"></div>
@@ -19,13 +19,16 @@
     </div>
   </div>
   <div class="page__separator"></div>
-  <div class="page__column page__column_type_slider">
+  <!-- ВОТ СТРУКТУРА СЛАЙДЕРА page__column обязана быть -->
+  <div class="page__column">
     <!-- Main NODE For Slider -->
     <div class="page-slider page-slider_align_right">
       <div class="page-slider__container"></div>
     </div>
     <div class="page-slider__pagination"></div>
   </div>
+  <!-- END! ВОТ СТРУКТУРА СЛАЙДЕРА-->
+
   <div class="page__map" onclick="javascript:App.hideMap();">
     <div class="page__map-container">
       карту отключил

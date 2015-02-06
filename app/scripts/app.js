@@ -113,8 +113,12 @@ window.App = {
           if (page.slides) {
             var internalSlider = newSlide.querySelector('.page-slider__container');
             internalSlider && page.slides.forEach(function (info) {
-              var item = $('<div/>').addClass('page-slider__item');
-              var image = $('<div style="background-image:url(' + _this.getImagePath(sectionId, page.id) + '/' + info.image + ')" />').addClass('page-slider__image');
+              var item = $('<div/>').addClass('page-slider__item'),
+                imagePath = _this.getImagePath(sectionId, page.id) + '/' + info.image;
+              var image = $('<div style="background-image:url(' + imagePath + ')" />')
+                .attr('data-image', imagePath)
+                .addClass('page-slider__image');
+
               item.append(image);
               info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
               info.map && item.append($('<div/>').addClass('page-slider__globe'));
