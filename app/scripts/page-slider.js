@@ -32,6 +32,16 @@ var PageSlider = function (el, options) {
     slideClass: 'page-slider__item',
     pagination: this.$wrapper.find('.page-slider__pagination')[0],
     onSlideChangeStart: this.process.bind(this),
+    onSlideChangeEnd: function() {
+      var slide = _this.swiper.getSlide(_this.swiper.activeIndex),
+          $slide = $(slide),
+          $image = $slide.find('.page-slider__image'),
+          imagePath = $image.data('image');
+      // set background image
+      _this.$background.css({
+        'background-image': 'url(' + imagePath + ')'
+      });
+    },
     onSlideClick: this.constant ? function () {
     } : this.toggleSlider.bind(this),
     onTouchEnd: function () {
@@ -103,58 +113,35 @@ PageSlider.prototype = {
       return;
     }
 
-    var _this = this,
-      slide = this.swiper.getSlide(this.swiper.activeIndex),
-      $slide = $(slide),
-      $image = $slide.find('.page-slider__image'),
-      imagePath = $image.data('image');
+    var _this = this;
 
     // First, we need to turn off Globe animation !!!
     _this.toggleGlobe(false);
-    // hide wrapper
-    this.$wrapper.css('visibility', 'hidden');
 
-    //var top = this.$el.css('top');
-    //var left = this.$el.css('left');
+    _this.$background.off('webkitTransitionEnd');
+    // Listener to AnimationEnd Event
+    _this.$background.on('webkitTransitionEnd', function () {
+      var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
+      _this.fullsize = true;
+      // Set Page_slider to FullScreen mode
+      _this.$wrapper.addClass('page__column_type_fullsized');
+      // Recalculate swiper dimensions
+      _this.swiper.resizeFix(true);
+      // Hide Background Node
+      // Remove event listener
+      _this.$background
+        .css({ 'visibility': 'hidden' })
+        .off('webkitTransitionEnd');
+      // Show Audio Player
+      if (sliderInfo.sound) {
+        App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
+      }
+    });
 
-    //this.$background.css({
-    //  display: 'block',
-    //  top: top,
-    //  left: left,
-    //  width: this.$el.css('width'),
-    //  height: this.$el.css('height'),
-    //  'background-image': 'url(' + imagePath + ')',
-    //  'background-position': $image.css('background-position')
-    //});
+    this.$background
+      .css({ 'visibility': 'visible' })
+      .addClass('fullsized');
 
-    //setTimeout(function () {
-      _this.$background.off('webkitTransitionEnd');
-      // Listener to AnimationEnd Event
-      _this.$background.on('webkitTransitionEnd', function () {
-        var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
-        _this.fullsize = true;
-        // Set Page_slider to FullScreen mode
-        _this.$wrapper
-          .addClass('page__column_type_fullsized')
-          .css('visibility', 'visible');
-        // Recalculate swiper dimensions
-        _this.swiper.resizeFix(true);
-        // Hide Background Node
-        // Remove event listener
-        _this.$background
-          .css({ 'visibility': 'hidden' })
-          .off('webkitTransitionEnd');
-        // Show Audio Player
-        if (sliderInfo.sound) {
-          App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
-        }
-      });
-
-      this.$background
-        // @TODO не назначать здесь background-image. Назначать его в момент перелистывания слайдера
-        // 'background-image': 'url(' + imagePath + ')',
-        .css({ 'visibility': 'visible' })
-        .addClass('fullsized');
   },
 
   decrease: function () {
@@ -163,26 +150,25 @@ PageSlider.prototype = {
       return;
     }
 
-    var
-      _this = this,
-      slide = this.swiper.getSlide(this.swiper.activeIndex),
-      $slide = $(slide);
+    var _this = this;
 
     // We have to stop Audio at first
     App.hideAndStopAudio();
     // Show Background Node
     this.$background.css({ 'visibility': 'visible' });
+
     // Turn off Page_slider from FullScreen mode
     this.$wrapper
-      .css('visibility', 'hidden')
+      //.css('visibility', 'hidden')
       .removeClass('page__column_type_fullsized');
-    // Recalculate swiper dimensions
-    this.swiper.resizeFix(true);
+
     // Listener to AnimationEnd Event
     this.$background.on('webkitTransitionEnd', function () {
       _this.fullsize = false;
       // Show Swiper
-      _this.$wrapper.css('visibility', 'visible');
+      // Recalculate swiper dimensions
+      _this.swiper.resizeFix(true);
+      //_this.$wrapper.css('visibility', 'visible');
       // Hide Background
       _this.$background
         .css({ 'visibility': 'hidden' })

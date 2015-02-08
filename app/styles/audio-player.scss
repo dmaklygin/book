@@ -2,15 +2,19 @@
   display: none;
 }
 
-.audio-player_circle_true {
-  display:none;
-
+.audio-player-circle {
   position:absolute;
   left:0;
   bottom:0;
   z-index: 18;
+  width: 200px;
+  height: 200px;
+}
+
+.audio-player_circle_true {
+  visibility: hidden;
 }
 
 .audio-player_show_yes {
-  display: block;
+  visibility: visible;
 }

@@ -289,7 +289,7 @@ window.App = {
       .jPlayer('playHead', 0)
       .jPlayer('play');
 
-    $(this.options.circlePlayer.cssSelector).show();
+    $(this.options.circlePlayer.cssSelector).addClass('audio-player_show_yes');
 
     this.isPlaying = true;
   },
@@ -297,7 +297,7 @@ window.App = {
   hideAndStopAudio: function () {
     if (!this.player || !this.isPlaying) return;
     this.player.jPlayer('pause').hide();
-    $(this.options.circlePlayer.cssSelector).hide();
+    $(this.options.circlePlayer.cssSelector).removeClass('audio-player_show_yes');
     this.isPlaying = false;
   },
 

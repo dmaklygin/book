@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <meta name="MobileOptimized" content="176">
   <title>Book</title>
@@ -32,7 +32,7 @@
   <!-- build:js scripts/main.min.js -->
   <script src="scripts/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="scripts/plugins/jquery.grab.js"></script>
-  <script src="scripts/bower_components/swiper/dist/idangerous.swiper.min.js"></script>
+  <script src="scripts/bower_components/swiper/dist/idangerous.swiper.js"></script>
   <script src="scripts/bower_components/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
   <script src="scripts/plugins/circle.player.js"></script>
   <script src="scripts/app.js"></script>
@@ -50,24 +50,29 @@
 </div>
 
 <div class="audio-player"></div>
-
-<div class="audio-player_circle_true cp-container">
-  <div class="cp-buffer-holder">
-    <div class="cp-buffer-1"></div>
-    <div class="cp-buffer-2"></div>
+<div class="audio-player-circle">
+  <div class="audio-player_circle_true cp-container">
+    <div class="cp-buffer-holder">
+      <div class="cp-buffer-1"></div>
+      <div class="cp-buffer-2"></div>
+    </div>
+    <div class="cp-progress-holder">
+      <div class="cp-progress-1"></div>
+      <div class="cp-progress-2"></div>
+    </div>
+    <div class="cp-circle-control"></div>
+    <ul class="cp-controls">
+      <li><a class="cp-play" tabindex="1">play</a></li>
+      <li><a class="cp-pause" style="display:none;" tabindex="1">pause</a></li>
+    </ul>
   </div>
-  <div class="cp-progress-holder">
-    <div class="cp-progress-1"></div>
-    <div class="cp-progress-2"></div>
-  </div>
-  <div class="cp-circle-control"></div>
-  <ul class="cp-controls">
-    <li><a class="cp-play" tabindex="1">play</a></li>
-    <li><a class="cp-pause" style="display:none;" tabindex="1">pause</a></li>
-  </ul>
 </div>
 
-<div class="article"></div>
+
+
+<div class="article">
+
+</div>
 <div class="page-slider-background"></div>
 
 </body>
