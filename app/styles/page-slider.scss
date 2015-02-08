@@ -2,6 +2,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 15;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -23,6 +24,7 @@
   left: 0;
   z-index: 23;
   visibility: hidden;
+  overflow: hidden;
 
   background-repeat: no-repeat;
 
@@ -30,9 +32,6 @@
   transition: all 0.3s linear;
 }
 
-.page-slider-background.animated {
-  transition: all 0.3s linear;
-}
 
 .page-slider-background.fullsized {
   top: 0 !important;
@@ -54,7 +53,7 @@
   width: 100%;
   height: 100%;
 
-  background-size: cover;
+  background-position: 0% 0%;
   background-repeat: no-repeat;
 }
 
@@ -130,6 +129,13 @@
 .page-slider.page-slider_align_left {
   left: 0;
   width: 508px;
+}
+
+.page-slider.page-slider_align_middle {
+  top:315px;
+  left:81px;
+  width:862px;
+  height:386px;
 }
 
 // Полностью раскрытый слайдер

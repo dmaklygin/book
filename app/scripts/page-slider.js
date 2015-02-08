@@ -5,6 +5,8 @@ var PageSlider = function (el, options) {
 
   var _this = this;
 
+  this.active = true;
+
   this.$el = $(el);
 
   this.options = options;
@@ -32,15 +34,8 @@ var PageSlider = function (el, options) {
     slideClass: 'page-slider__item',
     pagination: this.$wrapper.find('.page-slider__pagination')[0],
     onSlideChangeStart: this.process.bind(this),
-    onSlideChangeEnd: function() {
-      var slide = _this.swiper.getSlide(_this.swiper.activeIndex),
-          $slide = $(slide),
-          $image = $slide.find('.page-slider__image'),
-          imagePath = $image.data('image');
-      // set background image
-      _this.$background.css({
-        'background-image': 'url(' + imagePath + ')'
-      });
+    onSlideChangeEnd: this.constant ? function(){} : function() {
+      _this.setBackgroundImage();
     },
     onSlideClick: this.constant ? function () {
     } : this.toggleSlider.bind(this),
@@ -61,17 +56,22 @@ var PageSlider = function (el, options) {
 
   // Init Animation Background
   this.initBackground();
-
 };
 
 PageSlider.prototype = {
 
   init: function() {
     var _this = this;
+
+    this.active = true;
+
     // Fix GIF's animation for iOS
     setTimeout(function () {
       _this.toggleGlobe(true);
     }, 1000);
+
+    // Init Animation Background
+    this.initBackground();
   },
 
   toggleSlider: function () {
@@ -87,7 +87,6 @@ PageSlider.prototype = {
 
   initBackground: function() {
     var
-      _this = this,
       slide = this.swiper.getSlide(this.swiper.activeIndex),
       $slide = $(slide),
       $image = $slide.find('.page-slider__image'),
@@ -104,7 +103,21 @@ PageSlider.prototype = {
         'background-image': 'url(' + imagePath + ')',
         'background-position': $image.css('background-position')
       })
-      .addClass('animated');
+  },
+
+  setBackgroundImage: function() {
+    if (!this.active) return;
+
+    var
+      slide = this.swiper.getSlide(this.swiper.activeIndex),
+      $slide = $(slide),
+      $image = $slide.find('.page-slider__image'),
+      imagePath = $image.data('image');
+
+    this.$background
+      .css({
+        'background-image': 'url(' + imagePath + ')'
+      });
   },
 
   increase: function () {
@@ -192,6 +205,7 @@ PageSlider.prototype = {
   },
 
   process: function (slide) {
+
     if (!this.fullsize) {
       return App.hideAndStopAudio();
     }
@@ -213,12 +227,14 @@ PageSlider.prototype = {
       return;
     }
 
-    this.$wrapper.removeClass('page__column_align_fullscreen');
-    this.$wrapper.on('webkitTransitionEnd', function () {
-      _this.$wrapper.removeClass('page__column_type_fullsized');
-      _this.$wrapper.off('webkitTransitionEnd');
-      _this.swiper.resizeFix(true);
-    });
+    this.active = false;
+
+    this.$wrapper.removeClass('page__column_type_fullsized');
+    this.$wrapper.off('webkitTransitionEnd');
+    this.swiper.resizeFix(true);
+
+    // unset fullsize
+    this.$background.removeClass('fullsized');
 
     // set fullsize to false
     this.fullsize = false;
