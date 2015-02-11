@@ -95,14 +95,20 @@ PageSlider.prototype = {
       left = this.$el.css('left');
 
     this.$background
+      .removeClass('right')
+      .removeClass('left')
+      .addClass(this.direction)
       .css({
         top: top,
         left: left,
         width: this.$el.css('width'),
-        height: this.$el.css('height'),
-        'background-image': 'url(' + imagePath + ')',
-        'background-position': $image.css('background-position')
-      })
+        height: this.$el.css('height')
+      });
+
+    this.$background.find('.page-slider-background__container').css({
+      'background-image': 'url(' + imagePath + ')',
+      'background-position': $image.css('background-position')
+    });
   },
 
   setBackgroundImage: function() {
@@ -114,7 +120,7 @@ PageSlider.prototype = {
       $image = $slide.find('.page-slider__image'),
       imagePath = $image.data('image');
 
-    this.$background
+    this.$background.find('.page-slider-background__container')
       .css({
         'background-image': 'url(' + imagePath + ')'
       });
@@ -132,7 +138,7 @@ PageSlider.prototype = {
     _this.toggleGlobe(false);
 
     _this.$background.off('webkitTransitionEnd');
-    // Listener to AnimationEnd Event
+    //Listener to AnimationEnd Event
     _this.$background.on('webkitTransitionEnd', function () {
       var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
       _this.fullsize = true;
@@ -151,9 +157,50 @@ PageSlider.prototype = {
       }
     });
 
-    this.$background
-      .css({ 'visibility': 'visible' })
-      .addClass('fullsized');
+    if (this.direction) {
+      this.$background
+        .css({ 'visibility': 'visible' })
+        .addClass('fullsized');
+      return ;
+    }
+
+    //
+    var
+      slide = this.swiper.getSlide(this.swiper.activeIndex),
+      $slide = $(slide),
+      width = $slide.outerWidth(),
+      height = $slide.outerHeight(),
+      position = this.$background.position(),
+      $container = this.$background.find('.page-slider-background__container'),
+      containerWidth = $container.outerWidth(),
+      containerheight = $container.outerHeight(),
+      scaleLeft = -1 * ( position.left - Math.floor((1024 - width) / 2)),
+      scaleTop = -1 * ( position.top - Math.floor((768 - height) / 2)),
+
+      containerScaleLeft = -1 * ( containerWidth - containerWidth * (width / 1024) ) / 2,
+      scaleMatrix = $M([ [ 1024 / width,0,0,0], [0, 768 / height,0,0], [0,0,1,0], [scaleLeft,scaleTop,0,1] ]),
+      scaleContainerMatrix = $M([ [ width / 1024,0,0,0], [0, height / 768,0,0], [0,0,1,0], [containerScaleLeft, -1 * (position.top + scaleTop),0,1] ]);
+
+    var styleMatrix = ['matrix3d('];
+    for (var i = 1; i <= 4; i++) {
+      for (var j = 1; j <= 4; j++) {
+        styleMatrix.push(scaleMatrix.e(i,j).toFixed(10) + (i == 4 && j == 4 ? "" : ","));
+      }
+    }
+    styleMatrix.push(')');
+
+    var styleContainerMatrix = ['matrix3d('];
+    for (i = 1; i <= 4; i++) {
+      for (j = 1; j <= 4; j++) {
+        styleContainerMatrix.push(scaleContainerMatrix.e(i,j).toFixed(10) + (i == 4 && j == 4 ? "" : ","));
+      }
+    }
+    styleContainerMatrix.push(')');
+
+
+    this.$background.addClass('fullsized');
+    this.$background.css({ 'visibility': 'visible', 'transform': styleMatrix.join('') });
+    this.$background.find('.page-slider-background__container').css({ 'transform': styleContainerMatrix.join('') });
 
   },
 
@@ -167,31 +214,37 @@ PageSlider.prototype = {
 
     // We have to stop Audio at first
     App.hideAndStopAudio();
-    // Show Background Node
+
     this.$background.css({ 'visibility': 'visible' });
 
     // Turn off Page_slider from FullScreen mode
-    this.$wrapper
-      //.css('visibility', 'hidden')
-      .removeClass('page__column_type_fullsized');
+    this.$wrapper.removeClass('page__column_type_fullsized');
 
     // Listener to AnimationEnd Event
+    this.$background.off('webkitTransitionEnd');
     this.$background.on('webkitTransitionEnd', function () {
       _this.fullsize = false;
       // Show Swiper
       // Recalculate swiper dimensions
       _this.swiper.resizeFix(true);
-      //_this.$wrapper.css('visibility', 'visible');
       // Hide Background
       _this.$background
         .css({ 'visibility': 'hidden' })
-        .off('webkitTransitionEnd');
+        .off('webkitTransitionEnd')
+        .removeClass('fullsized');
       // Can Show the Globe
       _this.toggleGlobe(true);
     });
 
+    if (this.direction) {
+      this.$background.removeClass('fullsized');
+      return;
+    }
+
     // start animation
-    this.$background.removeClass('fullsized');
+    this.$background.find('.page-slider-background__container').css({ 'transform': 'inherit' });
+    this.$background.css({ 'visibility': 'visible', 'transform': 'inherit' });
+
   },
 
   toggleGlobe: function (show) {
@@ -205,6 +258,8 @@ PageSlider.prototype = {
   },
 
   process: function (slide) {
+
+    if (!this.active) return;
 
     if (!this.fullsize) {
       return App.hideAndStopAudio();
@@ -235,6 +290,7 @@ PageSlider.prototype = {
 
     // unset fullsize
     this.$background.removeClass('fullsized');
+
 
     // set fullsize to false
     this.fullsize = false;

@@ -22,6 +22,7 @@ body {
   width: 1024px;
   height: 768px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  overflow: hidden;
 }
 
 body.open {
@@ -33,32 +34,6 @@ p,
 ul,
 ol {
   font-size: 19px;
-}
-
-main {
-  -webkit-transition: -webkit-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-}
-
-main {
-  margin: 0 auto;
-  /* Height of the header */
-  padding: 60px 16px 16px 16px;
-  min-height: 100%;
-}
-
-/** Larger Screens - desktops and tablets **/
-@media all and (min-width: 990px) {
-
-  main {
-    max-width: 864px;
-    padding-top: 0;
-    min-height: initial;
-  }
-
-  body {
-    overflow-y: scroll;
-  }
 }
 
 @import "page";
