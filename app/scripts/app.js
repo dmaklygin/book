@@ -18,7 +18,8 @@ window.App = {
   options: {
     circlePlayer: {
       cssSelector: '.audio-player_circle_true'
-    }
+    },
+    globeSelector: '.globe'
   },
 
   tasks: [],
@@ -42,6 +43,8 @@ window.App = {
     this.$el = $('.swiper-container');
 
     this.$article = $('.article');
+
+    this.$globe = $(this.options.globeSelector || '.globe');
 
     // Hide articles
     $(document.body).on('click', this.hideArticle.bind(this));
@@ -121,7 +124,7 @@ window.App = {
 
               item.append(image);
               info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
-              info.map && item.append($('<div/>').addClass('page-slider__globe'));
+              //info.map && item.append($('<div/>').addClass('page-slider__globe').append('<div/>'));
               // appending to slider node
               item.appendTo(internalSlider);
             });
@@ -299,6 +302,17 @@ window.App = {
     this.player.jPlayer('pause').hide();
     $(this.options.circlePlayer.cssSelector).removeClass('audio-player_show_yes');
     this.isPlaying = false;
+  },
+
+  showGlobe: function() {
+    var _this = this;
+    setTimeout(function () {
+      _this.$globe.show();
+    }, 1000);
+  },
+
+  hideGlobe: function() {
+    this.$globe.hide();
   },
 
   addGlobeHandler: function(slide) {

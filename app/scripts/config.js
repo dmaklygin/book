@@ -28,11 +28,13 @@ window.App.sections = [
           {
             image: '2_1.jpg',
             description: 'Подпись к изображению 2',
-            sound: '2.mp3'
+            sound: '2.mp3',
+            //map: true
           },
           {
             image: '3_1.jpg',
-            description: 'Подпись к изображению 3'
+            description: 'Подпись к изображению 3',
+            map: true
           }
         ]
       },
