@@ -135,7 +135,7 @@ PageSlider.prototype = {
       var sliderInfo = _this.options.slides[_this.swiper.activeIndex];
       _this.fullsize = true;
       // Set Page_slider to FullScreen mode
-      _this.$el.addClass('fullsized');
+      _this.$el.addClass('page-slider_type_fullsized');
       // Recalculate swiper dimensions
       _this.swiper.resizeFix(true);
       // Hide Background Node
@@ -169,7 +169,7 @@ PageSlider.prototype = {
     // Show background
     this.$background.css({ 'visibility': 'visible' });
     // Remove fullsize class
-    _this.$el.removeClass('fullsized');
+    _this.$el.removeClass('page-slider_type_fullsized');
 
     _this.$background.off('webkitTransitionEnd');
     _this.$background.on('webkitTransitionEnd', function () {
@@ -214,16 +214,13 @@ PageSlider.prototype = {
   },
 
   reset: function () {
-
-    var _this = this;
-
     if (this.constant) {
       return;
     }
 
     this.active = false;
 
-    this.$el.removeClass('fullsized');
+    this.$el.removeClass('page-slider_type_fullsized');
     this.$el.off('webkitTransitionEnd');
     this.swiper.resizeFix(true);
 
