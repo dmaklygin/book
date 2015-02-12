@@ -327,13 +327,12 @@ PageSlider.prototype = {
 
     this.active = false;
 
-    this.$wrapper.removeClass('page__column_type_fullsized');
-    this.$wrapper.off('webkitTransitionEnd');
+    this.$el.removeClass('fullsized');
+    this.$el.off('webkitTransitionEnd');
     this.swiper.resizeFix(true);
 
     // unset fullsize
     this.$background.removeClass('fullsized');
-
 
     // set fullsize to false
     this.fullsize = false;

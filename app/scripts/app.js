@@ -306,12 +306,14 @@ window.App = {
 
   showGlobe: function() {
     var _this = this;
+    this.globeShow = true;
     setTimeout(function () {
-      _this.$globe.show();
-    }, 1000);
+      _this.globeShow && _this.$globe.show();
+    }, 500);
   },
 
   hideGlobe: function() {
+    this.globeShow = false;
     this.$globe.hide();
   },
 
