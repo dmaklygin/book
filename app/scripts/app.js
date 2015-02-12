@@ -215,6 +215,8 @@ window.App = {
 
     this.hideAndStopAudio();
 
+    this.hideGlobe();
+
     this.removeGlobeHandler();
 
     // Push with task to pull
