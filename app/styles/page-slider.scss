@@ -13,6 +13,12 @@
   top: 0 !important;
   width: 100% !important;
   height: 100% !important;
+
+  .page-slider__pagination,
+  .page-slider__description {
+    display: none;
+  }
+
 }
 
 .page-slider__container {
@@ -129,13 +135,6 @@
   }
 }
 
-.page__column_type_fullsized {
-
-  .page-slider__pagination,
-  .page-slider__description {
-    display: none;
-  }
-}
 
 .page-slider_align_left {
   .page-slider__image {
@@ -161,10 +160,3 @@
   height:386px;
 }
 
-// Полностью раскрытый слайдер
-//.page__column_type_fullsized .page-slider {
-//  left: 0;
-//  top: 0;
-//  width: 100%;
-//  height: 100%;
-//}
