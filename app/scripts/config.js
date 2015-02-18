@@ -114,7 +114,7 @@ window.App.sections = [
       {
         id: 11,
         type: 'page',
-        template: 'page11.html'
+        template: 'page11.html',
         slides: [
           {
             image: '11_1.jpg',
