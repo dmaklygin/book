@@ -21,16 +21,19 @@ window.App.sections = [
         slides: [
           {
             image: '3_1.jpg',
-            description: 'Антиохия на Оронте',
+            description: 'Подпись к изображению 1',
             sound: '1.mp3',
             map: true
           },
           {
             image: '2_1.jpg',
-            sound: '2.mp3'
+            description: 'Подпись к изображению 2',
+            sound: '2.mp3',
+            //map: true
           },
           {
             image: '3_1.jpg',
+            description: 'Подпись к изображению 3',
             map: true
           }
         ]
@@ -38,6 +41,7 @@ window.App.sections = [
       {
         id: 4,
         type: 'page',
+        sound: '1.mp3',
         template: 'page4.html'
       },
       {
@@ -74,7 +78,13 @@ window.App.sections = [
       {
         id: 8,
         type: 'page',
-        template: 'page8.html'
+        template: 'page8.html',
+        slides: [
+          {
+            image: '8.jpg',
+            description: 'Павел Алеппский'
+          }
+        ]
       },
       {
         id: 9,
@@ -104,7 +114,7 @@ window.App.sections = [
       {
         id: 11,
         type: 'page',
-        template: 'page11.html',
+        template: 'page11.html'
         slides: [
           {
             image: '11_1.jpg',
@@ -124,24 +134,10 @@ window.App.sections = [
         id: '13r',
         type: 'rubric',
         images: [
-          'rub1.jpg',
+          'rub1.jpeg',
           'rub2.jpg',
           'rub3.jpg',
-          'rub4.jpg',
-          'rub5.jpg',
-          'rub6.jpg',
-          'rub7.jpg',
-          'rub8.jpg',
-          'rub9.jpg',
-          'rub10.jpg',
-          'rub11.jpg',
-          'rub12.jpg',
-          'rub13.jpg',
-          'rub14.jpg',
-          'rub15.jpg',
-          'rub16.jpg',
-          'rub17.jpg',
-          'rub18.jpg'
+          'rub4.jpg'
         ]
       }
     ]
@@ -154,7 +150,7 @@ window.App.sections = [
         id: 14,
         type: 'video',
         video: 'intro.mp4'
-      },  
+      },
       {
         id: 15,
         type: 'page',
@@ -253,7 +249,7 @@ window.App.sections = [
         id: 25,
         type: 'page',
         template: 'page25.html'
-      }, 
+      },
       {
         id: 26,
         type: 'page',
@@ -261,15 +257,15 @@ window.App.sections = [
         slides: [
           {
             image: '26_1.jpg',
-            description: 'Польский шляхтич'
+            description: 'Подпись к изображению 1'
           },
           {
-            image: '26_2.jpg',
-            description: 'Стефан Чарнецкий, Заместитель командующего польской армией'
+            image: '26_1.jpg',
+            description: 'Подпись к изображению 2'
           },
           {
-            image: '26_3.jpg',
-            description: 'Станислав Щука, подканцлер Великого Княжества Литовского'
+            image: '26_1.jpg',
+            description: 'Подпись к изображению 3'
           }
         ]
       },
@@ -289,8 +285,7 @@ window.App.sections = [
         template: 'page28.html',
         slides: [
           {
-            image: '28.jpg',
-            description: 'Русский купец'
+            image: '28.jpg'
           }
         ]
       },
@@ -312,8 +307,7 @@ window.App.sections = [
       {
         id: 31,
         type: 'page',
-        template: 'page31.html',
-        description: 'Польская вылазка'
+        template: 'page31.html'
       },
       {
         id: 32,
@@ -323,8 +317,7 @@ window.App.sections = [
       {
         id: 33,
         type: 'page',
-        template: 'page33.html',
-        description: 'Посольство к турецкому султану'
+        template: 'page33.html'
       },
       {
         id: 34,
@@ -332,22 +325,19 @@ window.App.sections = [
         template: 'page34.html',
         slides: [
           {
-            image: '34.jpg',
-            description: 'Турки на фоне мечети'
+            image: '34.jpg'
           }
         ]
       },
       {
         id: 35,
         type: 'page',
-        template: 'page35.html',
-        description: 'Турецкая столица - Константинополь'
+        template: 'page35.html'
       },
       {
         id: 36,
         type: 'page',
-        template: 'page36.html',
-        description: 'Османская держава'
+        template: 'page36.html'
       },
       {
         id: 37,
@@ -400,10 +390,12 @@ window.App.sections = [
         template: 'page42.html',
         slides: [
           {
-            image: '42_1.jpg'
+            image: '42_1.jpg',
+            description: 'Подпись к изображению 1'
           },
           {
-            image: '42_2.jpg'
+            image: '42_2.jpg',
+            description: 'Подпись к изображению 2'
           }
         ]
       },
@@ -497,7 +489,7 @@ window.App.sections = [
         id: 53,
         type: 'video',
         video: 'intro.mp4'
-      },  
+      },
       {
         id: 54,
         type: 'page',
@@ -514,8 +506,7 @@ window.App.sections = [
         template: 'page55.html',
         slides: [
           {
-            image: '55.jpg',
-            description: 'Переводчик на Руси'
+            image: '55.jpg'
           }
         ]
       },
@@ -536,15 +527,15 @@ window.App.sections = [
         slides: [
           {
             image: '57_1.jpg',
-            description: 'Воевода Афанасий Ордын-Нащокин'
+            description: 'Подпись к изображению 1',
           },
           {
             image: '57_2.jpg',
-            description: 'Воевода Пётр Потёмкин'
+            description: 'Подпись к изображению 2',
           },
           {
             image: '57_3.jpg',
-            description: 'Воевода Иван Репнин'
+            description: 'Подпись к изображению 3'
           }
         ]
       },
@@ -555,7 +546,7 @@ window.App.sections = [
         slides: [
           {
             image: '58_1.jpg',
-            description: 'Службы и жития преподобных Сергия и Никона Радонежских. 1646 г.'
+            description: 'Подпись к изображению 1'
           },
           {
             image: '58_2.jpg',
@@ -589,8 +580,7 @@ window.App.sections = [
         template: 'page59.html',
         slides: [
           {
-            image: '59.jpg',
-            description: 'Беззаконник, любящий взятки'
+            image: '59.jpg'
           }
         ]
       },
@@ -747,17 +737,10 @@ window.App.sections = [
         id: '77r',
         type: 'rubric',
         images: [
-          'rub1.jpg',
+          'rub1.jpeg',
           'rub2.jpg',
           'rub3.jpg',
-          'rub4.jpg',
-          'rub5.jpg',
-          'rub6.jpg',
-          'rub7.jpg',
-          'rub8.jpg',
-          'rub9.jpg',
-          'rub10.jpg',
-          'rub11.jpg'
+          'rub4.jpg'
         ]
       }
     ]
@@ -1023,19 +1006,19 @@ window.App.sections = [
         slides: [
           {
             image: '107_1.jpg',
-            description: 'Консул английского короля'
+            description: 'Подпись к изображению 1'
           },
           {
             image: '107_2.jpg',
-            description: 'Консул французского короля'
+            description: 'Подпись к изображению 2'
           },
           {
             image: '107_3.jpg',
-            description: 'Консул русского царя Иван Чемоданов'
+            description: 'Подпись к изображению 3'
           },
           {
             image: '107_4.jpg',
-            description: 'Русский посол во время зарубежного приёма'
+            description: 'Подпись к изображению 3'
           }
         ]
       },
@@ -1056,11 +1039,11 @@ window.App.sections = [
         slides: [
           {
             image: '109_1.jpg',
-            description: 'Шведские ружья в действии'
+            description: 'Подпись к изображению 1'
           },
           {
             image: '109_2.jpg',
-            description: 'Шведские ружья в действии'
+            description: 'Подпись к изображению 2'
           }
         ]
       },
@@ -1173,7 +1156,7 @@ window.App.sections = [
         id: '122r',
         type: 'rubric',
         images: [
-          'rub1.jpg',
+          'rub1.jpeg',
           'rub2.jpg',
           'rub3.jpg',
           'rub4.jpg'
@@ -1242,15 +1225,15 @@ window.App.sections = [
         slides: [
           {
             image: '129_1.jpg',
-            description: 'Знатные люди'
+            description: 'Подпись к изображению 1'
           },
           {
             image: '129_2.jpg',
-            description: 'Боярин Лев Нарышкин. Глава посольского приказа, родной брат второй жены Алексея Михайловича'
+            description: 'Подпись к изображению 2'
           },
           {
             image: '129_3.jpg',
-            description: 'Русский государственный деятель Василий Люткин'
+            description: 'Подпись к изображению 3'
           }
         ]
       },
@@ -1351,13 +1334,15 @@ window.App.sections = [
         slides: [
           {
             image: '140_1.jpg',
-            description: 'Русские женщины'
+            description: 'Подпись к изображению 1'
           },
           {
-            image: '140_2.jpg'
+            image: '140_2.jpg',
+            description: 'Подпись к изображению 2'
           },
           {
-            image: '140_3.jpg'
+            image: '140_3.jpg',
+            description: 'Подпись к изображению 3'
           }
         ]
       },
@@ -1564,18 +1549,10 @@ window.App.sections = [
         id: '164r',
         type: 'rubric',
         images: [
-          'rub1.jpg',
+          'rub1.jpeg',
           'rub2.jpg',
           'rub3.jpg',
-          'rub4.jpg',
-          'rub5.jpg',
-          'rub6.jpg',
-          'rub7.jpg',
-          'rub8.jpg',
-          'rub9.jpg',
-          'rub10.jpg',
-          'rub11.jpg',
-          'rub12.jpg'
+          'rub4.jpg'
         ]
       },
       {
