@@ -30,8 +30,9 @@
   font-size: 0;
 
   .page__column {
-    width: 508px;
+    width: 447px;
     height: 100%;
+    padding-right: 4px;
 
     display: inline-block;
     vertical-align: top;
@@ -105,6 +106,17 @@
     position: relative;
     line-height: 30px;
     padding-right: 75px;
+    padding-top: 86px;
+    text-align: justify;
+  }
+  .text1col-left {
+    float: left;
+    width: 429px;
+    font-size: 22px;
+    position: relative;
+    line-height: 30px;
+    padding-left: 75px;
+    padding-right: 80px;
     padding-top: 86px;
     text-align: justify;
   }

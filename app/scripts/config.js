@@ -109,9 +109,6 @@ window.App.sections = [
           {
             image: '11_1.jpg',
             description: 'Карта пути Павла Алеппского'
-          },
-          {
-            image: '11_2.jpg'
           }
          ]
       },
@@ -167,8 +164,16 @@ window.App.sections = [
       },
       {
         id: 16,
-        type: 'page',
-        template: 'page16.html'
+      type: 'page',
+        template: 'page16.html',
+        slides: [
+          {
+            image: '16_1.jpg'
+          },
+          {
+            image: '16_2.jpg'
+          }
+        ]
       },
       {
         id: 17,
@@ -211,7 +216,11 @@ window.App.sections = [
         id: 20,
         type: 'page',
         template: 'page20.html',
-        description: 'Предыстория событий на территории западной Руси до 17 века. Вступление'
+        slides: [
+          {
+            image: '20.jpg'
+          }
+        ]
       },
       {
         id: 21,
@@ -312,8 +321,7 @@ window.App.sections = [
       {
         id: 31,
         type: 'page',
-        template: 'page31.html',
-        description: 'Польская вылазка'
+        template: 'page31.html'
       },
       {
         id: 32,
@@ -323,8 +331,7 @@ window.App.sections = [
       {
         id: 33,
         type: 'page',
-        template: 'page33.html',
-        description: 'Посольство к турецкому султану'
+        template: 'page33.html'
       },
       {
         id: 34,
@@ -340,22 +347,23 @@ window.App.sections = [
       {
         id: 35,
         type: 'page',
-        template: 'page35.html',
-        description: 'Турецкая столица - Константинополь'
+        template: 'page35.html'
       },
       {
         id: 36,
         type: 'page',
-        template: 'page36.html',
-        description: 'Османская держава'
+        template: 'page36.html'
       },
       {
         id: 37,
         type: 'page',
-        template: 'page34.html',
+        template: 'page37.html',
         slides: [
           {
-            image: '37.jpg'
+            image: '37_1.jpg'
+          },
+          {
+            image: '37_2.jpg'
           }
         ]
       },
@@ -486,7 +494,7 @@ window.App.sections = [
         id: 52,
         type: 'page',
         template: 'page52.html'
-      },
+      }
     ]
   },
   {
@@ -555,31 +563,42 @@ window.App.sections = [
         slides: [
           {
             image: '58_1.jpg',
-            description: 'Службы и жития преподобных Сергия и Никона Радонежских. 1646 г.'
+            description: 'Лево. Оклад Евангелия, 1392 год. Право. 1.2. Оклад Мстиславова Евангелия. До 1125 года'
           },
           {
             image: '58_2.jpg',
-            description: 'Подпись к изображению 2'
+            description: 'Торжественник постный. Святого Иоанна Златоустаго и других слова и поучения'
           },
           {
             image: '58_3.jpg',
-            description: 'Подпись к изображению 3'
+            description: 'Службы и жития преподобных Сергия и Никона Радонежских. 1646 год'
           },
           {
-            image: '58_4.jpg',
-            description: 'Подпись к изображению 1'
+            image: '58_4.jpg'
           },
           {
             image: '58_5.jpg',
-            description: 'Подпись к изображению 2'
+            description: 'Елисаветградское Евангелие. Издание конца XVI - начала XVII века'
           },
           {
-            image: '58_6.jpg',
-            description: 'Подпись к изображению 3'
+            image: '58_6.jpg'
           },
           {
             image: '58_7.jpg',
-            description: 'Подпись к изображению 3'
+            description: 'Лицевой летописный свод Ивана Грозного. Изложение событий мировой и русской истории,  от сотворения мира до 1567 года'
+          },
+          {
+            image: '58_8.jpg'
+          },
+          {
+            image: '58_9.jpg',
+            description: 'Великий миротворный круг священника Агафона. Таблицы для определения Пасхи. 1539 год'
+          },
+          {
+            image: '58_10.jpg'
+          },
+          {
+            image: '58_11.jpg'
           }
         ]
       },
@@ -637,7 +656,7 @@ window.App.sections = [
       {
         id: 66,
         type: 'page',
-        template: 'page7.html',
+        template: 'page66.html',
         slides: [
           {
             image: '66_1.jpg'
@@ -683,7 +702,10 @@ window.App.sections = [
         template: 'page71.html',
         slides: [
           {
-            image: '71.jpg'
+            image: '71_1.jpg'
+          },
+          {
+            image: '71_2.jpg'
           }
         ]
       },
@@ -833,8 +855,13 @@ window.App.sections = [
       },
       {
         id: 85,
-        type: 'page',
-        template: 'page85.html'
+      type: 'page',
+        template: 'page85.html',
+        slides: [
+          {
+            image: '85.jpg'
+          }
+        ]
       },
       {
         id: 86,
@@ -874,7 +901,12 @@ window.App.sections = [
       {
         id: 90,
         type: 'page',
-        template: 'page90.html'
+        template: 'page90.html',
+        slides: [
+          {
+            image: '90.jpg'
+          }
+        ]
       },
       {
         id: 91,
@@ -1097,7 +1129,12 @@ window.App.sections = [
       {
         id: 113,
         type: 'page',
-        template: 'page113.html'
+        template: 'page113.html',
+        slides: [
+          {
+            image: '113.jpg'
+          }
+        ]
       },
       {
         id: 114,
@@ -1277,7 +1314,12 @@ window.App.sections = [
       {
         id: 132,
         type: 'page',
-        template: 'page132.html'
+        template: 'page132.html',
+         slides: [
+          {
+            image: '132.jpg'
+          }
+        ]
       },
       {
         id: 133,
@@ -1409,7 +1451,7 @@ window.App.sections = [
       {
         id: 146,
         type: 'page',
-        template: 'page3.html',
+        template: 'page146.html',
         slides: [
           {
             image: '146_1.jpg'
@@ -1576,16 +1618,6 @@ window.App.sections = [
           'rub10.jpg',
           'rub11.jpg',
           'rub12.jpg'
-        ]
-      },
-      {
-        id: 165,
-        type: 'page',
-        template: 'page165.html',
-        slides: [
-          {
-            image: '165.jpg'
-          }
         ]
       }
     ]
