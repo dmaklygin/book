@@ -60,87 +60,101 @@ window.App = {
     this.process(this.slider);
   },
 
-  /**
-   * Adding new Section to Slider
-   */
-  addSection: function (slider, sectionId) {
+  // Initializing page content into slide
+  initPage: function(index) {
+    var
+      _this = this,
+      slide = App.slider.getSlide(index),
+      page = App.pages[index],
+      content = '';
 
-    var _this = this,
-      section = this.sections.filter(function (section) {
-        return section.id == sectionId
-      }).shift();
-
-    if (!section) {
-      throw new Error('section not found');
+    switch (page.type) {
+      case 'video':
+        var videoPath = 'video/pages/' + page.id + '/' + page.video;
+        content = '<video><source src="' + videoPath + '" type="video/mp4;"></source></video>';
+        break;
+      default:
+        content = this.Templates.get(page.template);
     }
 
-    if (!section.pages || !section.pages.length) {
-      return false;
+    if (!slide) {
+      slide = App.slider.createSlide(content);
+      slide.setData('page', page);
+      slide.append();
+    } else if (slide.children.length) {
+      return;
+    } else {
+      $(slide).append(content);
     }
-    // Append pages to slider
-    section.pages.forEach(function (page) {
-      var content = '';
-      switch (page.type) {
-        case 'video':
-          var videoPath = 'video/sections/' + sectionId + '/' + page.video;
-          content = '<video><source src="' + videoPath + '" type="video/mp4;"></source></video>';
-          break;
-        default:
-          content = _this.Templates.get(page.template);
-      }
 
-      var newSlide = slider.createSlide(content);
-      newSlide.setData('page', page);
-      newSlide.append();
+    // post handling
+    switch (page.type) {
+      case 'video':
+        break;
+      case 'rubric':
+        var rubricEl = $('<div/>').addClass('rubric')
+            .addClass('rubric_state_initialized')
+            .addClass('rubric_num_' + page.id),
+          rubricContainerEl = $('<div/>').addClass('rubric__container');
+        rubricEl.append(rubricContainerEl);
+        page.images && page.images.forEach(function (image) {
+          var imagePath = _this.getImagePath(page.id) + '/rubrics/' + image,
+            slideEl = $('<div/>').addClass('rubric__slide');
+          slideEl.append('<img src="' + imagePath + '" />');
+          slideEl.appendTo(rubricContainerEl);
+        });
+        rubricEl.appendTo(slide);
+        break;
+      default:
+        // handle slider
+        if (page.slides) {
+          var internalSlider = slide.querySelector('.page-slider__container');
+          internalSlider && page.slides.forEach(function (info) {
+            var item = $('<div/>').addClass('page-slider__item'),
+              imagePath = _this.getImagePath(page.id) + '/' + info.image;
+            var image = $('<div style="background-image:url(' + imagePath + ')" />')
+              .attr('data-image', imagePath)
+              .addClass('page-slider__image');
 
-      // post handling
-      switch (page.type) {
-        case 'video':
-          break;
-        case 'rubric':
-          var rubricEl = $('<div/>').addClass('rubric')
-              .addClass('rubric_state_initialized')
-              .addClass('rubric_num_' + page.id),
-            rubricContainerEl = $('<div/>').addClass('rubric__container');
-          rubricEl.append(rubricContainerEl);
-          page.images && page.images.forEach(function (image) {
-            var imagePath = ['images', 'sections', sectionId, 'rubrics', image].join('/'),
-              slideEl = $('<div/>').addClass('rubric__slide');
-            slideEl.append('<img src="' + imagePath + '" />');
-            slideEl.appendTo(rubricContainerEl);
+            item.append(image);
+            info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
+            // appending to slider node
+            item.appendTo(internalSlider);
           });
-          rubricEl.appendTo(newSlide);
-          break;
-        default:
-          // handle slider
-          if (page.slides) {
-            var internalSlider = newSlide.querySelector('.page-slider__container');
-            internalSlider && page.slides.forEach(function (info) {
-              var item = $('<div/>').addClass('page-slider__item'),
-                imagePath = _this.getImagePath(sectionId, page.id) + '/' + info.image;
-              var image = $('<div style="background-image:url(' + imagePath + ')" />')
-                .attr('data-image', imagePath)
-                .addClass('page-slider__image');
+        }
+    }
+  },
 
-              item.append(image);
-              info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
-              //info.map && item.append($('<div/>').addClass('page-slider__globe').append('<div/>'));
-              // appending to slider node
-              item.appendTo(internalSlider);
-            });
-          }
-      }
-    });
+  // Clear page content into slide
+  resetPage: function(index) {
+    var
+      slide = App.slider.getSlide(index),
+      page = App.pages[index],
+      content = '';
+    if (!slide) {
+      return;
+    }
+    // destroy page slider
+    if (page.slider) {
+      page.slider.destroy();
+      page.slider = null;
+    }
+
+    // Clearing child node
+    slide.firstChild && slide.removeChild(slide.firstChild);
   },
 
   process: function (slider) {
-    var _this = this;
-    // time to add next sector
-    if (slider.activeIndex >= slider.slides.length - 2) {
-      if (this.section < this.sections.length) {
-        setTimeout(function() {
-          _this.addSection(slider, ++_this.section);
-        }, 300);
+    for (var i = slider.activeIndex - 3; i <= slider.activeIndex + 3; i++) {
+      if (i == slider.activeIndex - 3 && i >= 0) {
+        // remove
+        this.resetPage(i);
+      } else if (i == slider.activeIndex + 3) {
+        // remove
+        this.resetPage(i);
+      } else if (i >= 0 && (i > slider.activeIndex - 3) && (i < slider.activeIndex + 3)) {
+        // init
+        this.initPage(i);
       }
     }
 
@@ -276,8 +290,8 @@ window.App = {
     $(video).trigger('pause');
   },
 
-  getImagePath: function (sectionId, pageId) {
-    return ['images', 'sections', sectionId, 'pages', pageId].join('/');
+  getImagePath: function (pageId) {
+    return ['images', 'pages', pageId].join('/');
   },
 
   getAudioPath: function (pageId, audio) {

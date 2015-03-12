@@ -1623,3 +1623,10 @@ window.App.sections = [
     ]
   }
 ];
+
+// Transform sections to flat collection
+App.pages = [];
+
+App.sections.forEach(function(section) {
+  App.pages = App.pages.concat(section.pages);
+});
