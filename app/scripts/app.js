@@ -145,6 +145,9 @@ window.App = {
   },
 
   process: function (slider) {
+
+    this.processPage(slider);
+
     for (var i = slider.activeIndex - 3; i <= slider.activeIndex + 3; i++) {
       if (i == slider.activeIndex - 3 && i >= 0) {
         // remove
@@ -158,7 +161,6 @@ window.App = {
       }
     }
 
-    this.processPage(slider);
   },
 
   processPage: function (slider) {
