@@ -41,10 +41,10 @@ var PageSlider = function (el, options) {
     } : this.toggleSlider.bind(this),
     onTouchEnd: function () {
       var lastSlideX = _this.swiper.slidesGrid[_this.swiper.slidesGrid.length - 1];
-      if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.touches.diff) {
+      if (_this.swiper.positions.current <= -lastSlideX && _this.swiper.touches.diff < 0) {
         // Show Globe
         _this.options.onNext && _this.options.onNext.call(_this);
-      } else if (_this.swiper.positions.current >= 0 && _this.swiper.touches.diff) {
+      } else if (_this.swiper.positions.current >= 0 && _this.swiper.touches.diff > 0) {
         // Show Globe
         _this.options.onPrev && _this.options.onPrev.call(_this);
       }
