@@ -68,6 +68,10 @@ window.App = {
       page = App.pages[index],
       content = '';
 
+    if (slide && slide.children.length) {
+      return;
+    }
+
     switch (page.type) {
       case 'video':
         var videoPath = 'video/pages/' + page.id + '/' + page.video;
@@ -81,8 +85,6 @@ window.App = {
       slide = App.slider.createSlide(content);
       slide.setData('page', page);
       slide.append();
-    } else if (slide.children.length) {
-      return;
     } else {
       $(slide).append(content);
     }
@@ -141,10 +143,15 @@ window.App = {
     }
 
     // Clearing child node
-    slide.firstChild && slide.removeChild(slide.firstChild);
+    while (slide.firstChild) {
+       slide.removeChild(slide.firstChild);
+    }
   },
 
   process: function (slider) {
+
+    this.processPage(slider);
+
     for (var i = slider.activeIndex - 3; i <= slider.activeIndex + 3; i++) {
       if (i == slider.activeIndex - 3 && i >= 0) {
         // remove
@@ -157,8 +164,6 @@ window.App = {
         this.initPage(i);
       }
     }
-
-    this.processPage(slider);
   },
 
   processPage: function (slider) {
