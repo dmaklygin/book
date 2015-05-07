@@ -304,7 +304,7 @@ window.App = {
   },
 
   showAndPlayAudio: function (audio) {
-
+    return;
     this.player = $('.audio-player').jPlayer('setMedia', {
       mp3: audio
     });
@@ -319,6 +319,7 @@ window.App = {
   },
 
   hideAndStopAudio: function () {
+    return;
     if (!this.player || !this.isPlaying) return;
     this.player.jPlayer('pause').hide();
     $(this.options.circlePlayer.cssSelector).removeClass('audio-player_show_yes');
