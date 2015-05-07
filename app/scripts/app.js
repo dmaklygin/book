@@ -149,21 +149,24 @@ window.App = {
   },
 
   process: function (slider) {
+    var _this = this;
 
     this.processPage(slider);
 
-    for (var i = slider.activeIndex - 3; i <= slider.activeIndex + 3; i++) {
-      if (i == slider.activeIndex - 3 && i >= 0) {
-        // remove
-        this.resetPage(i);
-      } else if (i == slider.activeIndex + 3) {
-        // remove
-        this.resetPage(i);
-      } else if (i >= 0 && (i > slider.activeIndex - 3) && (i < slider.activeIndex + 3)) {
-        // init
-        this.initPage(i);
+    setTimeout(function() {
+      for (var i = slider.activeIndex - 3; i <= slider.activeIndex + 3; i++) {
+        if (i == slider.activeIndex - 3 && i >= 0) {
+          // remove
+          _this.resetPage(i);
+        } else if (i == slider.activeIndex + 3) {
+          // remove
+          _this.resetPage(i);
+        } else if (i >= 0 && (i > slider.activeIndex - 3) && (i < slider.activeIndex + 3)) {
+          // init
+          _this.initPage(i);
+        }
       }
-    }
+    }, 300);
   },
 
   processPage: function (slider) {
