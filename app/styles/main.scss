@@ -11,6 +11,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -27,9 +28,6 @@ body {
   background: url(../images/backgrounds/back.jpg) repeat-x;
 }
 
-body.open {
-  overflow: hidden;
-}
 
 .base,
 p,
