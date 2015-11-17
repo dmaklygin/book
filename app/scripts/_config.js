@@ -49,9 +49,13 @@ window.App.sections = [
           slides: [
           {
             image: '5_1.jpg',
-            description: 'Фрагмент дамаскской рукописи архидиакона Павла'
+            description: 'Фрагмент дамаскской рукописи архидиакона Павла',
+            positions: {
+              left: '-10px',
+              top: '-50px'
+            }
           }
-        ]      
+        ]
       },
       {
         id: 6,
@@ -144,7 +148,7 @@ window.App.sections = [
         id: 15,
         type: 'video',
         video: 'intro.mp4'
-      },  
+      },
       {
         id: 16,
         type: 'page',
@@ -252,7 +256,7 @@ window.App.sections = [
         id: 26,
         type: 'page',
         template: 'page26.html'
-      }, 
+      },
       {
         id: 27,
         type: 'page',
@@ -503,7 +507,7 @@ window.App.sections = [
         id: 55,
         type: 'video',
         video: 'intro.mp4'
-      },  
+      },
       {
         id: 56,
         type: 'page',
@@ -1605,8 +1609,8 @@ window.App.sections = [
       {
         id: 169,
         type: 'page',
-        template: 'page169.html'     
-      },  
+        template: 'page169.html'
+      },
       {
         id: 170,
         type: 'video',
@@ -1723,7 +1727,7 @@ window.App.sections = [
         template: 'page188.html'
       }
     ]
-  }    
+  }
 ];
 
 // Transform sections to flat collection

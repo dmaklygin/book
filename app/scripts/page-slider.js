@@ -87,7 +87,6 @@ PageSlider.prototype = {
       slide = this.swiper.getSlide(this.swiper.activeIndex),
       $slide = $(slide),
       $image = $slide.find('.page-slider__image'),
-      imagePath = $image.data('image'),
       top = this.$el.css('top'),
       left = this.$el.css('left');
 
@@ -99,10 +98,10 @@ PageSlider.prototype = {
         top: top,
         left: left,
         width: this.$el.css('width'),
-        height: this.$el.css('height')
+        height: this.$el.css('height'),
+        backgroundImage: $image.css('backgroundImage'),
+        backgroundPosition: $image.css('backgroundPosition')
       });
-
-    this.$background.find('.page-slider-background__container').attr('src', imagePath)
   },
 
   setBackgroundImage: function() {
@@ -111,14 +110,16 @@ PageSlider.prototype = {
     var
       slide = this.swiper.getSlide(this.swiper.activeIndex),
       $slide = $(slide),
-      $image = $slide.find('.page-slider__image'),
-      imagePath = $image.data('image');
+      $image = $slide.find('.page-slider__image');
 
-    this.$background.find('.page-slider-background__container').attr('src', imagePath);
+    this.$background
+      .css({
+        backgroundImage: $image.css('backgroundImage'),
+        backgroundPosition: $image.css('backgroundPosition')
+      });
   },
 
   increase: function () {
-
     if (this.fullsize) {
       return;
     }
@@ -128,7 +129,6 @@ PageSlider.prototype = {
     // First, we need to turn off Globe animation !!!
     _this.toggleGlobe(false);
 
-    //if (this.direction) {
     _this.$background.off('webkitTransitionEnd');
     //Listener to AnimationEnd Event
     _this.$background.on('webkitTransitionEnd', function () {
@@ -153,7 +153,6 @@ PageSlider.prototype = {
       .show()
       .css({ 'visibility': 'visible'})
       .addClass('fullsized');
-
   },
 
   decrease: function () {
@@ -166,6 +165,7 @@ PageSlider.prototype = {
 
     // We have to stop Audio at first
     App.hideAndStopAudio();
+
     // Show background
     this.$background.css({ 'visibility': 'visible' });
     // Remove fullsize class
@@ -193,7 +193,6 @@ PageSlider.prototype = {
   },
 
   process: function () {
-
     if (!this.active) return;
 
     var

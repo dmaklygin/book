@@ -112,11 +112,18 @@ window.App = {
         if (page.slides) {
           var internalSlider = slide.querySelector('.page-slider__container');
           internalSlider && page.slides.forEach(function (info) {
-            var item = $('<div/>').addClass('page-slider__item'),
+            var
+              item = $('<div/>').addClass('page-slider__item'),
               imagePath = _this.getImagePath(page.id) + '/' + info.image;
             var image = $('<div style="background-image:url(' + imagePath + ')" />')
               .attr('data-image', imagePath)
               .addClass('page-slider__image');
+
+            if (info.positions) {
+              image.css({
+                backgroundPosition: [info.positions.left, info.positions.top].join(' ')
+              });
+            }
 
             item.append(image);
             info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
