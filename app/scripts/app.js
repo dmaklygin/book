@@ -26,6 +26,8 @@ window.App = {
 
   init: function () {
 
+    var _this = this;
+
     this.section = 0;
 
     this.slide = null;
@@ -38,6 +40,30 @@ window.App = {
       supplied: 'mp3',
       wmode: 'window',
       keyEnabled: true
+    });
+
+    // init playList
+    this.playList = new jPlayerPlaylist({
+      jPlayer: '.audio-player',
+      cssSelectorAncestor: this.options.circlePlayer.cssSelector
+    }, [], {
+      cssSelectorAncestor: this.options.circlePlayer.cssSelector,
+      swfPath: 'scripts/',
+      supplied: 'mp3',
+      wmode: 'window',
+      useStateClassSkin: true,
+      autoBlur: false,
+      smoothPlayBar: true,
+      keyEnabled: true,
+      autoPlay: false
+    });
+
+    this.playList.jSelect = $('.jp-playlist-wrapper').jSelect({
+      callbacks: {
+        onValueTap: function(data) {
+          _this.playList.play(data.index);
+        }
+      }
     });
 
     this.$el = $('.swiper-container');
@@ -205,9 +231,9 @@ window.App = {
         // first initialization
         page.slider && page.slider.init();
 
-        if (page.sound) {
+        if (page.sounds && page.sounds.length) {
           setTimeout(function () {
-            App.showAndPlayAudio(App.getAudioPath(page.id, page.sound));
+            App.showAndPlayAudio(page.sounds, { id: page.id });
           }, 0);
         }
         // Add Handler to Article Link
@@ -313,15 +339,24 @@ window.App = {
     return ['audio', 'pages', pageId, audio].join('/');
   },
 
-  showAndPlayAudio: function (audio) {
-    return;
-    this.player = $('.audio-player').jPlayer('setMedia', {
-      mp3: audio
+  showAndPlayAudio: function (audio, params) {
+    var files = [];
+
+    audio && audio.length && audio.forEach(function (sound) {
+      files.push({
+        title: sound.title,
+        mp3: App.getAudioPath(params.id, sound.mp3)
+      })
     });
 
-    this.player
-      .jPlayer('playHead', 0)
-      .jPlayer('play');
+    this.playList.jSelect.jSelect('reset');
+
+    // set new playlist
+    this.playList._initPlaylist(files);
+    // refresh playlist
+    this.playList._refresh(true);
+    // select first item
+    this.playList.play(0);
 
     $(this.options.circlePlayer.cssSelector).addClass('audio-player_show_yes');
 
@@ -329,9 +364,8 @@ window.App = {
   },
 
   hideAndStopAudio: function () {
-    return;
-    if (!this.player || !this.isPlaying) return;
-    this.player.jPlayer('pause').hide();
+    if (!this.circlePlayer.player || !this.isPlaying) return;
+    this.circlePlayer.player.jPlayer('pause').hide();
     $(this.options.circlePlayer.cssSelector).removeClass('audio-player_show_yes');
     this.isPlaying = false;
   },

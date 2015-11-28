@@ -144,8 +144,8 @@ PageSlider.prototype = {
         .css({ 'visibility': 'hidden' })
         .off('webkitTransitionEnd');
       // Show Audio Player
-      if (sliderInfo.sound) {
-        App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
+      if (sliderInfo.sounds && sliderInfo.sounds.length) {
+        App.showAndPlayAudio(sliderInfo.sounds, { id: _this.options.id });
       }
     });
 
@@ -205,9 +205,9 @@ PageSlider.prototype = {
       App.hideGlobe();
     }
 
-    if (sliderInfo.sound && this.fullsize) {
-      App.showAndPlayAudio(App.getAudioPath(this.options.id, sliderInfo.sound));
-    } else if (oldSliderInfo.sound) {
+    if (sliderInfo.sounds && sliderInfo.sounds.length && this.fullsize) {
+      App.showAndPlayAudio(sliderInfo.sounds, { id: this.options.id });
+    } else if (oldSliderInfo.sounds) {
       App.hideAndStopAudio();
     }
   },
