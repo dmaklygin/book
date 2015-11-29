@@ -33,7 +33,8 @@ window.App.sections = [
               { title: 'VALUE2', mp3: '2.mp3' },
               { title: 'VALUE3', mp3: '3.mp3' }
             ],
-            map: 'true'
+            map: 'true',
+            zoom: '150%'
           },
           {
             image: '3_2.jpg',
@@ -75,7 +76,8 @@ window.App.sections = [
             positions: {
               left: '-100px',
               top: '-50px'
-            }
+            },
+            zoom: '200%'
           }
         ]
       },

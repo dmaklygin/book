@@ -151,6 +151,11 @@ window.App = {
               });
             }
 
+            if (info.zoom) {
+              image.css({
+                backgroundSize: 'auto ' + info.zoom
+              });
+            }
             item.append(image);
             info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
             // appending to slider node
