@@ -37,18 +37,28 @@
 }
 
 .jp-playlist ul li {
-  height: 30px;
-  line-height: 30px;
+  height: 34px;
+  line-height: 37px;
   padding: 0;
   list-style: none;
   text-align: center;
+  border-bottom: 1px solid #cea58c;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 a.jp-playlist-item {
-  color: #d7b39d;
+  color: #cea58c;
   text-decoration: none;
+  opacity: 0.8;
 }
 
 .jp-playlist_highlited a.jp-playlist-item {
-  color: lighten(#d7b39d, 10%)
+  color: lighten(#cea58c, 10%)
+}
+
+.jp-playlist-current a.jp-playlist-item {
+  font-size: 21px;
 }
