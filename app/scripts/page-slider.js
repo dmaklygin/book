@@ -22,8 +22,7 @@ var PageSlider = function (el, options) {
 
   this.constant = this.$el.hasClass('page-slider_type_constant');
 
-  this.direction = this.$el.hasClass('page-slider_align_left') ? 'left' : (
-    this.$el.hasClass('page-slider_align_right') ? 'right' : null);
+  this.direction = this.$el.hasClass('page-slider_align_left') ? 'left' : (this.$el.hasClass('page-slider_align_right') ? 'right' : null);
 
   this.swiper = this.$el.swiper({
     mode: 'horizontal',
@@ -100,7 +99,8 @@ PageSlider.prototype = {
         width: this.$el.css('width'),
         height: this.$el.css('height'),
         backgroundImage: $image.css('backgroundImage'),
-        backgroundPosition: $image.css('backgroundPosition')
+        backgroundPosition: $image.css('backgroundPosition'),
+        backgroundSize: $image.css('backgroundSize')
       });
   },
 
@@ -115,7 +115,8 @@ PageSlider.prototype = {
     this.$background
       .css({
         backgroundImage: $image.css('backgroundImage'),
-        backgroundPosition: $image.css('backgroundPosition')
+        backgroundPosition: $image.css('backgroundPosition'),
+        backgroundSize: $image.css('backgroundSize')
       });
   },
 
@@ -144,8 +145,8 @@ PageSlider.prototype = {
         .css({ 'visibility': 'hidden' })
         .off('webkitTransitionEnd');
       // Show Audio Player
-      if (sliderInfo.sound) {
-        App.showAndPlayAudio(App.getAudioPath(_this.options.id, sliderInfo.sound));
+      if (sliderInfo.sounds && sliderInfo.sounds.length) {
+        App.showAndPlayAudio(sliderInfo.sounds, { id: _this.options.id });
       }
     });
 
@@ -205,9 +206,9 @@ PageSlider.prototype = {
       App.hideGlobe();
     }
 
-    if (sliderInfo.sound && this.fullsize) {
-      App.showAndPlayAudio(App.getAudioPath(this.options.id, sliderInfo.sound));
-    } else if (oldSliderInfo.sound) {
+    if (sliderInfo.sounds && sliderInfo.sounds.length && this.fullsize) {
+      App.showAndPlayAudio(sliderInfo.sounds, { id: this.options.id });
+    } else if (oldSliderInfo.sounds) {
       App.hideAndStopAudio();
     }
   },

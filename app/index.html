@@ -22,11 +22,6 @@
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
   <meta name="msapplication-TileColor" content="#3372DF">
 
-  <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-  <!--
-  <link rel="canonical" href="http://www.example.com/">
-  -->
-
   <!-- Page styles -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- build:js scripts/main.min.js -->
@@ -34,8 +29,11 @@
   <script src="scripts/plugins/jquery.grab.js"></script>
   <script src="scripts/plugins/sylvester.js"></script>
   <script src="scripts/bower_components/swiper/dist/idangerous.swiper.js"></script>
-  <script src="scripts/bower_components/jplayer/dist/jplayer/jquery.jplayer.min.js"></script>
+  <script src="scripts/bower_components/jplayer/dist/jplayer/jquery.jplayer.js"></script>
+  <script src="scripts/bower_components/jplayer/dist/add-on/jplayer.playlist.js"></script>
   <script src="scripts/plugins/circle.player.js"></script>
+  <script src="scripts/plugins/jquery.select.js"></script>
+  <script src="scripts/plugins/iscroll-lite.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/page-slider.js"></script>
   <script src="scripts/rubric.js"></script>
@@ -50,9 +48,9 @@
   </div>
 </div>
 
-<div class="audio-player"></div>
 <div class="audio-player-circle">
   <div class="audio-player_circle_true cp-container">
+    <div class="audio-player"></div>
     <div class="cp-buffer-holder">
       <div class="cp-buffer-1"></div>
       <div class="cp-buffer-2"></div>
@@ -66,6 +64,13 @@
       <li><a class="cp-play" tabindex="1">play</a></li>
       <li><a class="cp-pause" style="display:none;" tabindex="1">pause</a></li>
     </ul>
+    <div class="jp-playlist-wrapper">
+      <div class="jp-playlist">
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 

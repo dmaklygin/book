@@ -22,17 +22,36 @@ window.App.sections = [
           {
             image: '3_1.jpg',
             description: 'Антиохия на Оронте',
-            sound: '1.mp3',
-            map: 'true'
+            sounds: [
+              { title: 'VALUE1', mp3: '1.mp3' },
+              { title: 'VALUE2', mp3: '2.mp3' },
+              { title: 'VALUE3', mp3: '3.mp3' },
+              { title: 'VALUE1', mp3: '1.mp3' },
+              { title: 'VALUE2', mp3: '2.mp3' },
+              { title: 'VALUE3', mp3: '3.mp3' },
+              { title: 'VALUE1', mp3: '1.mp3' },
+              { title: 'VALUE2', mp3: '2.mp3' },
+              { title: 'VALUE3', mp3: '3.mp3' }
+            ],
+            map: 'true',
+            zoom: '150%'
           },
           {
             image: '3_2.jpg',
-            sound: '2.mp3'
+            sounds: [
+              { title: 'VALUE1', mp3: '1.mp3' },
+              { title: 'VALUE2', mp3: '2.mp3' },
+              { title: 'VALUE3', mp3: '3.mp3' }
+            ]
           },
           {
             image: '3_3.jpg',
             map: 'true',
-            sound: '3.mp3'
+            sounds: [
+              { title: 'VALUE1', mp3: '1.mp3' },
+              { title: 'VALUE2', mp3: '2.mp3' },
+              { title: 'VALUE3', mp3: '3.mp3' }
+            ]
           }
         ]
       },
@@ -40,7 +59,11 @@ window.App.sections = [
         id: 4,
         type: 'page',
         template: 'page4.html',
-        sound: '1.mp3'
+        sounds: [
+          { title: 'VALUE1', mp3: '1.mp3' },
+          { title: 'VALUE2', mp3: '2.mp3' },
+          { title: 'VALUE3', mp3: '3.mp3' }
+        ]
       },
       {
         id: 5,
@@ -53,7 +76,8 @@ window.App.sections = [
             positions: {
               left: '-100px',
               top: '-50px'
-            }
+            },
+            zoom: '200%'
           }
         ]
       },

@@ -18,3 +18,37 @@
 .audio-player_show_yes {
   visibility: visible;
 }
+
+.jp-playlist {
+  position: absolute;
+  top: 50%;
+  left: 160px;
+  height: 104px;
+  margin: -48px 0 0 0;
+  overflow: hidden;
+}
+
+.jp-playlist ul {
+  margin: 34px 0 0 0;
+  padding: 0;
+
+  transition: -webkit-transform 0.1s ease-out;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.jp-playlist ul li {
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+a.jp-playlist-item {
+  color: #d7b39d;
+  text-decoration: none;
+}
+
+.jp-playlist_highlited a.jp-playlist-item {
+  color: lighten(#d7b39d, 10%)
+}
