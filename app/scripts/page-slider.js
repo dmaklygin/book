@@ -100,7 +100,7 @@ PageSlider.prototype = {
         height: this.$el.css('height'),
         backgroundImage: $image.css('backgroundImage'),
         backgroundPosition: $image.css('backgroundPosition'),
-        backgroundSize: $image.css('backgroundSize')
+        backgroundSize: $image.css('backgroundSize') === 'auto' ? 'auto 100%' : $image.css('backgroundSize')
       });
   },
 
@@ -116,7 +116,7 @@ PageSlider.prototype = {
       .css({
         backgroundImage: $image.css('backgroundImage'),
         backgroundPosition: $image.css('backgroundPosition'),
-        backgroundSize: $image.css('backgroundSize')
+        backgroundSize: $image.css('backgroundSize') === 'auto' ? 'auto 100%' : $image.css('backgroundSize')
       });
   },
 
