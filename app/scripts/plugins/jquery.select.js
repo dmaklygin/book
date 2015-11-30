@@ -70,7 +70,7 @@
   var Q = {
     mode: 'scroller',
     rows: 3,
-    lineHeight: 30,
+    lineHeight: 34,
     speedUnit: 0.0012,
     confirmOnTap: true
   };
