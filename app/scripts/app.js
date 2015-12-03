@@ -152,9 +152,13 @@ window.App = {
             }
 
             if (info.zoom) {
-              image.css({
-                backgroundSize: 'auto ' + info.zoom
-              });
+              image
+                .addClass('page-slider__image_type_sized')
+                .data('size', 'auto ' + info.zoom)
+                .css({
+                  backgroundSize: 'auto ' + info.zoom
+                })
+              ;
             }
             item.append(image);
             info.description && item.append($('<div/>').addClass('page-slider__description').html(info.description));
@@ -355,6 +359,12 @@ window.App = {
     });
 
     this.playList.jSelect.jSelect('reset');
+
+    if (audio.length === 1) {
+      this.playList.jSelect.hide();
+    } else {
+      this.playList.jSelect.show();
+    }
 
     // set new playlist
     this.playList._initPlaylist(files);

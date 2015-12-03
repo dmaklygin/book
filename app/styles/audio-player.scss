@@ -42,11 +42,6 @@
   padding: 0;
   list-style: none;
   text-align: center;
-  border-bottom: 1px solid #cea58c;
-
-  &:last-child {
-    border-bottom: none;
-  }
 }
 
 a.jp-playlist-item {
@@ -61,4 +56,15 @@ a.jp-playlist-item {
 
 .jp-playlist-current a.jp-playlist-item {
   font-size: 21px;
+}
+
+.jp-playlist__selected-container {
+  margin: 34px 0 0 0;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  z-index: 11;
+  width: 100%;
+  border-top: 1px solid #cea58c;
+  border-bottom: 1px solid #cea58c;
 }

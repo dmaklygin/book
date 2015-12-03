@@ -87,12 +87,14 @@ PageSlider.prototype = {
       $slide = $(slide),
       $image = $slide.find('.page-slider__image'),
       top = this.$el.css('top'),
-      left = this.$el.css('left');
+      left = this.$el.css('left'),
+      size = $image.data('size');
 
     this.$background
       .removeClass('right')
       .removeClass('left')
       .addClass(this.direction)
+      .removeClass('page-slider-background_type_sized')
       .css({
         top: top,
         left: left,
@@ -100,8 +102,12 @@ PageSlider.prototype = {
         height: this.$el.css('height'),
         backgroundImage: $image.css('backgroundImage'),
         backgroundPosition: $image.css('backgroundPosition'),
-        backgroundSize: $image.css('backgroundSize') === 'auto' ? 'auto 100%' : $image.css('backgroundSize')
+        backgroundSize: $image.hasClass('page-slider__image_type_sized') && size ? size : ''
       });
+
+    if ($image.hasClass('page-slider__image_type_sized')) {
+      this.$background.addClass('page-slider-background_type_sized');
+    }
   },
 
   setBackgroundImage: function() {
@@ -110,14 +116,20 @@ PageSlider.prototype = {
     var
       slide = this.swiper.getSlide(this.swiper.activeIndex),
       $slide = $(slide),
-      $image = $slide.find('.page-slider__image');
+      $image = $slide.find('.page-slider__image'),
+      size = $image.data('size');
 
     this.$background
+      .removeClass('page-slider-background_type_sized')
       .css({
         backgroundImage: $image.css('backgroundImage'),
         backgroundPosition: $image.css('backgroundPosition'),
-        backgroundSize: $image.css('backgroundSize') === 'auto' ? 'auto 100%' : $image.css('backgroundSize')
+        backgroundSize: $image.hasClass('page-slider__image_type_sized') && size ? size : ''
       });
+
+    if ($image.hasClass('page-slider__image_type_sized')) {
+      this.$background.addClass('page-slider-background_type_sized');
+    }
   },
 
   increase: function () {

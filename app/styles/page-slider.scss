@@ -27,8 +27,12 @@
 /* unset background position */
 .page-slider.page-slider_type_fullsized .page-slider__image {
   background-position: 0 0 !important;
+}
+
+.page-slider.page-slider_type_fullsized .page-slider__image.page-slider__image_type_sized {
   background-size: auto 100% !important;
 }
+
 
 .page-slider__container {
   width: 100%;
@@ -66,6 +70,9 @@
   width: 100% !important;
   height: 100% !important;
   background-position: 0 0 !important;
+}
+
+.page-slider-background.page-slider-background_type_sized.fullsized {
   background-size: auto 100% !important;
 }
 
