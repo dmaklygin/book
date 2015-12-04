@@ -48,9 +48,7 @@ window.App.sections = [
             image: '3_3.jpg',
             map: 'true',
             sounds: [
-              { title: 'VALUE1', mp3: '1.mp3' },
-              { title: 'VALUE2', mp3: '2.mp3' },
-              { title: 'VALUE3', mp3: '3.mp3' }
+              { title: 'VALUE1', mp3: '1.mp3' }
             ]
           }
         ]
