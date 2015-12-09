@@ -70,7 +70,7 @@
   var Q = {
     mode: 'scroller',
     rows: 3,
-    lineHeight: 34,
+    lineHeight: 30,
     speedUnit: 0.0012,
     confirmOnTap: true
   };
@@ -253,23 +253,33 @@
       }
 
       if (isNotClickPick) {
-        this.scroll(this.wrapper, ab, calculatedSliderPosition, 0, transitionSeconds, true);
+        this.scroll(this.wrapper, ab, calculatedSliderPosition, 0, transitionSeconds, true, selectItem);
       }
 
     },
 
     trigger: function(eventName, data) {
       this.options.callbacks[eventName] && this.options.callbacks[eventName](data);
-      console.log(eventName, data);
     },
 
-    scroll: function (wrapper, sliderNumber, position, e, transitionSeconds, g) {
+    /**
+     * Scroll
+     * @param wrapper
+     * @param sliderNumber
+     * @param position
+     * @param e
+     * @param transitionSeconds
+     * @param g
+     */
+    scroll: function (wrapper, sliderNumber, position, e, transitionSeconds, g, selectItem) {
+      var _this = this;
       position = this.utils.constrain(position, firstElementIndex, lastElementIndex);
 
       this.scrollTo(wrapper, sliderNumber, position, transitionSeconds, g);
 
       setTimeout(function() {
-        //F(transitionSeconds, sliderNumber, true, e, g);
+        //_this.F(transitionSeconds, sliderNumber, true, e, g);
+        _this.trigger("onChange", { selectItem: selectItem, index: position });
       }, 10);
     },
 
@@ -288,13 +298,16 @@
       );
     },
 
-    scrollTo: function (wrapper, currentScrollerIndex, coordinateDelta, transitionSeconds, e) {
+    scrollTo: function (wrapper, currentScrollerIndex, position, transitionSeconds, e) {
       var _this = this,
-          offset = -coordinateDelta * this.options.lineHeight,
+          offset = -position * this.options.lineHeight,
           wrapperStyle = wrapper[0].style;
 
       if (!(offset == P[currentScrollerIndex] && animations[currentScrollerIndex])) {
         P[currentScrollerIndex] = offset;
+
+        //var selectItem = $($('li', this.wrapper)[position]);
+        //selectItem.addClass('jp-playlist_highlited');
 
         if (has3d) {
           wrapperStyle["webkitTransition"] = "-webkit-transform " + (transitionSeconds ? transitionSeconds.toFixed(3) : 0) + "s ease-out";
@@ -313,7 +326,7 @@
           }, 1e3 * transitionSeconds);
         }
 
-        gb[currentScrollerIndex] = coordinateDelta;
+        gb[currentScrollerIndex] = position;
       }
     },
 

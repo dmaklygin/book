@@ -58,9 +58,18 @@ window.App = {
       autoPlay: false
     });
 
+    this.circlePlayer.player.bind($.jPlayer.event.play, function() {
+      var jSelect = _this.playList.jSelect.data('jSelect');
+      jSelect.scrollTo(jSelect.wrapper, 0, _this.playList.current, 0.1, true);
+    });
+
+
     this.playList.jSelect = $('.jp-playlist-wrapper').jSelect({
       callbacks: {
         onValueTap: function(data) {
+          _this.playList.play(data.index);
+        },
+        onChange: function(data) {
           _this.playList.play(data.index);
         }
       }
