@@ -21,7 +21,7 @@
 
 .jp-playlist-wrapper {
   position: absolute;
-  left: 130px;
+  left: 120px;
   top: 0;
 }
 
@@ -40,6 +40,7 @@
 }
 
 .jp-playlist ul li {
+  width: 75px;
   height: 30px;
   line-height: 33px;
   padding: 0;
@@ -76,7 +77,7 @@ li.jp-playlist-current + li a.jp-playlist-item {
   position: absolute;
   top: 0;
   z-index: 11;
-  width: 100%;
+  width: 75px;
 
   background:url("../images/circle-player/slides_border.png") 0 0 no-repeat;
 }
