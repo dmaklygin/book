@@ -26,6 +26,7 @@
 }
 
 .jp-playlist {
+  position: relative;
   height: 90px;
   margin: 7px 0 0 0;
   overflow: hidden;
@@ -72,7 +73,7 @@ li.jp-playlist-current + li a.jp-playlist-item {
 }
 
 .jp-playlist__selected-container {
-  margin: 36px 0 0 0;
+  margin: 29px 0 0 0;
   height: 30px;
   position: absolute;
   top: 0;
