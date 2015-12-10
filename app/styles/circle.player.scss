@@ -36,6 +36,9 @@
   -moz-border-radius:52px;
   -webkit-border-radius:52px;
   border-radius:52px;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .cp-buffer-1,
@@ -65,6 +68,7 @@
   position:absolute;
   width:104px;
   height:104px;
+  overflow: hidden;
 }
 
 .cp-circle-control {
