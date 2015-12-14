@@ -1,5 +1,5 @@
-
-window.App || (window.App = {});
+window.App || (
+  window.App = {});
 
 /**
  * Config for pages
@@ -67,7 +67,7 @@ window.App.sections = [
         id: 5,
         type: 'page',
         template: 'page5.html',
-          slides: [
+        slides: [
           {
             image: '5_1.jpg',
             description: 'Фрагмент дамаскской рукописи архидиакона Павла',
@@ -86,8 +86,464 @@ window.App.sections = [
       },
       {
         id: '7',
-        type: 'page',
-        template: 'page7.html'
+        type: 'rubric',
+        template: 'page7.html',
+        onCreate: function (slide, options) {
+          var rubricContainer = $(slide).find('.rubric__container');
+          var template = App.Templates.get('template7.html');
+          rubricContainer.append(template);
+
+          var
+            imagesContainer = $(slide).find('.rubric__slides'),
+            imagePath;
+
+          for (var i = 1; i <= 59; i++) {
+            imagePath = App.getImagePath(options.id) + '/' + (
+              i < 10 ? '0' + i : i) + '.jpg';
+            imagesContainer.append('<li class="rubric__slide"> \
+            <div class="rubric__box" style="background: url(' + imagePath + ') no-repeat;"></div> \
+            </li>');
+          }
+        },
+        init: function (slide, options) {
+
+          var IMG_WIDTH = 96;
+          var currentImg = 0;
+          var maxImages = 42;
+          var speed = 300;
+          var years;
+
+          var swipeOptions = {
+            triggerOnTouchEnd: true,
+            swipeStatus: swipeStatus,
+            allowPageScroll: "vertical",
+            threshold: 10
+          };
+
+          years = $(slide).find('.rubric__years');
+          years.swipe(swipeOptions);
+
+          var glide = $(slide).find('.rubric__slider')
+            .glide()
+            .data('api_glide');
+
+          function swipeStatus(event, phase, direction, distance) {
+            //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+            if (phase == "move" && (
+              direction == "left" || direction == "right")) {
+              var duration = 0;
+
+              if (direction == "left") {
+                if (currentImg != maxImages - 1) {
+                  scrollImages((
+                  IMG_WIDTH * currentImg) + distance, duration);
+                }
+              } else if (direction == "right") {
+                if (currentImg != 0) {
+                  scrollImages((
+                  IMG_WIDTH * currentImg) - distance, duration);
+                }
+                else if (currentImg == 0 && $galshow == 1) {
+                  ShowFull()
+                }
+              }
+
+            } else if (phase == "cancel") {
+              scrollImages(IMG_WIDTH * currentImg, speed);
+            } else if (phase == "end") {
+              if (direction == "right") {
+                previousImage();
+              } else if (direction == "left") {
+                nextImage();
+              }
+            }
+          }
+
+          function scrollImages(distance, duration) {
+            years.css("-webkit-transition-duration", (
+            duration / 1000).toFixed(1) + "s");
+
+            //inverse the number we set in the css
+            var value = (
+                distance < 0 ? "" : "-") + Math.abs(distance).toString();
+            years.css("-webkit-transform", "translate(" + value + "px,0)");
+          }
+
+          function goToYear(num) {
+            currentImg = num;
+            scrollImages(IMG_WIDTH * currentImg, speed);
+          }
+
+          function nextImage() {
+            currentImg = Math.min(currentImg + 1, maxImages - 1);
+            scrollImages(IMG_WIDTH * currentImg, speed);
+            SetActive();
+            if (currentImg == 1) {
+              glide.jump(3);
+            }
+            else if (currentImg == 2) {
+              glide.jump(4);
+            }
+            else if (currentImg == 3) {
+              glide.jump(7);
+            }
+            else if (currentImg == 4) {
+              glide.jump(9);
+            }
+            else if (currentImg == 5) {
+              glide.jump(10);
+            }
+            else if (currentImg == 6) {
+              glide.jump(11);
+            }
+            else if (currentImg == 7) {
+              glide.jump(12);
+            }
+            else if (currentImg == 8) {
+              glide.jump(13);
+            }
+            else if (currentImg == 9) {
+              glide.jump(14);
+            }
+            else if (currentImg == 10) {
+              glide.jump(15);
+            }
+            else if (currentImg == 11) {
+              glide.jump(16);
+            }
+            else if (currentImg == 12) {
+              glide.jump(18);
+            }
+            else if (currentImg == 13) {
+              glide.jump(19);
+            }
+            else if (currentImg == 14) {
+              glide.jump(21);
+            }
+            else if (currentImg == 15) {
+              glide.jump(22);
+            }
+            else if (currentImg == 16) {
+              glide.jump(23);
+            }
+            else if (currentImg == 17) {
+              glide.jump(24);
+            }
+            else if (currentImg == 18) {
+              glide.jump(25);
+            }
+            else if (currentImg == 19) {
+              glide.jump(26);
+            }
+            else if (currentImg == 20) {
+              glide.jump(27);
+            }
+            else if (currentImg == 21) {
+              glide.jump(29);
+            }
+            else if (currentImg == 22) {
+              glide.jump(30);
+            }
+            else if (currentImg == 23) {
+              glide.jump(32);
+            }
+            else if (currentImg == 24) {
+              glide.jump(33);
+            }
+            else if (currentImg == 25) {
+              glide.jump(36);
+            }
+            else if (currentImg == 26) {
+              glide.jump(38);
+            }
+            else if (currentImg == 27) {
+              glide.jump(41);
+            }
+            else if (currentImg == 28) {
+              glide.jump(44);
+            }
+            else if (currentImg == 29) {
+              glide.jump(45);
+            }
+            else if (currentImg == 30) {
+              glide.jump(47);
+            }
+            else if (currentImg == 31) {
+              glide.jump(49);
+            }
+            else if (currentImg == 32) {
+              glide.jump(51);
+            }
+            else if (currentImg == 33) {
+              glide.jump(52);
+            }
+            else if (currentImg == 34) {
+              glide.jump(53);
+            }
+            else if (currentImg == 35) {
+              glide.jump(54);
+            }
+            else if (currentImg == 36) {
+              glide.jump(55);
+            }
+            else if (currentImg == 37) {
+              glide.jump(57);
+            }
+            else if (currentImg == 38) {
+              glide.jump(58);
+            }
+          }
+
+          function previousImage() {
+            currentImg = Math.max(currentImg - 1, 0);
+            scrollImages(IMG_WIDTH * currentImg, speed);
+            SetActive();
+            if (currentImg == 1) {
+              glide.jump(3);
+            }
+            else if (currentImg == 2) {
+              glide.jump(4);
+            }
+            else if (currentImg == 3) {
+              glide.jump(7);
+            }
+            else if (currentImg == 4) {
+              glide.jump(9);
+            }
+            else if (currentImg == 5) {
+              glide.jump(10);
+            }
+            else if (currentImg == 6) {
+              glide.jump(11);
+            }
+            else if (currentImg == 7) {
+              glide.jump(12);
+            }
+            else if (currentImg == 8) {
+              glide.jump(13);
+            }
+            else if (currentImg == 9) {
+              glide.jump(14);
+            }
+            else if (currentImg == 10) {
+              glide.jump(15);
+            }
+            else if (currentImg == 11) {
+              glide.jump(16);
+            }
+            else if (currentImg == 12) {
+              glide.jump(18);
+            }
+            else if (currentImg == 13) {
+              glide.jump(19);
+            }
+            else if (currentImg == 14) {
+              glide.jump(21);
+            }
+            else if (currentImg == 15) {
+              glide.jump(22);
+            }
+            else if (currentImg == 16) {
+              glide.jump(23);
+            }
+            else if (currentImg == 17) {
+              glide.jump(24);
+            }
+            else if (currentImg == 18) {
+              glide.jump(25);
+            }
+            else if (currentImg == 19) {
+              glide.jump(26);
+            }
+            else if (currentImg == 20) {
+              glide.jump(27);
+            }
+            else if (currentImg == 21) {
+              glide.jump(29);
+            }
+            else if (currentImg == 22) {
+              glide.jump(30);
+            }
+            else if (currentImg == 23) {
+              glide.jump(32);
+            }
+            else if (currentImg == 24) {
+              glide.jump(33);
+            }
+            else if (currentImg == 25) {
+              glide.jump(36);
+            }
+            else if (currentImg == 26) {
+              glide.jump(38);
+            }
+            else if (currentImg == 27) {
+              glide.jump(41);
+            }
+            else if (currentImg == 28) {
+              glide.jump(44);
+            }
+            else if (currentImg == 29) {
+              glide.jump(45);
+            }
+            else if (currentImg == 30) {
+              glide.jump(47);
+            }
+            else if (currentImg == 31) {
+              glide.jump(49);
+            }
+            else if (currentImg == 32) {
+              glide.jump(51);
+            }
+            else if (currentImg == 33) {
+              glide.jump(52);
+            }
+            else if (currentImg == 34) {
+              glide.jump(53);
+            }
+            else if (currentImg == 35) {
+              glide.jump(54);
+            }
+            else if (currentImg == 36) {
+              glide.jump(55);
+            }
+            else if (currentImg == 37) {
+              glide.jump(57);
+            }
+            else if (currentImg == 38) {
+              glide.jump(58);
+            }
+
+          }
+
+          function changeYear(num) {
+            if (num == 3) {
+              goToYear(1);
+            }
+            else if (num > 3 && num < 7) {
+              goToYear(2);
+            }
+            else if (num > 6 && num < 9) {
+              goToYear(3);
+            }
+
+            else if (num == 9) {
+              goToYear(4);
+            }
+            else if (num == 10) {
+              goToYear(5);
+            }
+            else if (num == 11) {
+              goToYear(6);
+            }
+            else if (num == 12) {
+              goToYear(7);
+            }
+            else if (num == 13) {
+              goToYear(8);
+            }
+            else if (num == 14) {
+              goToYear(9);
+            }
+            else if (num == 15) {
+              goToYear(10);
+            }
+            else if (num > 15 && num < 18) {
+              goToYear(11);
+            }
+            else if (num == 18) {
+              goToYear(12);
+            }
+            else if (num > 18 && num < 21) {
+              goToYear(13);
+            }
+            else if (num == 21) {
+              goToYear(14);
+            }
+            else if (num == 22) {
+              goToYear(15);
+            }
+            else if (num == 23) {
+              goToYear(16);
+            }
+            else if (num == 24) {
+              goToYear(17);
+            }
+            else if (num == 25) {
+              goToYear(18);
+            }
+            else if (num == 26) {
+              goToYear(19);
+            }
+            else if (num > 26 && num < 29) {
+              goToYear(20);
+            }
+            else if (num == 29) {
+              goToYear(21);
+            }
+            else if (num > 29 && num < 32) {
+              goToYear(22);
+            }
+            else if (num == 32) {
+              goToYear(23);
+            }
+            else if (num > 32 && num < 36) {
+              goToYear(24);
+            }
+            else if (num > 35 && num < 38) {
+              goToYear(25);
+            }
+            else if (num > 37 && num < 41) {
+              goToYear(26);
+            }
+            else if (num > 40 && num < 44) {
+              goToYear(27);
+            }
+            else if (num == 44) {
+              goToYear(28);
+            }
+            else if (num > 44 && num < 47) {
+              goToYear(29);
+            }
+            else if (num > 46 && num < 49) {
+              goToYear(30);
+            }
+            else if (num > 48 && num < 51) {
+              goToYear(31);
+            }
+            else if (num == 51) {
+              goToYear(32);
+            }
+            else if (num == 52) {
+              goToYear(33);
+            }
+            else if (num == 53) {
+              goToYear(34);
+            }
+            else if (num == 54) {
+              goToYear(35);
+            }
+            else if (num > 54 && num < 57) {
+              goToYear(36);
+            }
+            else if (num == 57) {
+              goToYear(37);
+            }
+            else if (num > 57 && num < 60) {
+              goToYear(38);
+            }
+            SetActive();
+          }
+
+          function SetActive() {
+            var abc = '#s' + currentImg;
+            years.find('.rubric__year_type_active').removeClass('rubric__year_type_active');
+            $(abc).addClass('rubric__year_type_active');
+          }
+
+        },
+        deinit: function (slide, options) {
+          console.log(slide, options);
+        }
       }
     ]
   },
@@ -152,7 +608,7 @@ window.App.sections = [
           {
             image: '12_1.jpg'
           }
-         ]
+        ]
       },
       {
         id: 13,
@@ -166,7 +622,7 @@ window.App.sections = [
       }
     ]
   },
- {
+  {
     id: 3,
     name: 'Glava1',
     pages: [
@@ -187,8 +643,8 @@ window.App.sections = [
       },
       {
         id: 17,
-      type: 'page',
-      sound: '1.mp3',
+        type: 'page',
+        sound: '1.mp3',
         template: 'page17.html',
         slides: [
           {
@@ -428,7 +884,7 @@ window.App.sections = [
           }
         ]
       },
-        {
+      {
         id: 43,
         type: 'page',
         template: 'page43.html'
@@ -1197,7 +1653,7 @@ window.App.sections = [
           }
         ]
       },
-        {
+      {
         id: 123,
         type: 'page',
         template: 'page123.html'
@@ -1209,7 +1665,7 @@ window.App.sections = [
         slides: [
           {
             image: '124.jpg',
-              description: 'Христос умывает ноги ученикам'
+            description: 'Христос умывает ноги ученикам'
           }
         ]
       },
@@ -1764,6 +2220,6 @@ window.App.sections = [
 // Transform sections to flat collection
 App.pages = [];
 
-App.sections.forEach(function(section) {
+App.sections.forEach(function (section) {
   App.pages = App.pages.concat(section.pages);
 });

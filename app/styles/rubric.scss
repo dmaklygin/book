@@ -16,117 +16,147 @@
   box-sizing: content-box;
 }
 
-.rubric__slide {
+.rubric__slider {
   position: relative;
-  float: left;
+  width: 100%;
+  height: 768px;
+  overflow: hidden;
 }
 
-.rubric__final {
-
-  position: absolute;
+.rubric__slides {
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+
+  margin: 0;
+  padding: 0;
+
+  /* Simple clear fix */
   overflow: hidden;
 
-  .rubric__final-left {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 22;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
 
-    width: 512px;
-    height: 100%;
-
-    background: url(../images/backgrounds/left-screen.jpg) 0 0 no-repeat;
-
-    transition: -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
-
-    transform: translate3d(-512px,0,0);
-    -webkit-transform: translate3d(-512px,0,0);
-  }
-
-  .rubric__final-right {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    z-index: 22;
-
-    width: 512px;
-    height: 100%;
-
-    background: url(../images/backgrounds/right-screen.jpg) 0 0 no-repeat;
-
-    transition: -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
-
-    transform: translate3d(512px,0,0);
-    -webkit-transform: translate3d(512px,0,0);
-  }
-
-  .rubric__final-message {
-    position: absolute;
-    top: 256px;
-    left: 250px;
-    z-index: 23;
-
-    width: 523px;
-    height: 256px;
-
-    background: url(../images/backgrounds/message.png) 0 0 no-repeat;
-
-    opacity: 0;
-
-    transition: opacity 0.5s ease-in-out;
-    -webkit-transition: opacity 0.5s ease-in-out;
-  }
-
+  /**
+       * Here is CSS transitions
+       * responsible for slider animation in modern broswers
+       */
+  -webkit-transition: all 300ms linear;
+  -moz-transition: all 300ms linear;
+  -ms-transition: all 300ms linear;
+  -o-transition: all 300ms linear;
+  transition: all 300ms linear;
 }
 
-.rubric.rubric_state_initialized {
-  .rubric__slide {
-    position: absolute;
-    z-index: 20;
-    left: 100%;
-
-    transition: -webkit-transform 0.5s ease-out;
-    -webkit-transition: -webkit-transform 0.5s ease-out;
-
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-  }
-
-  .rubric__slide.rubric__slide_animation_yes {
-    transform: translate3d(-1025px, 0, 0);
-    -webkit-transform: translate3d(-1025px, 0, 0);
-  }
+.rubric__slide {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  list-style: none;
+  float: left;
+  clear: none;
 }
 
-.rubric__final.rubric__final_state_closed {
-  .rubric__final-left {
-    transform: translate3d(1px, 0, 0);
-    -webkit-transform: translate3d(1px, 0, 0);
-  }
-  .rubric__final-right {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-  .rubric__final-message {
-    opacity: 1;
-  }
+.rubric__slider-arrows {
 }
 
-.rubric_num_6r .rubric__final {
-  .rubric__final-left {
-    font-size: inherit;
-  }
-  .rubric__final-right {
-
-  }
+.rubric__slider-arrow {
+  position: absolute;
+  display: block;
+  margin-bottom: -20px;
+  padding: 20px;
 }
 
+.rubric__slider-arrow--right {
+  bottom: 50%;
+  right: 30px;
+  display: none;
+}
 
+.rubric__slider-arrow--left {
+  bottom: 50%;
+  left: 30px;
+  display: none;
+}
 
+.rubric__slider-nav {
+  position: absolute;
+  bottom: 30px;
+  display: none;
+}
+
+.rubric__slider-nav__item {
+  width: 12px;
+  height: 12px;
+  float: left;
+  clear: none;
+  display: block;
+  margin: 0 5px;
+  background: #fff;
+}
+
+.rubric__slider-nav__item:hover {
+  background: #ccc;
+}
+
+.rubric__slider-nav__item--current {
+  background: #ccc;
+}
+
+.rubric__block-year {
+  background: url(../images/rubrics/1/lines_in_the_the_darkness.png) no-repeat;
+  width: 1024px;
+  height: 105px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.rubric__block-year .content {
+  width: 570px;
+  height: 22px;
+  margin: auto;
+  margin-top: 37px;
+  overflow: hidden;
+  position: relative;
+  z-index: 9998;
+  -webkit-transform: translate(0px, 0px);
+  -webkit-transition: -webkit-transform 1s linear;
+}
+
+.rubric__block-year .rubric__year {
+  float: left;
+  width: 96px;
+  color: #c8aa96;
+  font-size: 26px;
+  font-family: 'Conv_Pancetta_Pro_Regular';
+}
+
+.rubric__years {
+  float: left;
+  display: inline;
+  padding: 0;
+  margin: 0;
+  width: 5988px;
+
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+
+  /*apply a transform to kick in the hardware acceleration.  Without this, the first
+  time we add the transform you get odd rendering of the divs (half missing) */
+  -webkit-transform: translate3d(0, 0, 0);
+
+  -webkit-transform: translate3d(0px, 0px, 0px);
+  -webkit-transition: -webkit-transform 1s linear;
+}
+
+.rubric__years .rubric__year_type_active {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.rubric__box {
+  width: 100%;
+  height: 100%;
+}

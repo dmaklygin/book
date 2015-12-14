@@ -63,7 +63,6 @@ window.App = {
       jSelect.scrollTo(jSelect.wrapper, 0, _this.playList.current, 0.1, true);
     });
 
-
     this.playList.jSelect = $('.jp-playlist-wrapper').jSelect({
       callbacks: {
         onValueTap: function(data) {
@@ -134,13 +133,15 @@ window.App = {
             .addClass('rubric_num_' + page.id),
           rubricContainerEl = $('<div/>').addClass('rubric__container');
         rubricEl.append(rubricContainerEl);
-        page.images && page.images.forEach(function (image) {
-          var imagePath = _this.getImagePath(page.id) + '/rubrics/' + image,
-            slideEl = $('<div/>').addClass('rubric__slide');
-          slideEl.append('<img src="' + imagePath + '" />');
-          slideEl.appendTo(rubricContainerEl);
-        });
+        //page.images && page.images.forEach(function (image) {
+        //  var imagePath = _this.getImagePath(page.id) + '/rubrics/' + image,
+        //    slideEl = $('<div/>').addClass('rubric__slide');
+        //  slideEl.append('<img src="' + imagePath + '" />');
+        //  slideEl.appendTo(rubricContainerEl);
+        //});
         rubricEl.appendTo(slide);
+
+        page.onCreate && page.onCreate(slide, page);
         break;
       default:
         // handle slider
@@ -258,10 +259,14 @@ window.App = {
         $(this.slide).on('click', '.article-link', this.showArticle.bind(this));
         break;
       case 'rubric':
-        page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
-          onNext: this.goToNextPage.bind(this),
-          onPrev: this.goToPrevPage.bind(this)
-        }, page));
+        //page.rubric = App.Rubric.init($(this.slide).find('.rubric'), $.extend({
+        //  onNext: this.goToNextPage.bind(this),
+        //  onPrev: this.goToPrevPage.bind(this)
+        //}, page));
+        if (page.init) {
+          page.init(this.slide, page);
+        }
+
         break;
     }
 
@@ -319,7 +324,8 @@ window.App = {
               $(slide).off('click');
               break;
             case 'rubric':
-              page.rubric && page.rubric.destroy();
+              //page.rubric && page.rubric.destroy();
+              page.deinit && page.deinit(slide, page);
               break;
           }
         }
