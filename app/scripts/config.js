@@ -22,33 +22,31 @@ window.App.sections = [
           {
             image: '3_1.jpg',
             description: 'Антиохия на Оронте',
+            positions: {
+              left: '-314px',
+              top: '0px'},
             sounds: [
-              { title: '1', mp3: '1.mp3' },
-              { title: '2', mp3: '2.mp3' },
-              { title: '3', mp3: '3.mp3' },
-              { title: '4', mp3: '1.mp3' },
-              { title: '5', mp3: '2.mp3' },
-              { title: '6', mp3: '3.mp3' },
-              { title: 'VALUE1', mp3: '1.mp3' },
-              { title: 'VALUE2', mp3: '2.mp3' },
-              { title: 'VALUE3', mp3: '3.mp3' }
+              { title: '1', mp3: '3_1.mp3' }
             ],
-            map: 'true',
-            zoom: '150%'
+            map: 'true'
           },
           {
             image: '3_2.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
             sounds: [
-              { title: '1', mp3: '1.mp3' },
-              { title: '2', mp3: '2.mp3' },
-              { title: '3', mp3: '3.mp3' }
+              { title: '1', mp3: '3_2.mp3' }
             ]
           },
           {
             image: '3_3.jpg',
+            positions: {
+              left: '-272px',
+              top: '0px'},
             map: 'true',
             sounds: [
-              { title: '1', mp3: '1.mp3' }
+              { title: '1', mp3: '3_3.mp3' }
             ]
           }
         ]
@@ -56,12 +54,8 @@ window.App.sections = [
       {
         id: 4,
         type: 'page',
-        template: 'page4.html',
-        sounds: [
-          { title: 'VALUE1', mp3: '1.mp3' },
-          { title: 'VALUE2', mp3: '2.mp3' },
-          { title: 'VALUE3', mp3: '3.mp3' }
-        ]
+        template: 'page4.html'
+/*	videoflag: 'true'*/
       },
       {
         id: 5,
@@ -72,10 +66,9 @@ window.App.sections = [
             image: '5_1.jpg',
             description: 'Фрагмент дамаскской рукописи архидиакона Павла',
             positions: {
-              left: '-100px',
-              top: '-50px'
-            },
-            zoom: '200%'
+              left: '-248px',
+              top: '-69px'
+            }
           }
         ]
       },
@@ -107,7 +100,11 @@ window.App.sections = [
         slides: [
           {
             image: '9.jpg',
-            description: 'Павел Алепский'
+            positions: {
+              left: '-534px',
+              top: '0px'},
+            description: 'Павел Алепский',
+            map: 'true'
           }
         ]
       },
@@ -118,15 +115,35 @@ window.App.sections = [
         slides: [
           {
             image: '10_1.jpg',
-            description: 'Древняя Сирия'
+            positions: {
+              left: '-577px',
+              top: '0px'},
+            description: 'Древняя Сирия',
+              sounds: [
+              { title: '1', mp3: '10_1.mp3' }
+            ]   
           },
           {
             image: '10_2.jpg',
-            description: 'Руины города Баальбек'
+            positions: {
+              left: '-481px',
+              top: '0px'},
+            description: 'Руины города Баальбек',
+              sounds: [
+              { title: '1', mp3: '10_2.mp3' }
+            ],
+            map: 'true'
           },
           {
             image: '10_3.jpg',
-            description: 'Приём посольства Венеции на фоне Великой мечети Дамаска'
+            positions: {
+              left: '-108px',
+              top: '0px'},
+            description: 'Приём посольства Венеции на фоне Великой мечети Дамаска',
+              sounds: [
+              { title: '1', mp3: '10_3.mp3' }
+            ],
+            map: 'true'
           }
         ]
       },
@@ -138,8 +155,8 @@ window.App.sections = [
           {
             image: '11.jpg',
             positions: {
-              left: '-150px',
-              top: '-150px'
+              left: '-106px',
+              top: '-277px'
             }
           }
         ]
@@ -179,10 +196,17 @@ window.App.sections = [
         id: 16,
         type: 'page',
         template: 'page16.html',
+
         slides: [
           {
-            image: '16.jpg'
-          }
+            image: '16.jpg',
+            positions: {
+              left: '0px',
+              top: '-204px'},
+              zoom: '167%', 
+	      map: 'true'
+            }
+
         ]
       },
       {
@@ -208,10 +232,24 @@ window.App.sections = [
         template: 'page18.html',
         slides: [
           {
-            image: '18_1.jpg'
+            image: '18_1.jpg',
+            positions: {
+              left: '-10px',
+              top: '-209px'},
+              zoom: '164.5%',
+              sounds: [
+              { title: '1', mp3: '18_1.mp3' }
+            ]
           },
           {
-            image: '18_2.jpg'
+            image: '18_2.jpg',
+            positions: {
+              left: '0px',
+              top: '-96px'},
+              zoom: '162%',
+              sounds: [
+              { title: '1', mp3: '18_2.mp3' }
+            ]
           }
         ]
       },
@@ -221,7 +259,14 @@ window.App.sections = [
         template: 'page19.html',
         slides: [
           {
-            image: '19_1.jpg'
+            image: '19_1.jpg',
+            positions: {
+              left: '-92px',
+              top: '-0px'},
+              zoom: '104%' ,
+              sounds: [
+              { title: '1', mp3: '19.mp3' }
+            ]
           }
         ]
       },
@@ -233,7 +278,13 @@ window.App.sections = [
           {
             image: '20.jpg',
             description: 'Биография гетмана. Традиционная версия.',
-            sound: '1.mp3'
+            positions: {
+              left: '-370px',
+              top: '0px'},
+              zoom: '102%',
+              sounds: [
+              { title: '1', mp3: '20.mp3' }
+            ]
           }
         ]
       },
@@ -244,7 +295,10 @@ window.App.sections = [
         slides: [
           {
             image: '21.jpg',
-            description: 'Западная Русь до XVII века, пребыстория событий'
+            description: 'Западная Русь до XVII века, пребыстория событий',
+            sounds: [
+              { title: '1', mp3: '21.mp3' }
+            ]
           }
         ]
       },
@@ -254,14 +308,26 @@ window.App.sections = [
         template: 'page22.html',
         slides: [
           {
-            image: '22.jpg'
+            image: '22.jpg',
+            positions: {
+              left: '-69px',
+              top: '0px'},
+              zoom: '100%',
+              sounds: [
+              { title: '1', mp3: '22.mp3' }
+            ]
           }
         ]
       },
       {
         id: 23,
         type: 'page',
-        template: 'page23.html'
+        template: 'page23.html',
+        sounds: [
+              { title: '1', mp3: '23_1.mp3' },
+              { title: '2', mp3: '23_2.mp3' },
+              { title: '3', mp3: '23_3.mp3' }
+            ]
       },
       {
         id: 24,
@@ -269,7 +335,20 @@ window.App.sections = [
         template: 'page24.html',
         slides: [
           {
-            image: '24.jpg'
+            image: '24.jpg',
+            positions: {
+              left: '-143px',
+              top: '0px'},
+              zoom: '102%',
+              sounds: [
+              { title: '1', mp3: '24_1.mp3' },
+              { title: '2', mp3: '24_2.mp3' },
+              { title: '3', mp3: '24_3.mp3' },
+              { title: '4', mp3: '24_4.mp3' },
+              { title: '5', mp3: '24_5.mp3' },
+              { title: '6', mp3: '24_6.mp3' },
+              { title: '7', mp3: '24_7.mp3' }
+            ]
           }
         ]
       },
@@ -281,7 +360,10 @@ window.App.sections = [
       {
         id: 26,
         type: 'page',
-        template: 'page26.html'
+        template: 'page26.html',
+        sounds: [
+              { title: '1', mp3: '26.mp3' }
+            ]
       },
       {
         id: 27,
@@ -290,15 +372,27 @@ window.App.sections = [
         slides: [
           {
             image: '27_1.jpg',
-            description: 'Польский шляхтич'
+            description: 'Польский шляхтич',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '100%'
           },
           {
             image: '27_2.jpg',
-            description: 'Стефан Чарнецкий, Заместитель командующего польской армией'
+            description: 'Стефан Чарнецкий, Заместитель командующего польской армией',
+            positions: {
+              left: '-398px',
+              top: '-21px'},
+              zoom: '105%'
           },
           {
             image: '27_3.jpg',
-            description: 'Станислав Щука, подканцлер Великого Княжества Литовского'
+            description: 'Станислав Щука, подканцлер Великого Княжества Литовского',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '105%'
           }
         ]
       },
@@ -308,7 +402,11 @@ window.App.sections = [
         template: 'page28.html',
         slides: [
           {
-            image: '28.jpg'
+            image: '28.jpg',
+            positions: {
+              left: '0px',
+              top: '-106px'},
+              zoom: '140%'
           }
         ]
       },
@@ -319,7 +417,11 @@ window.App.sections = [
         slides: [
           {
             image: '29.jpg',
-            description: 'Русский купец'
+            description: 'Русский купец',
+            positions: {
+              left: '0px',
+              top: '-27px'},
+              zoom: '115%'
           }
         ]
       },
@@ -329,7 +431,14 @@ window.App.sections = [
         template: 'page30.html',
         slides: [
           {
-            image: '30.jpg'
+            image: '30.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '170%',
+              sounds: [
+              { title: '1', mp3: '30.mp3' }
+            ]
           }
         ]
       },
@@ -351,7 +460,10 @@ window.App.sections = [
       {
         id: 34,
         type: 'page',
-        template: 'page34.html'
+        template: 'page34.html',
+        sounds: [
+              { title: '1', mp3: '34.mp3' }
+            ]
       },
       {
         id: 35,
@@ -360,19 +472,33 @@ window.App.sections = [
         slides: [
           {
             image: '35.jpg',
-            description: 'Турки на фоне мечети'
+            positions: {
+              left: '-432px',
+              top: '0px'},
+            description: 'Турки на фоне мечети',
+            sounds: [
+              { title: '1', mp3: '35.mp3' }
+            ]
           }
         ]
       },
       {
         id: 36,
         type: 'page',
-        template: 'page36.html'
+        template: 'page36.html',
+        map: 'true',
+        sounds: [
+              { title: '1', mp3: '36.mp3' }
+            ]
       },
       {
         id: 37,
         type: 'page',
-        template: 'page37.html'
+        template: 'page37.html',
+        sounds: [
+              { title: '1', mp3: '37_1.mp3' },
+              { title: '2', mp3: '37_2.mp3' }
+            ]
       },
       {
         id: 38,
@@ -380,10 +506,24 @@ window.App.sections = [
         template: 'page38.html',
         slides: [
           {
-            image: '38_1.jpg'
+            image: '38_1.jpg',
+            positions: {
+              left: '-176px',
+              top: '0px'},
+              zoom: '104%',
+              sounds: [
+              { title: '1', mp3: '38_1.mp3' }
+            ]
           },
           {
-            image: '38_2.jpg'
+            image: '38_2.jpg',
+            positions: {
+              left: '-376px',
+              top: '0px'},
+              zoom: '100%',
+              sounds: [
+              { title: '1', mp3: '.38_2mp3' }
+            ]
           }
         ]
       },
@@ -393,10 +533,21 @@ window.App.sections = [
         template: 'page39.html',
         slides: [
           {
-            image: '39_1.jpg'
+            image: '39_1.jpg',
+            positions: {
+              left: '0px',
+              top: '-44px'},
+              zoom: '190%',
+              sounds: [
+              { title: '1', mp3: '39.mp3' }
+            ]
           },
           {
-            image: '39_2.jpg'
+            image: '39_2.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '188%'
           }
         ]
       },
@@ -411,7 +562,11 @@ window.App.sections = [
         template: 'page41.html',
         slides: [
           {
-            image: '41.jpg'
+            image: '41.jpg',
+            positions: {
+              left: '0px',
+              top: '-193px'},
+              zoom: '173%'
           }
         ]
       },
@@ -421,10 +576,18 @@ window.App.sections = [
         template: 'page42.html',
         slides: [
           {
-            image: '42_1.jpg'
+            image: '42_1.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '102%'
           },
           {
-            image: '42_2.jpg'
+            image: '42_2.jpg',
+            positions: {
+              left: '-367px',
+              top: '0px'},
+              zoom: '100%'
           }
         ]
       },
@@ -439,7 +602,14 @@ window.App.sections = [
         template: 'page44.html',
         slides: [
           {
-            image: '44.jpg'
+            image: '44.jpg',
+            positions: {
+              left: '-163px',
+              top: '0px'},
+              zoom: '102%',
+              sounds: [
+              { title: '1', mp3: '44.mp3' }
+            ]
           }
         ]
       },
@@ -449,7 +619,11 @@ window.App.sections = [
         template: 'page45.html',
         slides: [
           {
-            image: '45.jpg'
+            image: '45.jpg',
+            positions: {
+              left: '-319px',
+              top: '-64px'},
+              zoom: '155%'
           }
         ]
       },
@@ -459,7 +633,14 @@ window.App.sections = [
         template: 'page46.html',
         slides: [
           {
-            image: '46.jpg'
+            image: '46.jpg',
+            positions: {
+              left: '-188px',
+              top: '-87px'},
+              zoom: '112%',
+              sounds: [
+              { title: '1', mp3: '46.mp3' }
+            ]
           }
         ]
       },
@@ -474,14 +655,21 @@ window.App.sections = [
         template: 'page48.html',
         slides: [
           {
-            image: '48.jpg'
+            image: '48.jpg',
+            positions: {
+              left: '0px',
+              top: '-215px'},
+              zoom: '150%',
+              sounds: [
+              { title: '1', mp3: '48.mp3' }
+            ]
           }
         ]
       },
       {
         id: 49,
         type: 'page',
-        template: 'page49.html',
+        template: 'page49.html'
       },
       {
         id: 50,
@@ -489,7 +677,14 @@ window.App.sections = [
         template: 'page50.html',
         slides: [
           {
-            image: '50.jpg'
+            image: '50.jpg',
+            positions: {
+              left: '0px',
+              top: '-209px'},
+              zoom: '168%',
+              sounds: [
+              { title: '1', mp3: '50.mp3' }
+            ]
           }
         ]
       },
@@ -499,14 +694,22 @@ window.App.sections = [
         template: 'page51.html',
         slides: [
           {
-            image: '51.jpg'
+            image: '51.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'}
+            
           }
         ]
       },
       {
         id: 52,
         type: 'page',
-        template: 'page52.html'
+        template: 'page52.html',
+        sounds: [
+              { title: '1', mp3: '52_1.mp3' },
+               { title: '2', mp3: '52_2.mp3' }
+            ]
       },
       {
         id: 53,
@@ -514,7 +717,13 @@ window.App.sections = [
         template: 'page53.html',
         slides: [
           {
-            image: '53.jpg'
+            image: '53.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '53.mp3' }
+            ]
           }
         ]
       },
@@ -538,9 +747,14 @@ window.App.sections = [
         id: 56,
         type: 'page',
         template: 'page56.html',
+        map: 'true',
         slides: [
           {
-            image: '56.jpg'
+            image: '56.jpg',
+            positions: {
+              left: '0px',
+              top: '-131px'},
+              zoom: '165%'
           }
         ]
       },
@@ -551,7 +765,10 @@ window.App.sections = [
         slides: [
           {
             image: '57.jpg',
-            description: 'Переводчик на Руси'
+            description: 'Переводчик на Руси',
+            positions: {
+              left: '-26px',
+              top: '0px'}
           }
         ]
       },
@@ -559,9 +776,17 @@ window.App.sections = [
         id: 58,
         type: 'page',
         template: 'page58.html',
+        map: 'true',
         slides: [
           {
-            image: '58.jpg'
+            image: '58.jpg',
+            positions: {
+              left: '-325px',
+              top: '-72px'},
+              zoom: '113%',
+              sounds: [
+              { title: '1', mp3: '58.mp3' }
+            ]
           }
         ]
       },
@@ -572,59 +797,26 @@ window.App.sections = [
         slides: [
           {
             image: '59_1.jpg',
-            description: 'Воевода Афанасий Ордын-Нащокин'
+            description: 'Воевода Афанасий Ордын-Нащокин',
+            positions: {
+              left: '-417px',
+              top: '-23px'},
+              zoom: '107%'
           },
           {
             image: '59_2.jpg',
-            discription: 'Воевода Пётр Потёмкин'
+            discription: 'Воевода Пётр Потёмкин',
+            positions: {
+              left: '-530px',
+              top: '-0px'},
+              zoom: '122%'
           }
         ]
       },
       {
         id: 60,
         type: 'page',
-        template: 'page60.html',
-        slides: [
-          {
-            image: '60_1.jpg',
-            description: 'Лево. Оклад Евангелия, 1392 год. Право. 1.2. Оклад Мстиславова Евангелия. До 1125 года'
-          },
-          {
-            image: '60_2.jpg',
-            description: 'Торжественник постный. Святого Иоанна Златоустаго и других слова и поучения'
-          },
-          {
-            image: '60_3.jpg',
-            description: 'Службы и жития преподобных Сергия и Никона Радонежских. 1646 год'
-          },
-          {
-            image: '60_4.jpg'
-          },
-          {
-            image: '60_5.jpg',
-            description: 'Елисаветградское Евангелие. Издание конца XVI - начала XVII века'
-          },
-          {
-            image: '60_6.jpg'
-          },
-          {
-            image: '60_7.jpg',
-            description: 'Лицевой летописный свод Ивана Грозного. Изложение событий мировой и русской истории,  от сотворения мира до 1567 года'
-          },
-          {
-            image: '60_8.jpg'
-          },
-          {
-            image: '60_9.jpg',
-            description: 'Великий миротворный круг священника Агафона. Таблицы для определения Пасхи. 1539 год'
-          },
-          {
-            image: '60_10.jpg'
-          },
-          {
-            image: '60_11.jpg'
-          }
-        ]
+        template: 'page60.html'
       },
       {
         id: 61,
@@ -633,7 +825,11 @@ window.App.sections = [
         slides: [
           {
             image: '61.jpg',
-            description: 'Беззаконник, любящий взятки'
+            description: 'Беззаконник, любящий взятки',
+            positions: {
+              left: '-57px',
+              top: '-12px'},
+              zoom: '102%'
           }
         ]
       },
@@ -648,7 +844,10 @@ window.App.sections = [
         template: 'page63.html',
         slides: [
           {
-            image: '63.jpg'
+            image: '63.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'}
           }
         ]
       },
@@ -658,7 +857,10 @@ window.App.sections = [
         template: 'page64.html',
         slides: [
           {
-            image: '64.jpg'
+            image: '64.jpg',
+            positions: {
+              left: '-492px',
+              top: '0px'}
           }
         ]
       },
@@ -681,12 +883,21 @@ window.App.sections = [
         id: 68,
         type: 'page',
         template: 'page68.html',
+        map: 'true',
         slides: [
           {
-            image: '68_1.jpg'
+            image: '68_1.jpg',
+            positions: {
+              left: '-12px',
+              top: '-304px'},
+              zoom: '185.7%'
           },
           {
-            image: '68_2.jpg'
+            image: '68_2.jpg',
+            positions: {
+              left: '0px',
+              top: '-292px'},
+              zoom: '184.43%'
           }
         ]
       },
@@ -701,7 +912,13 @@ window.App.sections = [
         template: 'page70.html',
         slides: [
           {
-            image: '70.jpg'
+            image: '70.jpg',
+            positions: {
+              left: '-56px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '70.mp3' }
+            ]
           }
         ]
       },
@@ -716,7 +933,16 @@ window.App.sections = [
         template: 'page72.html',
         slides: [
           {
-            image: '72.jpg'
+            image: '72.jpg',
+            positions: {
+              left: '-251px',
+              top: '-138px'},
+              zoom: '135.4%',
+               sounds: [
+              { title: '1', mp3: '72_1.mp3' },
+              { title: '1', mp3: '72_2.mp3' },
+              { title: '1', mp3: '72_3.mp3' }
+            ]
           }
         ]
       },
@@ -724,12 +950,21 @@ window.App.sections = [
         id: 73,
         type: 'page',
         template: 'page73.html',
+        map: 'true',
         slides: [
           {
-            image: '73_1.jpg'
+            image: '73_1.jpg',
+            positions: {
+              left: '0px',
+              top: '-181px'},
+              zoom: '184.6%'
           },
           {
-            image: '73_2.jpg'
+            image: '73_2.jpg',
+            positions: {
+              left: '0px',
+              top: '-155px'},
+              zoom: '200%'
           }
         ]
       },
@@ -739,10 +974,18 @@ window.App.sections = [
         template: 'page74.html',
         slides: [
           {
-            image: '74_1.jpg'
+            image: '74_1.jpg',
+            positions: {
+              left: '-369px',
+              top: '0px'},
+              zoom: '101%'
           },
           {
-            image: '74_2.jpg'
+            image: '74_2.jpg',
+            positions: {
+              left: '-307px',
+              top: '0px'},
+              zoom: '100%'
           }
         ]
       },
@@ -752,7 +995,11 @@ window.App.sections = [
         template: 'page75.html',
         slides: [
           {
-            image: '75.jpg'
+            image: '75.jpg',
+            positions: {
+              left: '0px',
+              top: '-48px'},
+              zoom: '178%'
           }
         ]
       },
@@ -762,7 +1009,14 @@ window.App.sections = [
         template: 'page76.html',
         slides: [
           {
-            image: '76.jpg'
+            image: '76.jpg',
+            positions: {
+              left: '0px',
+              top: '-21px'},
+              zoom: '171%',
+              sounds: [
+              { title: '1', mp3: '76.mp3' }
+            ]
           }
         ]
       },
@@ -772,7 +1026,11 @@ window.App.sections = [
         template: 'page77.html',
         slides: [
           {
-            image: '77.jpg'
+            image: '77.jpg',
+            positions: {
+              left: '-43px',
+              top: '0px'},
+              zoom: '101%'
           }
         ]
       },
@@ -782,7 +1040,13 @@ window.App.sections = [
         template: 'page78.html',
         slides: [
           {
-            image: '78.jpg'
+            image: '78.jpg',
+            positions: {
+              left: '-197px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '78.mp3' }
+            ]
           }
         ]
       },
@@ -808,7 +1072,13 @@ window.App.sections = [
         template: 'page81.html',
         slides: [
           {
-            image: '81.jpg'
+            image: '81.jpg',
+            positions: {
+              left: '-90px',
+              top: '-40px'},
+              sounds: [
+              { title: '1', mp3: '81.mp3' }
+              ]
           }
         ]
       },
@@ -819,7 +1089,13 @@ window.App.sections = [
         slides: [
           {
             image: '82.jpg',
-            description: 'Турецкий посол'
+            description: 'Турецкий посол',
+            positions: {
+              left: '-526px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '82.mp3' }
+            ]
           }
         ]
       },
@@ -830,7 +1106,10 @@ window.App.sections = [
         slides: [
           {
             image: '83.jpg',
-            description: 'Турецкий посольство'
+            description: 'Турецкий посольство',
+            positions: {
+              left: '-191px',
+              top: '-45px'}
           }
         ]
       },
@@ -840,7 +1119,13 @@ window.App.sections = [
         template: 'page84.html',
         slides: [
           {
-            image: '84.jpg'
+            image: '84.jpg',
+            positions: {
+              left: '-87px',
+              top: '-14px'},
+              sounds: [
+              { title: '1', mp3: '84.mp3' }
+            ]
           }
         ]
       },
@@ -851,7 +1136,10 @@ window.App.sections = [
         slides: [
           {
             image: '85.jpg',
-            description: 'Процессия патриарха'
+            description: 'Процессия патриарха',
+            positions: {
+              left: '-342px',
+              top: '-167px'}
           }
         ]
       },
@@ -862,7 +1150,10 @@ window.App.sections = [
         slides: [
           {
             image: '86.jpg',
-            description: 'Франкский народ в 17 веке, голландцы'
+            description: 'Франкский народ в 17 веке, голландцы',
+            positions: {
+              left: '0px',
+              top: '0px'}
           }
         ]
       },
@@ -874,7 +1165,10 @@ window.App.sections = [
       {
         id: 88,
         type: 'page',
-        template: 'page88.html'
+        template: 'page88.html',
+        sounds: [
+              { title: '1', mp3: '88.mp3' }
+            ]
       },
       {
         id: 89,
@@ -882,7 +1176,13 @@ window.App.sections = [
         template: 'page89.html',
         slides: [
           {
-            image: '89.jpg'
+            image: '89.jpg',
+            positions: {
+              left: '-64px',
+              top: '-65px'},
+              sounds: [
+              { title: '1', mp3: '89.mp3' }
+            ]
           }
         ]
       },
@@ -892,7 +1192,10 @@ window.App.sections = [
         template: 'page90.html',
         slides: [
           {
-            image: '90.jpg'
+            image: '90.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'}
           }
         ]
       },
@@ -902,7 +1205,10 @@ window.App.sections = [
         template: 'page91.html',
         slides: [
           {
-            image: '91.jpg'
+            image: '91.jpg',
+            positions: {
+              left: '-229px',
+              top: '0px'}
           }
         ]
       },
@@ -917,14 +1223,25 @@ window.App.sections = [
         template: 'page93.html',
         slides: [
           {
-            image: '93.jpg'
+            image: '93.jpg',
+            positions: {
+              left: '-143px',
+              top: '-255px'},
+              sounds: [
+              { title: '1', mp3: '93.mp3' }
+            ]
           }
         ]
       },
       {
         id: 94,
         type: 'page',
-        template: 'page94.html'
+        template: 'page94.html',
+        sounds: [
+              { title: '1', mp3: '94_1.mp3' },
+              { title: '1', mp3: '94_2.mp3' }
+            ],
+        map: 'true'
       },
       {
         id: 95,
@@ -937,14 +1254,20 @@ window.App.sections = [
         template: 'page96.html',
         slides: [
           {
-            image: '96.jpg'
+            image: '96.jpg',
+            positions: {
+              left: '-167px',
+              top: '-139px'}
           }
         ]
       },
       {
         id: 97,
         type: 'page',
-        template: 'page97.html'
+        template: 'page97.html',
+        sounds: [
+              { title: '1', mp3: '97.mp3' }
+            ]
       },
       {
         id: 98,
@@ -953,7 +1276,10 @@ window.App.sections = [
         slides: [
           {
             image: '98.jpg',
-            description: 'Святой 17 века Симеон Верхотурский'
+            description: 'Святой 17 века Симеон Верхотурский',
+            positions: {
+              left: '-475px',
+              top: '-50px'}
           }
         ]
       },
@@ -963,14 +1289,21 @@ window.App.sections = [
         template: 'page99.html',
         slides: [
           {
-            image: '99.jpg'
+            image: '99.jpg',
+            positions: {
+              left: '-165px',
+              top: '-127px'}
           }
         ]
       },
       {
         id: 100,
         type: 'page',
-        template: 'page100.html'
+        template: 'page100.html',
+        sounds: [
+              { title: '1', mp3: '100.mp3' }
+            ],
+        map: 'true'
       },
       {
         id: 101,
@@ -978,7 +1311,13 @@ window.App.sections = [
         template: 'page101.html',
         slides: [
           {
-            image: '101.jpg'
+            image: '101.jpg',
+            positions: {
+              left: '-71px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '101.mp3' }
+            ]
           }
         ]
       },
@@ -988,7 +1327,13 @@ window.App.sections = [
         template: 'page102.html',
         slides: [
           {
-            image: '102.jpg'
+            image: '102.jpg',
+            positions: {
+              left: '-165px',
+              top: '-79px'},
+              sounds: [
+              { title: '1', mp3: '102.mp3' }
+            ]
           }
         ]
       },
@@ -998,7 +1343,13 @@ window.App.sections = [
         template: 'page103.html',
         slides: [
           {
-            image: '103.jpg'
+            image: '103.jpg',
+            positions: {
+              left: '-153px',
+              top: '-54px'},
+              sounds: [
+              { title: '1', mp3: '103.mp3' }
+            ]
           }
         ]
       },
@@ -1008,7 +1359,10 @@ window.App.sections = [
         template: 'page104.html',
         slides: [
           {
-            image: '104.jpg'
+            image: '104.jpg',
+            positions: {
+              left: '-430px',
+              top: '-105px'}
           }
         ]
       },
@@ -1018,7 +1372,13 @@ window.App.sections = [
         template: 'page105.html',
         slides: [
           {
-            image: '105.jpg'
+            image: '105.jpg',
+            positions: {
+              left: '-65px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '105.mp3' }
+            ]
           }
         ]
       },
@@ -1029,7 +1389,10 @@ window.App.sections = [
         slides: [
           {
             image: '106.jpg',
-            description: 'В алтаре храма'
+            description: 'В алтаре храма',
+            positions: {
+              left: '-559px',
+              top: '0px'}
           }
         ]
       },
@@ -1039,7 +1402,13 @@ window.App.sections = [
         template: 'page107.html',
         slides: [
           {
-            image: '107.jpg'
+            image: '107.jpg',
+            positions: {
+              left: '0px',
+              top: '-160px'},
+              sounds: [
+              { title: '1', mp3: '107.mp3' }
+            ]
           }
         ]
       },
@@ -1049,7 +1418,14 @@ window.App.sections = [
         template: 'page108.html',
         slides: [
           {
-            image: '108.jpg'
+            image: '108.jpg',
+            positions: {
+              left: '-49px',
+              top: '-42px'},
+              sounds: [
+              { title: '1', mp3: '108_1.mp3' },
+              { title: '2', mp3: '108_2.mp3' }
+            ]
           }
         ]
       },
@@ -1060,19 +1436,17 @@ window.App.sections = [
         slides: [
           {
             image: '109_1.jpg',
-            description: 'Консул английского короля'
+            description: 'Консул английского короля',
+            positions: {
+              left: '-59px',
+              top: '0px'}
           },
           {
             image: '109_2.jpg',
-            description: 'Консул французского короля'
-          },
-          {
-            image: '109_3.jpg',
-            description: 'Консул русского царя Иван Чемоданов'
-          },
-          {
-            image: '109_4.jpg',
-            description: 'Русский посол во время зарубежного приёма'
+            description: 'Консул французского короля',
+            positions: {
+              left: '-48px',
+              top: '0px'}
           }
         ]
       },
@@ -1082,7 +1456,10 @@ window.App.sections = [
         template: 'page110.html',
         slides: [
           {
-            image: '110.jpg'
+            image: '110.jpg',
+            positions: {
+              left: '-104px',
+              top: '-258px'}
           }
         ]
       },
@@ -1093,11 +1470,17 @@ window.App.sections = [
         slides: [
           {
             image: '111_1.jpg',
-            description: 'Шведские ружья в действии'
+            description: 'Шведские ружья в действии',
+            positions: {
+              left: '-392px',
+              top: '0px'}
           },
           {
             image: '111_2.jpg',
-            description: 'Шведские ружья в действии'
+            description: 'Шведские ружья в действии',
+            positions: {
+              left: '-280px',
+              top: '0px'}
           }
         ]
       },
@@ -1107,7 +1490,10 @@ window.App.sections = [
         template: 'page112.html',
         slides: [
           {
-            image: '112.jpg'
+            image: '112.jpg',
+            positions: {
+              left: '-460px',
+              top: '-144px'}
           }
         ]
       },
@@ -1117,7 +1503,10 @@ window.App.sections = [
         template: 'page113.html',
         slides: [
           {
-            image: '113.jpg'
+            image: '113.jpg',
+            positions: {
+              left: '-577px',
+              top: '0px'}
           }
         ]
       },
@@ -1125,16 +1514,26 @@ window.App.sections = [
         id: 114,
         type: 'page',
         template: 'page114.html',
+        map: 'true',
         slides: [
           {
-            image: '114.jpg'
+            image: '114.jpg',
+            positions: {
+              left: '-86px',
+              top: '-222px'},
+              sounds: [
+              { title: '1', mp3: '114.mp3' }
+              ]
           }
         ]
       },
       {
         id: 115,
         type: 'page',
-        template: 'page115.html'
+        template: 'page115.html',
+        sounds: [
+              { title: '1', mp3: '115.mp3' }
+              ]
       },
       {
         id: 116,
@@ -1142,7 +1541,13 @@ window.App.sections = [
         template: 'page116.html',
         slides: [
           {
-            image: '116.jpg'
+            image: '116.jpg',
+            positions: {
+              left: '-86px',
+              top: '-95px'},
+              sounds: [
+              { title: '1', mp3: '116.mp3' }
+              ]
           }
         ]
       },
@@ -1154,7 +1559,10 @@ window.App.sections = [
       {
         id: 118,
         type: 'page',
-        template: 'page118.html'
+        template: 'page118.html',
+          sounds: [
+          { title: '1', mp3: '118.mp3' }
+          ]
       },
       {
         id: 119,
@@ -1163,7 +1571,10 @@ window.App.sections = [
         slides: [
           {
             image: '119.jpg',
-            description: 'Священник за богослужением'
+            description: 'Священник за богослужением',
+            positions: {
+              left: '-545px',
+              top: '0px'}
           }
         ]
       },
@@ -1173,7 +1584,13 @@ window.App.sections = [
         template: 'page120.html',
         slides: [
           {
-            image: '120.jpg'
+            image: '120.jpg',
+            positions: {
+              left: '-88px',
+              top: '-42px'},
+              sounds: [
+              { title: '1', mp3: '120.mp3' }
+              ]
           }
         ]
       },
@@ -1183,7 +1600,10 @@ window.App.sections = [
         template: 'page121.html',
         slides: [
           {
-            image: '121.jpg'
+            image: '121.jpg',
+            positions: {
+              left: '-88px',
+              top: '-42px'}
           }
         ]
       },
@@ -1191,16 +1611,23 @@ window.App.sections = [
         id: 122,
         type: 'page',
         template: 'page122.html',
+        map: 'true',
         slides: [
           {
-            image: '122.jpg'
+            image: '122.jpg',
+            positions: {
+              left: '-86px',
+              top: '-245px'}
           }
         ]
       },
         {
         id: 123,
         type: 'page',
-        template: 'page123.html'
+        template: 'page123.html',
+        sounds: [
+        { title: '1', mp3: '123.mp3' }
+        ]
       },
       {
         id: 124,
@@ -1209,7 +1636,10 @@ window.App.sections = [
         slides: [
           {
             image: '124.jpg',
-              description: 'Христос умывает ноги ученикам'
+              description: 'Христос умывает ноги ученикам',
+              positions: {
+              left: '-400px',
+              top: '-93px'}
           }
         ]
       },
@@ -1235,17 +1665,28 @@ window.App.sections = [
         template: 'page127.html',
         slides: [
           {
-            image: '127_1.jpg'
+            image: '127_1.jpg',
+            positions: {
+              left: '-216px',
+              top: '-92px'},
+              zoom: '125%'
           },
           {
-            image: '127_2.jpg'
+            image: '127_2.jpg',
+            positions: {
+              left: '-240px',
+              top: '-140px'},
+              zoom: '132%'
           }
         ]
       },
       {
         id: 128,
         type: 'page',
-        template: 'page128.html'
+        template: 'page128.html',
+        sounds: [
+              { title: '1', mp3: '128.mp3' }
+            ]
       },
       {
         id: 129,
@@ -1254,7 +1695,13 @@ window.App.sections = [
         slides: [
           {
             image: '129.jpg',
-            description: 'Персидский купец'
+            description: 'Персидский купец',
+            positions: {
+              left: '-476px',
+              top: '-0px'},
+              sounds: [
+              { title: '1', mp3: '129.mp3' }
+            ]
           }
         ]
       },
@@ -1264,7 +1711,10 @@ window.App.sections = [
         template: 'page130.html',
         slides: [
           {
-            image: '130.jpg'
+            image: '130.jpg',
+            positions: {
+              left: '-551px',
+              top: '0px'}
           }
         ]
       },
@@ -1274,7 +1724,11 @@ window.App.sections = [
         template: 'page131.html',
         slides: [
           {
-            image: '131.jpg'
+            image: '131.jpg',
+            positions: {
+              left: '0px',
+              top: '-151px'},
+              zoom: '165%'
           }
         ]
       },
@@ -1285,15 +1739,25 @@ window.App.sections = [
         slides: [
           {
             image: '132_1.jpg',
-            description: 'Знатные люди'
+            description: 'Знатные люди',
+            positions: {
+              left: '-283px',
+              top: '0px'},
+              zoom: '101%',
+              sounds: [
+              { title: '1', mp3: '132_1.mp3' }
+            ]
           },
           {
             image: '132_2.jpg',
-            description: 'Боярин Лев Нарышкин. Глава посольского приказа, родной брат второй жены Алексея Михайловича'
-          },
-          {
-            image: '132_3.jpg',
-            description: 'Русский государственный деятель Василий Люткин'
+            description: 'Боярин Лев Нарышкин. Глава посольского приказа, родной брат второй жены Алексея Михайловича',
+            positions: {
+              left: '-31px',
+              top: '-42px'},
+              zoom: '110%',
+              sounds: [
+              { title: '1', mp3: '132_2.mp3' }
+            ]
           }
         ]
       },
@@ -1303,7 +1767,14 @@ window.App.sections = [
         template: 'page133.html',
         slides: [
           {
-            image: '133.jpg'
+            image: '133.jpg',
+            positions: {
+              left: '0px',
+              top: '-116px'},
+              zoom: '195%',
+              sounds: [
+              { title: '1', mp3: '133.mp3' }
+            ]
           }
         ]
       },
@@ -1313,14 +1784,21 @@ window.App.sections = [
         template: 'page134.html',
         slides: [
           {
-            image: '134.jpg'
+            image: '134.jpg',
+            positions: {
+              left: '-487px',
+              top: '0px'}
           }
         ]
       },
       {
         id: 135,
         type: 'page',
-        template: 'page135.html'
+        template: 'page135.html',
+        sounds: [
+              { title: '1', mp3: '135.mp3' }
+            ],
+        map: 'true'
       },
       {
         id: 136,
@@ -1328,7 +1806,14 @@ window.App.sections = [
         template: 'page136.html',
         slides: [
           {
-            image: '136.jpg'
+            image: '136.jpg',
+            positions: {
+              left: '0px',
+              top: '-239px'},
+              zoom: '162%',
+              sounds: [
+              { title: '1', mp3: '136.mp3' }
+            ]
           }
         ]
       },
@@ -1343,7 +1828,11 @@ window.App.sections = [
         template: 'page138.html',
         slides: [
           {
-            image: '138.jpg'
+            image: '138.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '100%'
           }
         ]
       },
@@ -1353,7 +1842,11 @@ window.App.sections = [
         template: 'page139.html',
         slides: [
           {
-            image: '139.jpg'
+            image: '139.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '100%'
           }
         ]
       },
@@ -1364,7 +1857,10 @@ window.App.sections = [
         slides: [
           {
             image: '140.jpg',
-            description: 'Русский боярин'
+            description: 'Русский боярин',
+            positions: {
+              left: '-44px',
+              top: '0px'}
           }
         ]
       },
@@ -1374,7 +1870,11 @@ window.App.sections = [
         template: 'page141.html',
         slides: [
           {
-            image: '141.jpg'
+            image: '141.jpg',
+            positions: {
+              left: '0px',
+              top: '-124px'},
+              zoom: '140%'
           }
         ]
       },
@@ -1384,7 +1884,11 @@ window.App.sections = [
         template: 'page142.html',
         slides: [
           {
-            image: '142.jpg'
+            image: '142.jpg',
+            positions: {
+              left: '-352px',
+              top: '0px'},
+              zoom: '100%'
           }
         ]
       },
@@ -1421,7 +1925,11 @@ window.App.sections = [
         template: 'page144.html',
         slides: [
           {
-            image: '144.jpg'
+            image: '144.jpg',
+            positions: {
+              left: '-127px',
+              top: '0px'},
+              zoom: '102%'
           }
         ]
       },
@@ -1431,14 +1939,20 @@ window.App.sections = [
         template: 'page145.html',
         slides: [
           {
-            image: '145.jpg'
+            image: '145.jpg',
+            positions: {
+              left: '-203px',
+              top: '0px'}
           }
         ]
       },
       {
         id: 146,
         type: 'page',
-        template: 'page146.html'
+        template: 'page146.html',
+        sounds: [
+              { title: '1', mp3: '146.mp3' }
+            ]
       },
       {
         id: 147,
@@ -1446,7 +1960,10 @@ window.App.sections = [
         template: 'page147.html',
         slides: [
           {
-            image: '147.jpg'
+            image: '147.jpg',
+            positions: {
+              left: '-102px',
+              top: '0px'}
           }
         ]
       },
@@ -1456,7 +1973,10 @@ window.App.sections = [
         template: 'page148.html',
         slides: [
           {
-            image: '148.jpg'
+            image: '148.jpg',
+            positions: {
+              left: '-575px',
+              top: '0px'}
           }
         ]
       },
@@ -1466,10 +1986,24 @@ window.App.sections = [
         template: 'page149.html',
         slides: [
           {
-            image: '149_1.jpg'
+            image: '149_1.jpg',
+            positions: {
+              left: '0px',
+              top: '-164px'},
+              zoom: '183.85%',
+              sounds: [
+              { title: '1', mp3: '149_1.mp3' }
+            ]
           },
           {
-            image: '149_2.jpg'
+            image: '149_2.jpg',
+            positions: {
+              left: '0px',
+              top: '-226px'},
+              zoom: '183.85%',
+              sounds: [
+              { title: '1', mp3: '149_2.mp3' }
+            ]
           }
         ]
       },
@@ -1479,20 +2013,46 @@ window.App.sections = [
         template: 'page150.html',
         slides: [
           {
-            image: '150_1.jpg'
+            image: '150_1.jpg',
+            positions: {
+              left: '0px',
+              top: '-117px'},
+              zoom: '155.5%',
+              sounds: [
+              { title: '1', mp3: '150_1.mp3' }
+            ]
+              
           },
           {
-            image: '150_2.jpg'
+            image: '150_2.jpg',
+            positions: {
+              left: '0px',
+              top: '-136px'},
+              zoom: '156%',
+              sounds: [
+              { title: '1', mp3: '150_2.mp3' }
+            ]
           },
           {
-            image: '150_3.jpg'
+            image: '150_3.jpg',
+            positions: {
+              left: '0px',
+              top: '-197px'},
+              zoom: '155%',
+              sounds: [
+              { title: '1', mp3: '150_3.mp3' }
+            ],
+              map: 'true'
           }
         ]
       },
       {
         id: 151,
         type: 'page',
-        template: 'page151.html'
+        template: 'page151.html',
+          sounds: [
+              { title: '1', mp3: '151.mp3' }
+            ]
       },
       {
         id: 152,
@@ -1500,7 +2060,14 @@ window.App.sections = [
         template: 'page152.html',
         slides: [
           {
-            image: '152.jpg'
+            image: '152.jpg',
+            positions: {
+              left: '0px',
+              top: '-103px'},
+              zoom: '149%',
+              sounds: [
+              { title: '1', mp3: '152.mp3' }
+            ]
           }
         ]
       },
@@ -1511,7 +2078,14 @@ window.App.sections = [
         slides: [
           {
             image: '153.jpg',
-            description: 'Собака племени мученика Христофора'
+            description: 'Собака племени мученика Христофора',
+            positions: {
+              left: '-66px',
+              top: '0px'},
+              zoom: '102%',
+              sounds: [
+              { title: '1', mp3: '153.mp3' }
+            ]
           }
         ]
       },
@@ -1521,14 +2095,23 @@ window.App.sections = [
         template: 'page154.html',
         slides: [
           {
-            image: '154.jpg'
+            image: '154.jpg',
+            positions: {
+              left: '-314px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '154.mp3' }
+            ]
           }
         ]
       },
       {
         id: 155,
         type: 'page',
-        template: 'page155.html'
+        template: 'page155.html',
+          sounds: [
+              { title: '1', mp3: '155.mp3' }
+            ]
       },
       {
         id: 156,
@@ -1546,7 +2129,11 @@ window.App.sections = [
         template: 'page158.html',
         slides: [
           {
-            image: '158.jpg'
+            image: '158.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '102%'
           }
         ]
       },
@@ -1556,7 +2143,14 @@ window.App.sections = [
         template: 'page159.html',
         slides: [
           {
-            image: '159.jpg'
+            image: '159.jpg',
+            positions: {
+              left: '-338px',
+              top: '0px'},
+              zoom: '103%',
+              sounds: [
+              { title: '1', mp3: '159.mp3' }
+            ]
           }
         ]
       },
@@ -1566,7 +2160,14 @@ window.App.sections = [
         template: 'page160.html',
         slides: [
           {
-            image: '160.jpg'
+            image: '160.jpg',
+            positions: {
+              left: '-195px',
+              top: '0px'},
+              zoom: '103%',
+              sounds: [
+              { title: '1', mp3: '160.mp3' }
+            ]
           }
         ]
       },
@@ -1576,7 +2177,11 @@ window.App.sections = [
         template: 'page161.html',
         slides: [
           {
-            image: '161.jpg'
+            image: '161.jpg',
+            positions: {
+              left: '0px',
+              top: '0px'},
+              zoom: '102%'
           }
         ]
       },
@@ -1587,7 +2192,10 @@ window.App.sections = [
         slides: [
           {
             image: '162.jpg',
-            description: 'Русская деревня'
+            description: 'Русская деревня',
+            positions: {
+              left: '-392px',
+              top: '0px'}
           }
         ]
       },
@@ -1607,14 +2215,21 @@ window.App.sections = [
         template: 'page165.html',
         slides: [
           {
-            image: '165.jpg'
+            image: '165.jpg',
+            positions: {
+              left: '-24px',
+              top: '0px'},
+              zoom: '102%'
           }
         ]
       },
       {
         id: 166,
-        type: 'page',
-        template: 'page166.html'
+//        type: 'page',
+//        template: 'page166.html'
+        type: 'video',
+        video: '47.mp4'
+
       },
       {
         id: 167,
@@ -1638,7 +2253,13 @@ window.App.sections = [
         template: 'page169.html',
         slides: [
           {
-            image: '169.jpg'
+            image: '169.jpg',
+            positions: {
+              left: '-577px',
+              top: '0px'},
+              sounds: [
+              { title: '1', mp3: '169.mp3' }
+            ]
           }
         ]
       },
@@ -1760,6 +2381,7 @@ window.App.sections = [
     ]
   }
 ];
+
 
 // Transform sections to flat collection
 App.pages = [];
