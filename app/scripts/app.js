@@ -134,13 +134,18 @@ window.App = {
             .addClass('rubric_num_' + page.id),
           rubricContainerEl = $('<div/>').addClass('rubric__container');
         rubricEl.append(rubricContainerEl);
-        page.images && page.images.forEach(function (image) {
-          var imagePath = _this.getImagePath(page.id) + '/rubrics/' + image,
-            slideEl = $('<div/>').addClass('rubric__slide');
-          slideEl.append('<img src="' + imagePath + '" />');
-          slideEl.appendTo(rubricContainerEl);
-        });
+
+        content = this.Templates.get('rubric' + page.section + '.html');
+        $(rubricContainerEl).append(content);
+
+        // page.images && page.images.forEach(function (image) {
+        //   var imagePath = _this.getImagePath(page.id) + '/rubrics/' + image,
+        //     slideEl = $('<div/>').addClass('rubric__slide');
+        //   slideEl.append('<img src="' + imagePath + '" />');
+        //   slideEl.appendTo(rubricContainerEl);
+        // });
         rubricEl.appendTo(slide);
+
         break;
       default:
         // handle slider
@@ -258,10 +263,11 @@ window.App = {
         $(this.slide).on('click', '.article-link', this.showArticle.bind(this));
 
         if (page.map) {
-		setTimeout(function () {
-			 App.showGlobe();
-		 }, 500);
-	}
+
+          setTimeout(function () {
+            App.showGlobe();
+          }, 500);
+        }
 /*
         if (page.videoflag) {
 		App.searchVideo();
@@ -273,6 +279,12 @@ window.App = {
           onNext: this.goToNextPage.bind(this),
           onPrev: this.goToPrevPage.bind(this)
         }, page));
+
+        if (typeof App.Rubrics[page.section] === 'function' && App.Rubrics[page.section].inited != true) {
+          App.Rubrics[page.section].inited = true;
+          App.Rubrics[page.section]();
+        }
+
         break;
     }
 
@@ -287,8 +299,8 @@ window.App = {
   },
 
   goToNextPage: function () {
-    if (this.slider.activeIndex < this.slider.slides.length - 1) { 
-      this.slider.swipeNext(true); 
+    if (this.slider.activeIndex < this.slider.slides.length - 1) {
+      this.slider.swipeNext(true);
     }
   },
 
@@ -488,7 +500,7 @@ window.App = {
 	    this.playList._refresh(true);
 	    // select first item
 	    this.playList.play(0);
-	
+
 	    $(this.options.circlePlayer.cssSelector).addClass('audio-player_show_yes');
 
 	    this.isPlaying = true;

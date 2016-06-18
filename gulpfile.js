@@ -70,7 +70,7 @@ gulp.task('images', function () {
 var templateCache = require('gulp-angular-templatecache');
 
 gulp.task('markdown', function () {
-  gulp.src('app/templates/*.html')
+  gulp.src(['app/templates/*.html', 'app/rubrics/*.html'])
     .pipe(templateCache({
       templateHeader: '(function($templateCache) {',
       templateFooter: '})(App.Templates);'
@@ -78,6 +78,16 @@ gulp.task('markdown', function () {
     .pipe(gulp.dest('app/scripts'))
     .pipe($.size({title: 'templates'}));
 });
+
+// gulp.task('rubrics', function () {
+//   gulp.src('app/rubrics/**/*.html')
+//     .pipe(templateCache({
+//       templateHeader: '(function($templateCache) {',
+//       templateFooter: '})(App.Rubrics);'
+//     }))
+//     .pipe(gulp.dest('app/scripts'))
+//     .pipe($.size({title: 'rubrics'}));
+// });
 
 // Copy All Files At The Root Level (app)
 gulp.task('copy', function () {
@@ -91,7 +101,6 @@ gulp.task('copy', function () {
     .pipe($.size({title: 'copy'}));
 });
 
-
 gulp.task('video', function () {
   return gulp.src([
     'app/video/**'
@@ -100,7 +109,6 @@ gulp.task('video', function () {
   }).pipe(gulp.dest('dist/video'))
     .pipe($.size({title: 'video'}));
 });
-
 
 gulp.task('audio', function () {
   return gulp.src([

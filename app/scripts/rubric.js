@@ -93,6 +93,7 @@ App.Rubric = {
       });
     } else {
       _this.$final.addClass('rubric__final_state_closed');
+      _this.state = 'inited'
     }
   },
 
@@ -125,7 +126,8 @@ App.Rubric = {
 
   closeSlider: function () {
     var _this = this;
-    if (!this.swiper || this.state != 'opened') return;
+    //!this.swiper ||
+    if (this.state != 'opened') return;
 
     this.$final.show();
     setTimeout(function () {
@@ -136,7 +138,8 @@ App.Rubric = {
   },
 
   showSlider: function () {
-    if (!this.swiper || this.state != 'inited') return;
+    //!this.swiper ||
+    if (this.state != 'inited') return;
 
     this.$final.removeClass('rubric__final_state_closed');
 

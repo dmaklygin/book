@@ -81,6 +81,10 @@ window.App.sections = [
         id: '7',
         type: 'page',
         template: 'page7.html'
+      },
+      {
+        id: 8,
+        type: 'rubric'
       }
     ]
   },
@@ -121,7 +125,7 @@ window.App.sections = [
             description: 'Древняя Сирия',
               sounds: [
               { title: '1', mp3: '10_1.mp3' }
-            ]   
+            ]
           },
           {
             image: '10_2.jpg',
@@ -203,7 +207,7 @@ window.App.sections = [
             positions: {
               left: '0px',
               top: '-204px'},
-              zoom: '167%', 
+              zoom: '167%',
 	      map: 'true'
             }
 
@@ -698,7 +702,7 @@ window.App.sections = [
             positions: {
               left: '0px',
               top: '0px'}
-            
+
           }
         ]
       },
@@ -2021,7 +2025,7 @@ window.App.sections = [
               sounds: [
               { title: '1', mp3: '150_1.mp3' }
             ]
-              
+
           },
           {
             image: '150_2.jpg',
@@ -2382,10 +2386,12 @@ window.App.sections = [
   }
 ];
 
-
 // Transform sections to flat collection
 App.pages = [];
 
 App.sections.forEach(function(section) {
+  section.pages.forEach(function(page) {
+    page.section = section.id;
+  });
   App.pages = App.pages.concat(section.pages);
 });
